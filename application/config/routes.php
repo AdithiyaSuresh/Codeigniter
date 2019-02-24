@@ -51,15 +51,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Welcome';
 
+// $route['addtion']='Welcome/addtion';
+// $route['find']['get']='Product/find_all';
+// $route['create'] = 'Product/create';
+// $route['findbyid/(:num)'] = 'Product/find/$1';
+// $route['update'] = 'Product/update';
+// $route['delete/(:num)'] = 'Product/delete/$1';
 
-$route['addtion']='Welcome/addtion';
-$route['find']['get']='Product/find_all';
-$route['create'] = 'Product/create';
-$route['findbyid/(:num)'] = 'Product/find/$1';
-$route['update'] = 'Product/update';
-$route['delete/(:num)'] = 'Product/delete/$1';
-
-
+$route['signup']='Register/signup';
+$route['signin']='Login/signin';
+$route['logoff']='Logout/logoff';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

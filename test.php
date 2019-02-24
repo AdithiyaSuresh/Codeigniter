@@ -1,5 +1,6 @@
 <?php
  
-print_r(PDO::getAvailableDrivers());
+$ss = "ss";
+echo"$ss";
  
 ?>
