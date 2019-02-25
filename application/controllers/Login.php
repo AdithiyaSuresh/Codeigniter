@@ -6,12 +6,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller 
 {
+
     public function signin()
     {
         //include('database_connection.php');
-        //session_start();
+        session_start();
         $form_data = json_decode(file_get_contents("php://input"));
-        var_dump($form_data);
+        //var_dump($form_data);
         $validation_error = '';
         
         if(empty($form_data->email))
@@ -34,55 +35,46 @@ class Login extends CI_Controller
         {
             $error[] = 'Password is Required';
         }
-        
         if(empty($error))
         {
-            $query = "SELECT * FROM register WHERE email = '$form_data->email'";
-            $statement = $this->db->query($query);
-            $statement = $this->db->prepare($query);
-            print "\n";
-            var_dump($data);
-
-           // $res = $this->db->query($query);
-            print "\n";
-            print "\n";
-            var_dump($statement);
-            //exit;
-            if($statement->execute($data))
+         $query = "SELECT * FROM register WHERE email = '$form_data->email'";
+         $statement = $this->db->conn_id->prepare($query);
+         if($statement->execute($data))
+         {
+          $result = $statement->fetchAll();
+          if($statement->rowCount() > 0)
+          {
+           foreach($result as $row)
+           {
+            if(password_verify($form_data->password, $row["password"]))
             {
-                $result = $statement->fetchAll();
-                if($statement->rowCount() > 0)
-                {
-                    foreach($result as $row)
-                    {
-                        if(password_verify($form_data->password, $row["password"]))
-                        {
-                            $_SESSION["name"] = $row["name"];
-                        }
-                        else
-                        {
-                            $validation_error = 'Wrong Password';
-                        }
-                    }
-                }
-                else
-                {
-                    $validation_error = 'Wrong Email';
-                }
+             $_SESSION["name"] = $row["name"];
             }
+            else
+            {
+             $validation_error = 'Wrong Password';
+            }
+           }
+          }
+          else
+          {
+           $validation_error = 'Wrong Email';
+          }
+         }
         }
         else
         {
-            $validation_error = implode(", ", $error);
+         $validation_error = implode(", ", $error);
         }
         
         $output = array(
-        'error' => $validation_error
+         'error' => $validation_error
         );
         
         echo json_encode($output);
         
     }
+
 
     public function queryRun($query)
     {
