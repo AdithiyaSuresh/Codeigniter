@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             else
             {
-                //validating email format
+                //validating email
                 if(!filter_var($form_data->email, FILTER_VALIDATE_EMAIL))
                 {
                     $error[] = 'Invalid Email Format';

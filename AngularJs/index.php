@@ -12,8 +12,9 @@
   <html>
   <head>
     <title>AngularJS Register Login Script</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="login.js"></script>
     <style>
     .form_style
     {
@@ -38,26 +39,26 @@
     </div>
 
     <div class="panel panel-default" ng-show="login_form">
-      <div class="panel-heading">
-      <h3 class="panel-title">Login</h3>
-      </div>
-      <div class="panel-body">
-      <form method="post" ng-submit="submitLogin()">
-        <div class="form-group">
-        <label>Enter Your Email</label>
-        <input type="text" name="email" ng-model="loginData.email" class="form-control" />
-        </div>
-        <div class="form-group">
-        <label>Enter Your Password</label>
-        <input type="password" name="password" ng-model="loginData.password" class="form-control" />
-        </div>
-        <div class="form-group" align="center">
-        <input type="submit" name="login" class="btn btn-primary" value="Login" />
-        <br />
-        <input type="button" name="register_link" class="btn btn-primary btn-link" ng-click="showRegister()" value="Register" />
-        </div>
-      </form>
-      </div>
+              <div class="panel-heading">
+              <h3 class="panel-title">Login</h3>
+              </div>
+              <div class="panel-body">
+                <form method="post" ng-submit="submitLogin()">
+                  <div class="form-group">
+                  <label>Enter Your Email</label>
+                  <input type="text" name="email" ng-model="loginData.email" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                  <label>Enter Your Password</label>
+                  <input type="password" name="password" ng-model="loginData.password" class="form-control" />
+                  </div>
+                  <div class="form-group" align="center">
+                  <input type="submit" name="login" class="btn btn-primary" value="Login" />
+                  <br />
+                  <input type="button" name="register_link" class="btn btn-primary btn-link" ng-click="showRegister()" value="Register" />
+                  </div>
+                </form>
+                </div>
     </div>
 
     <div class="panel panel-default" ng-show="register_form">
@@ -66,25 +67,25 @@
       </div>
       <div class="panel-body">
       <form method="post" ng-submit="submitRegister()">
-        <div class="form-group">
-        <label>Enter Your Name</label>
-        <input type="text" name="name" ng-model="registerData.name" class="form-control" />
-        </div>
-        <div class="form-group">
-        <label>Enter Your Email</label>
-        <input type="text" name="email" ng-model="registerData.email" class="form-control" />
-        </div>
-        <div class="form-group">
-        <label>Enter Your Password</label>
-        <input type="password" name="password" ng-model="registerData.password" class="form-control" />
-        </div>
-        <div class="form-group" align="center">
-        <input type="submit" name="register" class="btn btn-primary" value="Register" />
-        <br />
-        <input type="button" name="login_link" class="btn btn-primary btn-link" ng-click="showLogin()" value="Login" />
-        </div>
-      </form>
-      </div>
+            <div class="form-group">
+            <label>Enter Your Name</label>
+            <input type="text" name="name" ng-model="registerData.name" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label>Enter Your Email</label>
+            <input type="text" name="email" ng-model="registerData.email" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label>Enter Your Password</label>
+            <input type="password" name="password" ng-model="registerData.password" class="form-control" />
+            </div>
+            <div class="form-group" align="center">
+            <input type="submit" name="register" class="btn btn-primary" value="Register" />
+            <br />
+            <input type="button" name="login_link" class="btn btn-primary btn-link" ng-click="showLogin()" value="Login" />
+            </div>
+          </form>
+          </div>
     </div>
     <?php
     }
@@ -108,7 +109,7 @@
   </body>
   </html>
 
-<script>
+<!-- <script>
 
     /**
      * .js file
@@ -171,6 +172,7 @@
       data:$scope.loginData
       }).success(function(data)
       {
+        
         if(data.error != '')
         {
           $scope.alertMsg = true;
@@ -185,4 +187,4 @@
     };
 
 });
-</script>
+</script> -->
