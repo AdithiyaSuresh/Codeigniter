@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      */
     class Login extends CI_Controller 
     {
+        public function __construct(){
+            parent::__construct();
+        }
+
         /**
          * function signin
          * @param empty
@@ -50,39 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             //if no eror enter inside
             if(empty($error))
             {
-                //query for slelecting the row of that particular email
-                $query = "SELECT * FROM register WHERE email = '$form_data->email'";
-                //to get the pdo object to call pdo methods
-                $statement = $this->db->conn_id->prepare($query);
-
-                //calling pdo execute method
-                if($statement->execute($data))
-                {
-                    //calling pdo fetchAll method
-                    $result = $statement->fetchAll();
-
-                    //calling pdo rowCount method
-                    if($statement->rowCount() > 0)
-                    {
-                        //looping over the row and verifying password
-                        foreach($result as $row)
-                        {
-                            if(password_verify($form_data->password, $row["password"]))
-                            {
-                                $_SESSION["name"] = $row["name"];
-                            }
-                            else
-                            {
-                                $validation_error = 'Wrong Password';
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //if rowCount not greater than zero means wrong email
-                        $validation_error = 'Wrong Email';
-                    }
-                }
+                $this->load->model('Login_model');
+                $validation_error =  $this->Login_model->execute($form_data->email,$data,$form_data->password);
             }
             else
             {

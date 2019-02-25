@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      */
     class Register extends CI_Controller 
     {
+        public function __construct(){
+            parent::__construct();
+        }
+    
         /**
          * function signup
          * @param empty
@@ -74,13 +78,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //if no error enters inside
         if(empty($error))
         {
-            //query to insert data
-            $query = "INSERT INTO register (name, email, password) VALUES ('$name', '$email', '$password')";
+            // //query to insert data
+            // $query = "INSERT INTO register (name, email, password) VALUES ('$name', '$email', '$password')";
             
-            //retruns a boolean value
-            $statement = $this->db->query($query);
+            // //retruns a boolean value
+            // $statement = $this->db->query($query);
            
             //if true enters inside
+            $this->load->model('Register_model');
+            $statement =  $this->Register_model->execute($name,$email,$password);
+            //var_dump($statement); 
             if($statement)
             {
             $message = 'Registration Completed';
