@@ -1,20 +1,36 @@
 <?php
 
-
+/**
+ * Register controller 
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+    /**
+     * class Register that extends CI_Controller
+     */
     class Register extends CI_Controller 
     {
+        /**
+         * function signup
+         * @param empty
+         * @return void
+         */
         public function signup()
         {
+        
+        //initializing variables
         $name = "";
         $password = "";
         $email = "";
+        
         // include('database_connection.php');
         $form_data = json_decode(file_get_contents("php://input"));
+
+        //initializing message and validation error
         $message = '';
         $validation_error = '';
 
+        //validating name
         if(empty($form_data->name))
         {
             $error[] = 'Name is Required';
@@ -25,12 +41,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $name = $form_data->name;
         }
 
+        //validating email
         if(empty($form_data->email))
         {
             $error[] = 'Email is Required';
         }
         else
         {
+            //validating email format
             if(!filter_var($form_data->email, FILTER_VALIDATE_EMAIL))
             {
                 $error[] = 'Invalid Email Format';
@@ -42,32 +60,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        //validating password
         if(empty($form_data->password))
         {
             $error[] = 'Password is Required';
         }
         else
         {
-           // $data[':password'] = password_hash($form_data->password, PASSWORD_DEFAULT);
+           // making password in encrytpted form
             $password = password_hash($form_data->password, PASSWORD_DEFAULT);
         }
 
-        //print_r($data);
-
+        //if no error enters inside
         if(empty($error))
         {
-            //$query = "INSERT INTO register (name, email, password) VALUES ('$form_data->name', '$form_data->email', '$form_data->password')";
+            //query to insert data
             $query = "INSERT INTO register (name, email, password) VALUES ('$name', '$email', '$password')";
-           // echo $query;
-            //exit;
+            
+            //retruns a boolean value
             $statement = $this->db->query($query);
-           // var_dump($statement);
-            //$this->db->prepare($query);
+           
+            //if true enters inside
             if($statement)
             {
             $message = 'Registration Completed';
             }
         }
+        //if error is not empty
         else
         {
             $validation_error = implode(", ", $error);
@@ -78,6 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'message' => $message
         );
 
+        //pritning output json string
         echo json_encode($output);
 
         }
