@@ -1,0 +1,32 @@
+<div fxLayout="row"  fxLayoutAlign="center center">
+    <mat-card class="card">
+
+
+        <mat-toolbar color="primary" fxLayoutAlign="center center">
+            <span>Login</span>
+        </mat-toolbar>
+        <br>
+
+
+            <div fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email-id</mat-label>
+                    <input matInput placeholder="">
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button>Login</button>
+            </div>
+
+       
+
+    </mat-card>
+</div>

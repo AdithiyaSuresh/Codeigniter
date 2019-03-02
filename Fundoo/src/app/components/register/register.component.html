@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+  <html>
+    <body>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+
+                <mat-card class="card">
+
+                <mat-toolbar color="primary" fxLayoutAlign="center center">
+                    <span>Register</span>
+                </mat-toolbar>
+                <br>
+
+                <div fxLayout="column">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>FirstName</mat-label>
+                        <input matInput placeholder="FirstName" formControlName="username" required>
+                        <mat-error *ngIf="firstname.invalid">{{getErrorMessageUsername}}</mat-error>
+                    </mat-form-field>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>LastName</mat-label>
+                        <input matInput placeholder="LastName" formControlName="username" required>
+                        <mat-error *ngIf="lastname.invalid">{{getErrorMessageUsername}}</mat-error>
+                        </mat-form-field>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>UserName</mat-label>
+                        <input matInput placeholder="UserName" formControlName="username" required>
+                        <mat-error *ngIf="username.invalid">{{getErrorMessageUsername}}</mat-error>
+                    </mat-form-field>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email-id</mat-label>
+                        <input matInput placeholder="Email-id" formControlName="emailid" required>
+                        <mat-hint>you can use letters ,numbers and special characters</mat-hint>
+                        <mat-error *ngIf="emailid.invalid">{{getErrorMessageEmail}}</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="text" matInput placeholder="Password" formControlName="password1" required>
+                        <mat-error *ngIf="password1.invalid">{{getErrorMessagePassword}}</mat-error>
+                    </mat-form-field>
+                
+                    <mat-form-field appearance="outline">
+                        <mat-label>ConfirmPassword</mat-label>
+                        <input matInput placeholder="ConfirmPassword" formControlName="password2" required>
+                        <mat-hint>use min 8 characters</mat-hint>
+                        <mat-error *ngIf="password2.invalid">{{getErrorMessageConfirmPassword}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+
+                    <button mat-raised-button>Register</button>
+                </div>
+
+
+            </mat-card>
+        </div>
+        </form>
+    </body>
+</html>
