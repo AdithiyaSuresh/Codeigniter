@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
         
         //initializing variables
+        $fname = $_POST['firsname'];
         $name = "";
         $password = "";
         $email = "";

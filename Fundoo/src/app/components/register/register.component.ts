@@ -16,9 +16,10 @@
  * importing all the file from various module
  */
   import { Component, OnInit} from '@angular/core';
-  import { FormControl, Validators } from '@angular/forms';
+  import { FormControl, Validators, FormGroup } from '@angular/forms';
   import { Router } from '@angular/router';
-
+  import {RegisterService} from '../../service/register.service';
+  
 
   @Component({
     selector: 'app-register',
@@ -32,6 +33,7 @@
   {
 
     message = '';
+    model: any = {};
 
     /**
      * @description firstName validation 
@@ -64,7 +66,7 @@
     confirm = new FormControl('', [Validators.required,Validators.minLength(8)]);
 
 
-    constructor(private router:Router) { }
+    constructor(private router:Router ,private regService:RegisterService) { }
 
     ngOnInit() {}
 
@@ -129,16 +131,33 @@
        */
       register() 
       {
+        debugger;
+        this.model = {
+          "firstname": this.firstname.value,
+          "lastname": this.lastname.value,
+          "username":this.username.value,
+          "email":this.email.value,
+          "password":this.password.value,
+          "confirm":this.confirm.value
+        }
 
           if (this.firstname.value == '' || this.lastname.value == '' || this.username.value == '' ||  this.email.value == '' || this.password.value == '' || this.confirm.value == '') 
           {
             this.message = "Fields are missing";
             return;
           }
+          else if (this.password.value != this.confirm.value)
+          {
+            this.message = "Password doesnot match";
+            
+          }
           else 
           {
             this.message = "";
           }
+          console.log(this.model);
+
+          let obj = this.regService.userRegister(this.model).subscribe(data=>{console.log(data),error=>console.log(data)});;
       }
 
   }
