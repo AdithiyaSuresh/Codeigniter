@@ -1,56 +1,144 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import {FormBuilder, FormGroup,Validators,FormControl} from '@angular/forms';
-import { Router } from '@angular/router';
-import {RegisterModel} from 'src/app/models/register.model';
+  /******************************************************************************
+ *
+ *  Purpose         : this program is to register the user.
+ *  @description    
+ * 
+ *  @file           : register.component.ts
+ *  @overview       : To the user.
+ *  @module         : register.ts - This is optional if expeclictly its an npm or local package
+ *  @author         : Adithiya Suresh
+ *  @version        : 1.0
+ *  @since          : 29-02-2019
+ *
+ ******************************************************************************/
+
+/**
+ * importing all the file from various module
+ */
+  import { Component, OnInit} from '@angular/core';
+  import { FormControl, Validators } from '@angular/forms';
+  import { Router } from '@angular/router';
 
 
-@Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
-})
-
-@Injectable()
-
-export class RegisterComponent implements OnInit {
-
-  constructor(private router:Router,private formBuilder:FormBuilder) { }
-  user: RegisterModel = new RegisterModel();
-
-  registrationForm = this.formBuilder.group({
-    firstname: [this.user.firstname,Validators.required],
-    lastname: [this.user.lastname,Validators.required],
-    username: [this.user.username,Validators.required],
-    emailid: [this.user.emailid, [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]],
-    password1: [this.user.password1,[Validators.required, Validators.minLength(8)]],
-    password2: [this.user.password2,[Validators.required, Validators.minLength(8)]]
-  });
-
-  firstname = new FormControl('',[Validators.required])
-  lastname = new FormControl('',[Validators.required])
-  username = new FormControl('',[Validators.required])
-  emailid = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')])
-  password1 = new FormControl('', [Validators.required, Validators.minLength(8)])
-  password2 = new FormControl('', [Validators.required, Validators.minLength(8)])
+  @Component({
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
+  })
 
 
-  ngOnInit() {}
 
-  onSubmit() {
-    console.log(this.registrationForm.value);
+  export class RegisterComponent implements OnInit 
+  {
+
+    message = '';
+
+    /**
+     * @description firstName validation 
+     */
+    firstname = new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*')]);
+
+    /**
+     * @description lastName validation 
+     */
+    lastname = new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*')]);
+
+    /**
+     * @description userName validation 
+     */
+    username = new FormControl('', [Validators.required,Validators.pattern('[a-zA-Z]*')]);
+
+    /**
+     * @description email validation 
+     */
+    email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._]+@[a-zA-Z]+.[a-zA-Z]+$')]);
+
+    /**
+     * @description password validation 
+     */
+    password = new FormControl('',[Validators.required,Validators.minLength(8)]);
+
+    /**
+     * @description password validation 
+     */
+    confirm = new FormControl('', [Validators.required,Validators.minLength(8)]);
+
+
+    constructor(private router:Router) { }
+
+    ngOnInit() {}
+
+    /**
+     * @description Gets fistName error message
+     */
+    firstNameErrorMessage(){
+      return this.firstname.hasError('required') ? 'FirstName is required':
+      this.firstname.hasError('pattern') ? 'Enter a valid name':
+      '';
+    }
+
+    /**
+     * @description Gets lastName error message
+     */
+    lastNameErrorMessage(){
+      return this.lastname.hasError('required') ? 'LastName is required':
+      this.lastname.hasError('pattern') ? 'Enter a valid name':
+      '';
+    }
+
+    /**
+     * @description Gets userName error message
+     */
+    userNameErrorMessage(){
+      return this.username.hasError('required') ? 'UserName is required':
+      this.username.hasError('pattern') ? 'Enter a valid name':
+      '';
+    }
+
+    /**
+     * @description Gets email error message
+     */
+    emailErrorMessage(){
+      return this.email.hasError('required') ? 'Email is required':
+      this.email.hasError('email') ? 'Not a valid email format':
+      '';
+    }
+
+    /**
+     * @description Gets password error message
+     */
+    passwordErrorMessage(){
+      return this.password.hasError('required') ? 'Password is required':
+      this.password.hasError('minlength') ? 'The password should of minimum of 8 digits':
+      '';
+    }
+    
+    /**
+     * @description Gets password error message
+     */
+    cpasswordErrorMessage(){
+      debugger;
+      return this.confirm.hasError('required') ? 'ConfirmPassword is required':
+      this.confirm.hasError('minlength') ? 'The password should of minimum of 8 digits':
+      this.password.value != this.confirm.value ? 'password doesnot match':
+      '';
+    }
+
+      /**
+       *@description gets fiels empty error message
+       */
+      register() 
+      {
+
+          if (this.firstname.value == '' || this.lastname.value == '' || this.username.value == '' ||  this.email.value == '' || this.password.value == '' || this.confirm.value == '') 
+          {
+            this.message = "Fields are missing";
+            return;
+          }
+          else 
+          {
+            this.message = "";
+          }
+      }
+
   }
-
-  getErrorMessageUsername() {
-     this.username.hasError('required') ? 'Username Required.' : '';
-  }
-  getErrorMessageEmail() {
-    // tslint:disable-next-line:max-line-length
-     this.emailid.hasError('required') ? 'Please Enter Correct Email' : this.emailid.hasError('email') ? 'Please Enter Correct Email' : '';
-  }
-  getErrorMessagePassword() {
-     this.password1.hasError('required') ? 'password should be at least 8 characters' : '';
-  }
-  getErrorMessageCPassword() {
-     this.password2.hasError('required') ? 'password should be at least 8 characters' : '';
-  }
-}
