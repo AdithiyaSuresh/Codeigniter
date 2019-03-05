@@ -21,9 +21,9 @@ export class RegisterService {
 
     userRegister.append("email",reg.email);
 
-    userRegister.append("password1",reg.password1);
+    userRegister.append("password",reg.password);
 
-    userRegister.append("password2",reg.password2);
+    userRegister.append("confirm",reg.confirm);
 
     return this.http.post(this.apiURL,userRegister);
   }

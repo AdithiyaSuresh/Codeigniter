@@ -16,8 +16,7 @@
  * importing all the file from various module
  */
   import { Component, OnInit} from '@angular/core';
-  import { FormControl, Validators, FormGroup } from '@angular/forms';
-  import { Router } from '@angular/router';
+  import { FormControl, Validators} from '@angular/forms';
   import {RegisterService} from '../../service/register.service';
   
 
@@ -34,6 +33,7 @@
 
     message = '';
     model: any = {};
+    errormsg: string = "";
 
     /**
      * @description firstName validation 
@@ -66,7 +66,7 @@
     confirm = new FormControl('', [Validators.required,Validators.minLength(8)]);
 
 
-    constructor(private router:Router ,private regService:RegisterService) { }
+    constructor(private regService:RegisterService) { }
 
     ngOnInit() {}
 
@@ -131,7 +131,6 @@
        */
       register() 
       {
-        debugger;
         this.model = {
           "firstname": this.firstname.value,
           "lastname": this.lastname.value,
@@ -149,15 +148,30 @@
           else if (this.password.value != this.confirm.value)
           {
             this.message = "Password doesnot match";
-            
+            return;
           }
           else 
           {
-            this.message = "";
+            this.message = "success";
           }
+
           console.log(this.model);
 
-          let obj = this.regService.userRegister(this.model).subscribe(data=>{console.log(data),error=>console.log(data)});;
+          let obj = this.regService.userRegister(this.model);
+
+          obj.subscribe((res: any) => {
+            debugger;
+            console.log(res.message);
+
+            if (res.message == "200") 
+            {
+              this.errormsg = "registration is succesfull \n kindly verify your mail";
+            } 
+            else 
+            {
+              this.errormsg = "error 204 no content";
+            }
+          });
       }
 
   }

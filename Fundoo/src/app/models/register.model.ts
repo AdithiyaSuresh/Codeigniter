@@ -4,6 +4,6 @@ export class RegisterModel{
     lastname: string;
     username: string;
     email: string;
-    password1: string;
-    password2: string;
+    password: string;
+    confirm: string;
 }
