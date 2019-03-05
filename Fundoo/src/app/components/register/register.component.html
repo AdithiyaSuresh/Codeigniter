@@ -40,7 +40,7 @@
 
 
             <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
+                <mat-label>EnterPassword</mat-label>
                 <input type="password" matInput name="password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
@@ -76,7 +76,7 @@
             <button mat-raised-button routerLink="../login">Login</button>
         </div> 
 
-        <div align="center">{{ errormsg }}</div>
+        <div align="center">{{ errormsg?.value }}</div>
 
     </mat-card>
 </div>

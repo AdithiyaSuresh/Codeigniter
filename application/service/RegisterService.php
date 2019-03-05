@@ -24,13 +24,16 @@ class RegisterService extends CI_Controller
         $res = $stmt->execute($data);
        // return $res;
 
-        if ($res) {
+        if ($res) 
+        {
             $result = array(
                 "message" => "200",
             );
             print json_encode($result);
             return "200";
-        } else {
+        } 
+        else 
+        {
             $result = array(
                 "message" => "204",
             );

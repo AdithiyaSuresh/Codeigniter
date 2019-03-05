@@ -10,6 +10,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {RegisterService} from './service/register.service';
+import { ServiceUrl } from './ServiceUrl/serviceUrl';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {RegisterService} from './service/register.service';
     ReactiveFormsModule,
     HttpClientModule
    ],
-  providers: [RegisterService],
+  providers: [RegisterService, ServiceUrl],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
