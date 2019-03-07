@@ -10,13 +10,20 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {RegisterService} from './service/register.service';
-import { ServiceUrl } from './ServiceUrl/serviceUrl';
+import { serviceUrl } from './ServiceUrl/serviceurl.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent,
+    ForgotpasswordComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,7 @@ import { ServiceUrl } from './ServiceUrl/serviceUrl';
     ReactiveFormsModule,
     HttpClientModule
    ],
-  providers: [RegisterService, ServiceUrl],
+  providers: [RegisterService, serviceUrl],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

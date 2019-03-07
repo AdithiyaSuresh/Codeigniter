@@ -152,26 +152,28 @@
           }
           else 
           {
-            this.message = "success";
+            console.log(this.model);
+
+            let obj = this.regService.userRegister(this.model);
+  
+            obj.subscribe((res: any) => 
+            {
+              //debugger;
+              console.log(res.message);
+  
+              if (res.message == "200") 
+              {
+                this.errormsg = "registration is succesfull \n kindly verify your mail";
+              } 
+              else 
+              {
+                this.errormsg = "error 204 no content";
+              }
+            });
+            
           }
 
-          console.log(this.model);
-
-          let obj = this.regService.userRegister(this.model);
-
-          obj.subscribe((res: any) => {
-            debugger;
-            console.log(res.message);
-
-            if (res.message == "200") 
-            {
-              this.errormsg = "registration is succesfull \n kindly verify your mail";
-            } 
-            else 
-            {
-              this.errormsg = "error 204 no content";
-            }
-          });
+         
       }
 
   }

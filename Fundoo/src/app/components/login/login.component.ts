@@ -18,6 +18,7 @@
   import { FormControl, Validators } from '@angular/forms';
   import { Router } from '@angular/router';
   import { LoginService } from 'src/app/service/login.service';
+  
 
 
   @Component({
@@ -30,8 +31,6 @@
 
     message='';
     model: any = {};
-    public iserror = false;
-    public errorMessage = "";
 	  usererror: string = "";
 
     /**
@@ -63,54 +62,44 @@
      */
     login() 
     {
-      debugger;
-      this.model = {
-        "email":this.email.value,
-        "password":this.password.value
-      }
-
-      if(this.email.value== '' || this.password.value== '')
-      {
-        this.message="Field cannot be empty";
-      }
-      else 
-      {
-      this.message="";
-      }
-
-      console.log(this.model);
-      debugger;
-      let obs = this.logService.userLogin(this.model);
-      
-      obs.subscribe(
-        (res: any) => 
+        debugger;
+        this.model =
         {
-          if (res.message == "200") 
+          "email":this.email.value,
+          "password":this.password.value
+        }
+
+        if(this.email.value== '' || this.password.value== '')
+        {
+          this.message="Field cannot be empty";
+        }
+        else 
+        {
+          this.message="";
+
+          console.log(this.model);
+
+          let obj = this.logService.userLogin(this.model);
+          obj.subscribe((res: any) => 
           {
             debugger;
-            localStorage.setItem("token", res.token);
-  
-            this.router.navigate(["/fundoo"]);
-          } 
-          else if (res.message == "404") 
-          {
-            this.usererror = "user not found";
-          } 
-          else if (res.message == "401") 
-          {
-            this.usererror = "Email is Not Registered";
-          } 
-          else 
-          {
-            this.usererror = "invalid password";
-          }
-        },
-        error => 
-        {
-          this.iserror = true;
-          this.errorMessage = error.message;
-        }
-      );
+            if (res.message == "400") 
+            {
+                this.usererror = "user logged in successfully";
+                localStorage.setItem(this.email.value, this.password.value);
+                this.router.navigate(['/dashboard']);
+            } 
+            else if (res.message == "401") 
+            {
+              this.usererror = "password doesnot match";
+            } 
+            else if (res.message == "200") 
+            {
+              this.usererror = "Email is Not Registered, invalid user";
+            } 
+          },
+        );
+      }
     }
 
 }

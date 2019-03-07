@@ -63,6 +63,9 @@
             <br>
             <mat-error>{{message}}</mat-error>
         </div>
+
+         <mat-error align="center">{{ errormsg }}</mat-error>
+
         
         <br>
 
@@ -76,7 +79,6 @@
             <button mat-raised-button routerLink="../login">Login</button>
         </div> 
 
-        <div align="center">{{ errormsg?.value }}</div>
 
     </mat-card>
 </div>
