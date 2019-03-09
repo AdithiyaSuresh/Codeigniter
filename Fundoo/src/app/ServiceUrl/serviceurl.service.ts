@@ -5,6 +5,6 @@ export class serviceUrl
     public host = environment.baseUrl;
     public reg = "codeigniter/signup";
     public log = "codeigniter/signin";
-    public forgot = "codeigniter/foorgot";
+    public forgot = "codeigniter/forgot";
 
 }

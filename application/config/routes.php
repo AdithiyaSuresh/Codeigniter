@@ -61,6 +61,7 @@ $route['default_controller'] = 'Welcome';
 $route['signup']='Register/signup';
 $route['signin']='Login/signin';
 $route['logoff']='Logout/logoff';
+$route['forgot'] = 'Login/forgot';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

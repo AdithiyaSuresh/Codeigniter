@@ -1,12 +1,17 @@
 
 <?php
+include "/var/www/html/codeigniter/application/Rabbitmq/sender.php";
+include "/var/www/html/codeigniter/application/static/LinkConstants.php";
 
 class LoginService extends CI_Controller
 {
     private $connect;
+    public $constants = "";
+
     public function __construct()
     {
         parent::__construct();
+        $this->constants = new LinkConstants();
        
     }
 
@@ -38,7 +43,7 @@ class LoginService extends CI_Controller
         return $data;
     }
     
-   /**
+    /**
      * @method isPresentRegistered() check email and password match
      * @return void
      */
@@ -87,6 +92,59 @@ class LoginService extends CI_Controller
             // return 0;
         }
     }
+
+    public function forgotPassword($email)
+    {
+        if (LoginService::checkEmail($email)) {
+            $ref       = new SendMail();
+            $token     = md5($email);
+            $query     = "UPDATE registeruser SET reskey = '$token' where email = '$email'";
+            $statement = $this->db->conn_id->prepare($query);
+            $statement->execute();
+            $sub      = 'password recovery mail';
+            $body     = $this->constants->resetLinkMesssage.$this->constants->resetLink.$token;
+            $response = $ref->sendEmail($email, $sub, $body);
+            if ($response == "sent") {
+                $data = array(
+                    "message" => "200",
+                );
+                print json_encode($data);
+                return "200";
+
+            } else {
+                $data = array(
+                    "message" => "400",
+                );
+                print json_encode($data);
+                return "400";
+
+            }
+
+        } else {
+            $data = array(
+                "message" => "404",
+            );
+            print json_encode($data);
+            return "404";
+        }
+            
+    }
+
+    public function checkEmail($email)
+    {
+        $query     = "SELECT * FROM registeruser ORDER BY id";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($arr as $Data) {
+            if ($Data['email'] == $email) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 ?>

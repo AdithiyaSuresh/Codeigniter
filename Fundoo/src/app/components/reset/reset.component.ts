@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class ResetComponent implements OnInit {
 
   message = '';
+  model: any = {};
 
 
   /**
@@ -50,6 +51,11 @@ export class ResetComponent implements OnInit {
 
   reset()
   {
+    this.model = {
+      "password":this.password.value,
+      "confirm":this.confirm.value
+    }
+
     if (this.password.value != this.confirm.value)
       {
         this.message = "Password doesnot match";

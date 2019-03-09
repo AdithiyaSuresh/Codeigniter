@@ -35,7 +35,9 @@ header("Access-Control-Allow-Headers: Authorization");
 
         public function forgot()
         {
-            
+            $email = $_POST['email'];
+            return $this->logService->forgotPassword($email);
+
         }
        
 
