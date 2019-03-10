@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.scss']
 })
+
 export class ForgotpasswordComponent implements OnInit {
 
   model: any = {};
@@ -23,13 +24,17 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * @method forgot()
+   * @return void
+   * @description Function to recover the password
+   */
   forgot() 
   {
     this.model = {"email":this.email.value}
 
     let obs = this.logService.userPasswordRecoveryData(this.model);
     obs.subscribe((res: any) => {
-      debugger;
       if (res.message == "200") 
       {
         this.usererror = "reset link has been sent to your mail";

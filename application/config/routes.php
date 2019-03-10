@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Authorization");
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -62,6 +63,8 @@ $route['signup']='Register/signup';
 $route['signin']='Login/signin';
 $route['logoff']='Logout/logoff';
 $route['forgot'] = 'Login/forgot';
+$route['getEmailId'] = 'Login/getEmailId';
+$route['resetPassword'] = 'Login/resetPassword'; 
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

@@ -1,5 +1,6 @@
 
 <?php
+
 include "/var/www/html/codeigniter/application/Rabbitmq/sender.php";
 include "/var/www/html/codeigniter/application/static/LinkConstants.php";
 
@@ -7,6 +8,7 @@ class LoginService extends CI_Controller
 {
     private $connect;
     public $constants = "";
+    public static $emailid = "";
 
     public function __construct()
     {
@@ -144,6 +146,68 @@ class LoginService extends CI_Controller
         }
         return false;
     }
+
+    public function getEmailId($token)
+    {
+        $query     = "SELECT email FROM registeruser where reskey='$token'";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        $arr = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($arr) 
+        {
+            $data = array(
+                'key'     => $arr['email'],
+                'session' => 'active',
+            );
+            print json_encode($data);
+            
+        } 
+        else 
+        {
+            $data = array(
+                'key'     => "\n",
+                'session' => 'reset link has been expired',
+            );
+            print json_encode($data);
+            //return "reset link has been expired";
+        }
+        return $data;
+
+    }
+
+    public function resetPassword($token, $password)
+{
+    $query     = "UPDATE registeruser SET reskey = '$token' where reskey='$token'";
+    $statement = $this->db->conn_id->prepare($query);
+    $statement->execute();
+    $query     = "UPDATE registeruser SET password = '$password' where reskey='$token'";
+    $statement = $this->db->conn_id->prepare($query);
+    $statement->execute();
+    $query     = "SELECT reskey FROM registeruser where  password = '$password'";
+    $statement = $this->db->conn_id->prepare($query);
+    $statement->execute();
+    $arr = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($arr['reskey'] == null) {
+        $data = array(
+            "message" => "304",
+        );
+        print json_encode($data);
+        return "304";
+    } 
+    else
+    {
+        $data = array(
+            "message" => "200",
+        );
+        print json_encode($data);
+       
+        $query     = "UPDATE registeruser SET reskey = null where reskey='$token'";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        return "200";
+    }
+}
+
 
 }
 

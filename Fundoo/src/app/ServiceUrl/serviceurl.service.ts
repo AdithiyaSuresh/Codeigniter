@@ -6,5 +6,7 @@ export class serviceUrl
     public reg = "codeigniter/signup";
     public log = "codeigniter/signin";
     public forgot = "codeigniter/forgot";
+    public getEmail ="codeigniter/getEmailId";
+    public reset ="codeigniter/resetPassword";
 
 }

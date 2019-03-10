@@ -8,10 +8,18 @@
       </mat-toolbar>
       <br>
 
-
+      <div>
+        <label>session :{{ session }}</label> <br />
+        <label>Mail ID : {{ value }}</label>
+      </div>
+      <br>
+      <div>
+        <mat-error>{{resMessage}}</mat-error>
+      </div>
+      <br>
           <div fxLayout="column">
             <mat-form-field appearance="outline">
-              <mat-label>EnterPassword</mat-label>
+              <mat-label>Enter New Password</mat-label>
               <input type="password" matInput name="password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
@@ -21,7 +29,7 @@
 
 
           <mat-form-field appearance="outline">
-              <mat-label>ConfirmPassword</mat-label>
+              <mat-label>Confirm Password</mat-label>
               <input type="password" matInput name=" confirm" [type]="hide ? 'password' : 'text'" [formControl]="confirm" required>
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
@@ -39,7 +47,7 @@
 
               <br>
               <div fxLayout="row" fxLayoutAlign="center center">
-                 <button mat-flat-button color ="primary" (click)="reset()">Submit</button>
+                 <button mat-flat-button color ="primary" [disabled]="password.invalid || confirm.invalid" (click)="reset()">Submit</button>
               </div>
 
           

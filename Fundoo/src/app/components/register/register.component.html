@@ -70,7 +70,7 @@
         <br>
 
         <div fxLayout="row" fxLayoutAlign="center center">
-            <button mat-raised-button class="primary" (click)="register()">Register</button>
+            <button mat-raised-button class="primary" [disabled]="firstname.invalid || lastname.invalid || username.invalid|| email.invalid || password.invalid || confirm.invalid" (click)="register()">Register</button>
         </div>
 
         <br>

@@ -39,7 +39,21 @@ header("Access-Control-Allow-Headers: Authorization");
             return $this->logService->forgotPassword($email);
 
         }
-       
 
+        public function getEmailId()
+        {
+            $token = $_POST['token'];
+            return $this->logService->getEmailId($token);
+        }
+
+        public function resetPassword()
+        {
+            $token = $_POST["token"];
+            $password  = $_POST["password"];
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            return $this->logService->resetPassword($token, $password);
+
+        }
+       
     }
 ?>
