@@ -6,7 +6,11 @@ include "/var/www/html/codeigniter/application/Rabbitmq/receiver.php";
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-
+/**
+ * @method sendEmail()
+ * @var connection creates the AMPQSTREAMconnection
+ * @return void
+ */
 class SendMail
 {
 

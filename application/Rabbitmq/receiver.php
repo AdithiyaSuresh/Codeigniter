@@ -8,7 +8,12 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 class Receiver
 {
-    
+    /*name: hello
+     type: direct
+     passive: false
+     durable: true // the exchange will survive server restarts
+     auto_delete: false //the exchange won't be deleted once the channel is closed.
+     */
     public function receiverMail()
     {   
         $RabbitMQConstantsObj = new RabbitMQConstants();
@@ -28,18 +33,21 @@ class Receiver
             $subject    = $data['subject'];
             $message    = $data['message'];
             
+            //Create the Transport
             $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
                 ->setUsername($RabbitMQConstantsObj->senderEmailID)
                 ->setPassword($RabbitMQConstantsObj->senderPassword);
             
+            // Create the Mailer using your created Transport
             $mailer = new Swift_Mailer($transport);
 
-            
+            //Create a message
             $message = (new Swift_Message($subject))
                 ->setFrom($RabbitMQConstantsObj->senderEmailID)
                 ->setTo([$to_email])
                 ->setBody($message);
             
+            //Send the message
             $result = $mailer->send($message);
             $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
         };
