@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private serviceurl: serviceUrl, private route: ActivatedRoute) { }
 
-  apiURL: string = 'http://localhost/codeigniter/signin';
+  //apiURL: string = 'http://localhost/codeigniter/signin';
 
   /**
     * @method userLogin()

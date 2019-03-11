@@ -17,6 +17,10 @@ class LoginService extends CI_Controller
        
     }
 
+    /**
+     * @method selectDb() to login in to fundo logic
+     * @return void
+     */
     public function selectDb($email,$password)
     {
         $flag = $this->isPresentRegistered($email,$password);
@@ -95,6 +99,10 @@ class LoginService extends CI_Controller
         }
     }
 
+    /**
+     * @method forgotPassword() to send reset password link to registered mail
+     * @return void
+     */
     public function forgotPassword($email)
     {
         if (LoginService::checkEmail($email)) {
@@ -132,6 +140,10 @@ class LoginService extends CI_Controller
             
     }
 
+    /**
+     * @method checkEmail() check email is present
+     * @return void
+     */
     public function checkEmail($email)
     {
         $query     = "SELECT * FROM registeruser ORDER BY id";
@@ -147,6 +159,10 @@ class LoginService extends CI_Controller
         return false;
     }
 
+    /**
+     * @method getEmailId() to get the email id to reset password
+     * @return void
+     */
     public function getEmailId($token)
     {
         $query     = "SELECT email FROM registeruser where reskey='$token'";
@@ -175,40 +191,42 @@ class LoginService extends CI_Controller
 
     }
 
+    /**
+     * @method resetPassword() resets the pass word of corresesponding email
+     * @return void
+     */
     public function resetPassword($token, $password)
-{
-    $query     = "UPDATE registeruser SET reskey = '$token' where reskey='$token'";
-    $statement = $this->db->conn_id->prepare($query);
-    $statement->execute();
-    $query     = "UPDATE registeruser SET password = '$password' where reskey='$token'";
-    $statement = $this->db->conn_id->prepare($query);
-    $statement->execute();
-    $query     = "SELECT reskey FROM registeruser where  password = '$password'";
-    $statement = $this->db->conn_id->prepare($query);
-    $statement->execute();
-    $arr = $statement->fetch(PDO::FETCH_ASSOC);
-    if ($arr['reskey'] == null) {
-        $data = array(
-            "message" => "304",
-        );
-        print json_encode($data);
-        return "304";
-    } 
-    else
     {
-        $data = array(
-            "message" => "200",
-        );
-        print json_encode($data);
-       
-        $query     = "UPDATE registeruser SET reskey = null where reskey='$token'";
+        $query     = "UPDATE registeruser SET reskey = '$token' where reskey='$token'";
         $statement = $this->db->conn_id->prepare($query);
         $statement->execute();
-        return "200";
+        $query     = "UPDATE registeruser SET password = '$password' where reskey='$token'";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        $query     = "SELECT reskey FROM registeruser where  password = '$password'";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        $arr = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($arr['reskey'] == null) {
+            $data = array(
+                "message" => "304",
+            );
+            print json_encode($data);
+            return "304";
+        } 
+        else
+        {
+            $data = array(
+                "message" => "200",
+            );
+            print json_encode($data);
+        
+            $query     = "UPDATE registeruser SET reskey = null where reskey='$token'";
+            $statement = $this->db->conn_id->prepare($query);
+            $statement->execute();
+            return "200";
+        }
     }
-}
-
-
 }
 
 ?>
