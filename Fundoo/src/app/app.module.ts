@@ -14,6 +14,7 @@ import { serviceUrl } from './ServiceUrl/serviceurl.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { SessionexpComponent } from './components/sessionexp/sessionexp.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ResetComponent } from './components/reset/reset.component';
     RegisterComponent,
     DashboardComponent,
     ForgotpasswordComponent,
-    ResetComponent
+    ResetComponent,
+    SessionexpComponent
   ],
   imports: [
     BrowserModule,

@@ -96,7 +96,7 @@ export class ResetComponent implements OnInit {
           }
           else 
           {
-            this.resMessage = "Resetting password has failed";
+            this.router.navigate(['/sessionexp']);
           }
         });
       }
