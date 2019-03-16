@@ -1,0 +1,31 @@
+
+<div fxLayout="row wrap" style="width:100%; height: 90%;">
+  <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 90%">
+    
+    <div *ngIf="flag===true" (click)="flip()" >
+      <mat-card class="note" >
+          <div style="margin-bottom: -30px;" (click)=flip() *ngIf="flag==true">
+              <mat-form-field appearance="null">
+                <input matInput  style="margin-bottom: 17px;margin-top: -30%;" placeholder="Take a note..." />
+              </mat-form-field>
+          </div>
+          <div style="margin-top:-80px;" fxLayout = "row" fxLayoutAlign="end start">
+            <button mat-icon-button><mat-icon matTooltip="New List">check_box</mat-icon></button> 
+            <button mat-icon-button><mat-icon matTooltip="Drawing is not available">brush</mat-icon></button>
+            <button mat-icon-button><mat-icon matTooltip="New note with image"><img src="../../assets/img/fundoAssests/photo.svg " /></mat-icon></button>           
+          </div>
+      </mat-card>
+    </div>
+            <div *ngIf="flag===false" >
+                    <mat-card class="notes" >
+                    <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput  placeholder="Title"/>
+                    <button style="padding-top: 5px;" mat-icon-button>
+                    <mat-icon matSuffix ><img src="../../assets/img/fundoAssests/pin-outline.svg" /></mat-icon>
+                    </button>
+                    <input role="textarea" style ="margin-top: 15px; margin-left: 10px;" matInput  placeholder="Take a note" />
+                    </mat-card>                
+
+            </div>
+
+   
+</div>

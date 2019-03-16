@@ -15,6 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { SessionexpComponent } from './components/sessionexp/sessionexp.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { RemainderComponent } from './components/remainder/remainder.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { SessionexpComponent } from './components/sessionexp/sessionexp.componen
     DashboardComponent,
     ForgotpasswordComponent,
     ResetComponent,
-    SessionexpComponent
+    SessionexpComponent,
+    NotesComponent,
+    RemainderComponent
   ],
   imports: [
     BrowserModule,

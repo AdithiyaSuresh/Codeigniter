@@ -1,3 +1,117 @@
-<p>
-  Successfully Logged In!
-</p>
+<!-- <mat-toolbar>
+  <button mat-button ng-click="toggleSidenav('left')" hide-gt-mat aria-label="Menu">
+    <mat-icon matSuffix ="https://material.io/tools/icons/?icon=menu"></mat-icon>
+  </button>
+</mat-toolbar> -->
+
+<!-- <div style="text-align: center">
+  <h1></h1>
+  </div> -->
+
+  <!-- <mat-card class="demo-panel">
+    <mat-card-title>
+      Angular Material Sidenav Demo
+    </mat-card-title>
+    <mat-card-content>
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav class="example-sidenav" mode="">
+          Sidenav content goes here!
+        </mat-sidenav>
+      
+        <div class="example-sidenav-content">
+          <button type="button" mat-button (click)="sidenav.open()">
+            Open Sidenav
+          </button>
+        </div>
+      
+      </mat-sidenav-container>
+    </mat-card-content>
+  </mat-card>
+   -->
+   <div>
+    <div>
+      <mat-toolbar>
+
+        <mat-toolbar-row>
+    
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon style="font-size: 28px">menu</mat-icon>
+          </button>
+
+         
+
+          <div >
+            
+            <mat-icon class = "img"><img src = "https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"></mat-icon>
+            
+            <span class="label">Fundoo</span> 
+          </div>  
+
+            <button mat-icon-button matTooltip="Search" style="margin-left: 120px">
+              <mat-icon>search</mat-icon>
+            </button>
+            <input class="searchbar" type="text" [(ngModel)]="searchData" placeholder="Search"/>
+
+          <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      
+            <ul fxLayout fxLayoutGap="20px">
+      
+                <button mat-icon-button>
+                  <mat-icon style="font-size: 27px">refresh</mat-icon>
+                  </button>
+              
+                <button mat-icon-button>
+                  <mat-icon style="font-size: 27px">settings</mat-icon>
+                </button>
+
+                <button mat-icon-button>
+                  <mat-icon style="margin-left: 60px;font-size: 30px;">apps</mat-icon>
+                </button>
+                <ul fxLayout fxLayoutGap="20px">
+                <button mat-icon-button [matMenuTriggerFor]="auth">
+                  <mat-icon style="font-size: 40px">account_circle</mat-icon>
+                </button>
+                
+                <mat-menu #auth="matMenu">
+                  <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Sign out</span>
+                  </button>
+                </mat-menu>
+              </ul>
+      
+            </ul>
+      
+          </div>
+      
+        </mat-toolbar-row>
+      
+      </mat-toolbar>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode ="side">
+            <mat-nav-list>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']"> <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
+                <br>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['remainder']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
+                <br>
+                <mat-divider></mat-divider>
+                <mat-list-item><label style="font-size: 13px">LABELS</label></mat-list-item>
+                <a class= "selectorbutton" mat-list-item> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
+                <br>
+                <mat-divider ></mat-divider>
+                <mat-divider ></mat-divider>
+                <br>
+                <a class= "selectorbutton" mat-list-item><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
+                <br>
+                <a class= "selectorbutton" mat-list-item><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+  </div>
+

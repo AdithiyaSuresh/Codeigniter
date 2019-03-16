@@ -86,7 +86,7 @@
             if (res.message == "400") 
             {
                 this.usererror = "user logged in successfully";
-                localStorage.setItem(this.email.value, this.password.value);
+                localStorage.setItem("token", res.token);
                 this.router.navigate(['/dashboard']);
             } 
             else if (res.message == "401") 

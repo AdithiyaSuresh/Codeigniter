@@ -6,16 +6,29 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { SessionexpComponent } from './components/sessionexp/sessionexp.component';
-
+import { NotesComponent } from './components/notes/notes.component';
+import { RemainderComponent } from './components/remainder/remainder.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path:'', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent},
   {path: 'forgotpassword', component: ForgotpasswordComponent},
   {path: 'reset', component:ResetComponent},
-  {path: 'sessionexp', component:SessionexpComponent}
+  {path: 'sessionexp', component:SessionexpComponent},
+  { path: 'dashboard', component: DashboardComponent,
+        children: [
+          {
+            path: 'notes',
+            component: NotesComponent
+          },
+          {
+            path: 'remainder',
+            component: RemainderComponent
+          }
+        ]
+      }
+
 ];
 
 @NgModule({

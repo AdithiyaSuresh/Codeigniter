@@ -42,5 +42,5 @@ class SendMail
         $channel->close();
         $connection->close();
         return "sent";
-    }
+    }   
 }

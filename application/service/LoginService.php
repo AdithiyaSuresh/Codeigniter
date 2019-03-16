@@ -3,6 +3,12 @@
 
 include "/var/www/html/codeigniter/application/Rabbitmq/sender.php";
 include "/var/www/html/codeigniter/application/static/LinkConstants.php";
+include "JWT.php";
+include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
+include "/var/www/html/codeigniter/application/libraries/predis-1.1/autoload.php";
+
+use \Firebase\JWT\JWT;
+// use Predis\Client as PredisClient;
 
 class LoginService extends CI_Controller
 {
@@ -24,13 +30,42 @@ class LoginService extends CI_Controller
     public function selectDb($email,$password)
     {
         $flag = $this->isPresentRegistered($email,$password);
+       
 
         if ($flag == 1) {
+            $query = "SELECT * FROM registeruser ORDER BY email"; 
+            $statement = $this->db->conn_id->prepare($query);
+            $statement->execute();
+            $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+            foreach($arr as $value)
+            {
+                $firstname = $value['firstname'];
+            }
+            $secret_key = mt_rand(100000,10000000);
+
             $data = array(
+                "firstname" => $firstname
+            );
+
+            $token     = JWT::encode($data, $secret_key);
+
+        $client = new Predis\Client(array(
+            'host' => '127.0.0.1',
+            'port' => 6379,
+            'password' => 'this123@'
+          ));
+
+          $client->set('token', $token );
+          $response = $client->get('token');
+
+            $data = array(
+                "token"   => $token,
                 "message" => "400",
             );
             print json_encode($data);
             return "400";
+
+
         } else if ($flag == 2) {
             $data = array(
                 "message" => "401",
