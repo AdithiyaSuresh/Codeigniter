@@ -8,5 +8,6 @@ export class serviceUrl
     public forgot = "codeigniter/forgot";
     public getEmail ="codeigniter/getEmailId";
     public reset ="codeigniter/resetPassword";
-
+    public note ="codeigniter/addNote";
+    public disnote ="codeigniter/displayNote";
 }

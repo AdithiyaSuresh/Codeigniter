@@ -17,6 +17,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { SessionexpComponent } from './components/sessionexp/sessionexp.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { RemainderComponent } from './components/remainder/remainder.component';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RemainderComponent } from './components/remainder/remainder.component';
     ResetComponent,
     SessionexpComponent,
     NotesComponent,
-    RemainderComponent
+    RemainderComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

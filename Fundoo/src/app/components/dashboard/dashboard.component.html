@@ -60,7 +60,7 @@
                   <mat-icon style="font-size: 27px">refresh</mat-icon>
                   </button>
               
-                <button mat-icon-button>
+                <button mat-icon-button >
                   <mat-icon style="font-size: 27px">settings</mat-icon>
                 </button>
 
@@ -92,7 +92,7 @@
     <mat-sidenav-container class="example-container">
         <mat-sidenav #sidenav mode ="side">
             <mat-nav-list>
-                <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']"> <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']" (click)="note()" > <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
                 <br>
                 <a class= "selectorbutton" mat-list-item [routerLink] = "['remainder']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
                 <br>

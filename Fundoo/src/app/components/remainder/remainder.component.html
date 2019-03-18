@@ -16,16 +16,43 @@
           </div>
       </mat-card>
     </div>
-            <div *ngIf="flag===false" >
-                    <mat-card class="notes" >
-                    <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput  placeholder="Title"/>
-                    <button style="padding-top: 5px;" mat-icon-button>
-                    <mat-icon matSuffix ><img src="../../assets/img/fundoAssests/pin-outline.svg" /></mat-icon>
-                    </button>
-                    <input role="textarea" style ="margin-top: 15px; margin-left: 10px;" matInput  placeholder="Take a note" />
-                    </mat-card>                
 
-            </div>
+    <div *ngIf="flag===false" >
+            <mat-card class="notes" >
+            <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput  placeholder="Title" [formControl]="title"/>
+            <button style="padding-top: 5px;" mat-icon-button>
+            <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin-outline.svg"/></mat-icon>
+            </button>
+            <input role="textarea" style ="margin-top: 15px; margin-left: 10px;" matInput  placeholder="Take a note" [formControl]="noteContent" />
 
+            <button id="Remaind" matTooltip="Remind me" mat-button style='padding-left: 16px;padding-right: 16px;margin-bottom: -80px;margin-top: 10px;'>
+              <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
+            </button>  
+            <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 19px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+              <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
+            </button> 
+            <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+              <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
+            </button> 
+            <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+              <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+            </button> 
+              <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+                <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
+            </button> 
+            <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+              <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
+          </button> 
+            <button  style='margin-left: 222px;margin-bottom: -80px;margin-top: 20px;' id="Close" matTooltip="Close" mat-button (click)="addNote()">close</button> 
+            </mat-card>
+               
+    </div>
    
+    <div style="margin-top: -550px; margin-left: 880px;">
+        <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
+
+          <mat-card  *ngFor="let n of note" class="notescard"><p style="margin-top: 10px;">{{n.title}}</p><p style="font-size: 20px;">{{n.noteContent}}</p>
+            </mat-card>
+        </mat-grid-list>
+    </div>
 </div>

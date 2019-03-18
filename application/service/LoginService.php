@@ -33,18 +33,17 @@ class LoginService extends CI_Controller
        
 
         if ($flag == 1) {
-            $query = "SELECT * FROM registeruser ORDER BY email"; 
+            $query = "SELECT firstname FROM registeruser WHERE email = '$email'"; 
             $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
-            $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
-            foreach($arr as $value)
-            {
-                $firstname = $value['firstname'];
-            }
+            $arr = $statement->fetch(PDO::FETCH_ASSOC);
+            $firstname = $arr['firstname'];
+        
             $secret_key = mt_rand(100000,10000000);
 
             $data = array(
-                "firstname" => $firstname
+                "firstname" => $firstname,
+                "email" => $email
             );
 
             $token     = JWT::encode($data, $secret_key);

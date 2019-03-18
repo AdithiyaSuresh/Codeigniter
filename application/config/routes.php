@@ -65,6 +65,8 @@ $route['logoff']='Logout/logoff';
 $route['forgot'] = 'Login/forgot';
 $route['getEmailId'] = 'Login/getEmailId';
 $route['resetPassword'] = 'Login/resetPassword'; 
+$route['addNote'] = 'Note/addNote';
+$route['displayNote'] = 'Note/displayNote';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

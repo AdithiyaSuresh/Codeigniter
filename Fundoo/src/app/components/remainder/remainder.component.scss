@@ -1,28 +1,63 @@
 .note {
-    width: 643px;
-    padding: 14px;
-    margin-top: -520px;
-    height: 25px;
-    font-size: 17px;
-    border-radius: 9px;
-    margin-left: 290px;
+  width: 643px;
+  padding: 14px;
+  margin-top: -520px;
+  height: 25px;
+  font-size: 17px;
+  border-radius: 9px;
+  margin-left: 290px;
+}
+
+.notes {
+  width: 643px;
+  padding: 14px;
+  margin-top: -520px;
+  height: 125px;
+  font-size: 17px;
+  border-radius: 9px;
+  margin-left: 290px;
+}
+
+  .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 8px 5px rgba(0,0,0,.12);
+}
+
+.maintitle {
+  margin-left: -8px;
+  margin-top: -15px;
+}
+.addnote {
+  width: 10px;
+  margin-left: 91%;
+  margin-top: -10%;
+}
+
+.notescard{
+
+  margin-top: 73px;
+    display: inline-block;
+    margin-left: -80px;
+    margin-right: 138px;
+    height: 119px;
+    width: 201px;
+    padding-left: 39px;
+    padding-top: 9px;
+    color: #7E858A;
+    font-family: 'Product Sans',Arial,sans-serif;
+    font-size: 16px;
+}
+  .noteList{
+  margin-left: -623px;
+  margin-top: 152px;
+  width: 1000px;
+  height: 70px;
+  display: inline-block;
+  color:#7E858A;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 15px;
   }
   
-  .notes {
-    width: 643px;
-    padding: 14px;
-    margin-top: -520px;
-    height: 125px;
-    font-size: 17px;
-    border-radius: 9px;
-    margin-left: 290px;
-  }
-  
-    .mat-card:not([class*=mat-elevation-z]) {
-      box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 8px 5px rgba(0,0,0,.12);
-  }
-  
-  .maintitle {
-    margin-left: -8px;
-    margin-top: -15px;
-  }
+  element.style {
+    margin-top: -561px;
+    margin-left: 880px;
+}

@@ -87,6 +87,7 @@
             {
                 this.usererror = "user logged in successfully";
                 localStorage.setItem("token", res.token);
+                localStorage.setItem("email",this.email.value);
                 this.router.navigate(['/dashboard']);
             } 
             else if (res.message == "401") 
