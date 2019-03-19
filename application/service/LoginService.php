@@ -5,7 +5,7 @@ include "/var/www/html/codeigniter/application/Rabbitmq/sender.php";
 include "/var/www/html/codeigniter/application/static/LinkConstants.php";
 include "JWT.php";
 include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
-include "/var/www/html/codeigniter/application/libraries/predis-1.1/autoload.php";
+include "/var/www/html/codeigniter/application/service/Redis.php";
 
 use \Firebase\JWT\JWT;
 // use Predis\Client as PredisClient;
@@ -48,11 +48,14 @@ class LoginService extends CI_Controller
 
             $token     = JWT::encode($data, $secret_key);
 
-        $client = new Predis\Client(array(
-            'host' => '127.0.0.1',
-            'port' => 6379,
-            'password' => 'this123@'
-          ));
+        // $client = new Predis\Client(array(
+        //     'host' => '127.0.0.1',
+        //     'port' => 6379,
+        //     'password' => 'this123@'
+        //   ));
+        
+            $connection = new Redis();
+            $client = $connection->connection();
 
           $client->set('token', $token );
           $response = $client->get('token');

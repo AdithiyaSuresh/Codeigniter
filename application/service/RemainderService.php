@@ -1,6 +1,6 @@
 
 <?php
-    class NoteService extends CI_Controller
+    class RemainderService extends CI_Controller
     {
 
         public function __construct()
@@ -9,7 +9,7 @@
         }
 
 
-    public function addNote($title,$noteContent,$email)
+    public function addRemainder($title,$noteContent,$email)
     {
         $data = [
             'title' => $title,
@@ -17,7 +17,7 @@
             'email' => $email
         ];
 
-        $query = "INSERT into addnote (title,noteContent,email) values ('$title','$noteContent','$email')";
+        $query = "INSERT into remainder (title,noteContent,email) values ('$title','$noteContent','$email')";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute($data);
        // return $res;
@@ -42,9 +42,9 @@
 
     }
 
-    public function displayNote($email)
+    public function displayRemainder($email)
     {
-        $query = "SELECT * from addnote WHERE email = '$email' ORDER BY id DESC ";
+        $query = "SELECT * from remainder WHERE email = '$email' ORDER BY id DESC ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -56,5 +56,11 @@
         print json_encode($arr);
     }
 
+    public function deleteRemainder($id)
+    {
+        $query = "DELETE from remainder WHERE id = '$id'";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+    }
 }
 ?>

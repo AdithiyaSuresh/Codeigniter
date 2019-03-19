@@ -30,6 +30,12 @@ header("Access-Control-Allow-Headers: Authorization");
             $email = $_POST['email'];
             return $this->noteService->displayNote($email);
         }
+
+        public function delNote()
+        {
+            $id = $_POST['id'];
+            return $this->noteService->delNote($id);
+        }
     }
         
 ?>

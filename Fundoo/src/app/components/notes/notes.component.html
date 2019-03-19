@@ -52,6 +52,36 @@
           <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
 
             <mat-card  *ngFor="let n of note" class="notescard"><p style="margin-top: 10px;">{{n.title}}</p><p style="font-size: 20px;">{{n.noteContent}}</p>
+              <div style="margin-left: -37px;margin-right: -4px;">
+                <button mat-icon-button >
+                  <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
+                </button>  
+                <button mat-icon-button >
+                  <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
+                </button> 
+                <button mat-icon-button >
+                  <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
+                </button> 
+                <button mat-icon-button >
+                  <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+                </button> 
+                  <button mat-icon-button >
+                    <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
+                </button> 
+                <!-- <button  mat-icon-button (click)="deleteNote(n)" >
+                  <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
+              </button>  -->
+
+              <button mat-icon-button [matMenuTriggerFor]="auth">
+                <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
+              </button>
+              <mat-menu #auth="matMenu">
+                <button style="margin-top: -10px;margin-bottom: -10px;" mat-menu-item (click)="deleteNote(n)">
+                 <label>Delete</label>
+                </button>
+              </mat-menu>
+
+            </div>
               </mat-card>
           </mat-grid-list>
       </div>

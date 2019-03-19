@@ -43,7 +43,7 @@
             <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
               <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
           </button> 
-            <button  style='margin-left: 222px;margin-bottom: -80px;margin-top: 20px;' id="Close" matTooltip="Close" mat-button (click)="addNote()">close</button> 
+            <button  style='margin-left: 222px;margin-bottom: -80px;margin-top: 20px;' id="Close" matTooltip="Close" mat-button (click)="addRemainder()">close</button> 
             </mat-card>
                
     </div>
@@ -52,6 +52,33 @@
         <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
 
           <mat-card  *ngFor="let n of note" class="notescard"><p style="margin-top: 10px;">{{n.title}}</p><p style="font-size: 20px;">{{n.noteContent}}</p>
+            <div style="margin-left: -37px;margin-right: -4px;">
+              <button mat-icon-button >
+                <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
+              </button>  
+              <button mat-icon-button >
+                <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
+              </button> 
+              <button mat-icon-button >
+                <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
+              </button> 
+              <button mat-icon-button >
+                <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+              </button> 
+                <button mat-icon-button >
+                  <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
+              </button> 
+
+              <button mat-icon-button [matMenuTriggerFor]="auth">
+                <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
+              </button>
+              <mat-menu #auth="matMenu">
+                <button style="margin-top: -10px;margin-bottom: -10px;" mat-menu-item (click)="deleteRemainder(n)">
+                 <label>Delete</label>
+                </button>
+              </mat-menu> 
+
+          </div>
             </mat-card>
         </mat-grid-list>
     </div>

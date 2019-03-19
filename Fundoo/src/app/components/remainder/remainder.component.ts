@@ -18,10 +18,10 @@ export class RemainderComponent implements OnInit {
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
 
-  constructor(private noteService:RemainderService) { }
+  constructor(private remainderService:RemainderService) { }
 
   ngOnInit() {
-    this.displayNotes();
+    this.displayRemainder();
   }
 
   flip()
@@ -29,13 +29,13 @@ export class RemainderComponent implements OnInit {
     this.flag = !this.flag;
   }
 
-  displayNotes()
+  displayRemainder()
   {
     debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     const email = tokenPayload.email;
-    let obs = this.noteService.displayNote(email);
+    let obs = this.remainderService.displayRemainder(email);
    
     obs.subscribe((data: any) => {
       debugger
@@ -43,7 +43,7 @@ export class RemainderComponent implements OnInit {
     });
   }
 
-  addNote()
+  addRemainder()
   {
     debugger;
     this.email = localStorage.getItem('email');
@@ -54,7 +54,7 @@ export class RemainderComponent implements OnInit {
           "email":this.email
         }
 
-      let obj = this.noteService.addNote(this.model);
+      let obj = this.remainderService.addRemainder(this.model);
       
 
       obj.subscribe((res: any) => 
@@ -72,6 +72,28 @@ export class RemainderComponent implements OnInit {
         }
       });
       
+  }
+
+  deleteRemainder(n)
+  {
+    debugger;
+    console.log(n.id);
+    let robj = this.remainderService.deleteRemainder(n.id);
+
+      robj.subscribe((res: any) => 
+      {
+        //debugger;
+        console.log(res.message);
+
+        if (res.message == "200") 
+        {
+          
+        } 
+        else 
+        {
+          
+        }
+      });
   }
 
 }

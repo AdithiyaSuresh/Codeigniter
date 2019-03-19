@@ -67,6 +67,10 @@ $route['getEmailId'] = 'Login/getEmailId';
 $route['resetPassword'] = 'Login/resetPassword'; 
 $route['addNote'] = 'Note/addNote';
 $route['displayNote'] = 'Note/displayNote';
+$route['addRemainder'] = 'Remainder/addRemainder';
+$route['displayRemainder'] = 'Remainder/displayRemainder';
+$route['delNote'] = 'Note/delNote';
+$route['deleteRemainder'] = 'Remainder/deleteRemainder';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

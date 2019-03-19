@@ -10,4 +10,9 @@ export class serviceUrl
     public reset ="codeigniter/resetPassword";
     public note ="codeigniter/addNote";
     public disnote ="codeigniter/displayNote";
+    public remainder = "codeigniter/addRemainder";
+    public disRemainder = "codeigniter/displayRemainder";
+    public delNote = "codeigniter/delNote";
+    public deleteRemainder = "codeigniter/deleteRemainder";
+
 }

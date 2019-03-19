@@ -17,7 +17,7 @@ export class NotesComponent implements OnInit {
   note: string[];
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
-
+  card: any;
   constructor(private noteService:NoteService) { }
 
   ngOnInit() {
@@ -72,5 +72,27 @@ export class NotesComponent implements OnInit {
         }
       });
       
+  }
+
+  deleteNote(n)
+  {
+    debugger;
+    console.log(n.id);
+    let robj = this.noteService.deleteNote(n.id);
+
+      robj.subscribe((res: any) => 
+      {
+        //debugger;
+        console.log(res.message);
+
+        if (res.message == "200") 
+        {
+          
+        } 
+        else 
+        {
+          
+        }
+      });
   }
 }

@@ -1,35 +1,42 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-include '/var/www/html/codeigniter/application/service/NotesService.php';
+include '/var/www/html/codeigniter/application/service/RemainderService.php';
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
 
 
-    class Note extends CI_Controller 
+    class Remainder extends CI_Controller 
     {
-        private $noteService = "";
+        private $remainderService = "";
 
         public function __construct()
         {
             parent::__construct();
-            $this->noteService = new NoteService();
+            $this->remainderService = new RemainderService();
         }
 
     
         
-        public function addNote()
+        public function addRemainder()
         {
             $title = $_POST['title'];
             $noteContent = $_POST['noteContent'];
             $email = $_POST['email'];
-            return $this->noteService->addNote($title,$noteContent,$email);
+            return $this->remainderService->addRemainder($title,$noteContent,$email);
         }
          
-        public function displayNote()
+        public function displayRemainder()
         {
             $email = $_POST['email'];
-            return $this->noteService->displayNote($email);
+            return $this->remainderService->displayRemainder($email);
         }
+
+        public function deleteRemainder()
+        {
+            $id = $_POST['id'];
+            return $this->remainderService->deleteRemainder($id);
+        }
+        
     }
         
 ?>
