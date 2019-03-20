@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import decode from 'jwt-decode';
 import { debug } from 'util';
 import { RemainderService } from 'src/app/service/remainder.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-remainder',
@@ -17,11 +18,15 @@ export class RemainderComponent implements OnInit {
   note: string[];
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
+  card: any;
+  currentDateAndTime: string;
+  timer: any;
 
   constructor(private remainderService:RemainderService) { }
 
   ngOnInit() {
     this.displayRemainder();
+    this.timer = false;
   }
 
   flip()
@@ -64,7 +69,7 @@ export class RemainderComponent implements OnInit {
 
         if (res.message == "200") 
         {
-          
+          this.displayRemainder();
         } 
         else 
         {
@@ -87,7 +92,7 @@ export class RemainderComponent implements OnInit {
 
         if (res.message == "200") 
         {
-          
+          this.displayRemainder();
         } 
         else 
         {
@@ -96,4 +101,37 @@ export class RemainderComponent implements OnInit {
       });
   }
 
+  fulldate: any;
+	fulltime: any;
+	/**
+	 * functin for set reminder for today button
+	 */
+	today(id) {
+		var day = new Date();
+		this.fulldate = day.toDateString();
+		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
+    this.currentDateAndTime = currentDate + " " + " 08:00 PM";
+    this.timer = true;
+		
+	}
+
+	tomorrow(id) {
+		debugger;
+		var day = new Date();
+		day.setDate(day.getDate() + 1);
+		this.fulldate = day.toDateString();
+		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
+		this.currentDateAndTime = currentDate + " " + " 08:00 AM";
+    this.timer = true;
+	}
+
+	nextWeek(id) {
+		debugger;
+		var day = new Date();
+
+		this.fulldate = day.setDate(day.getDate() + ((1 + 7 - day.getDay()) % 7));
+		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
+		this.currentDateAndTime = currentDate + " " + " 08:00 AM";
+    this.timer = true;
+	}
 }

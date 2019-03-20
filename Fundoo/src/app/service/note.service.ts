@@ -32,7 +32,7 @@ export class NoteService {
 
   deleteNote(n)
   {
-    debugger;
+   
     let id = new FormData();
     id.append('id',n);
     return this.http.post(this.serviceurl.host+this.serviceurl.delNote,id);

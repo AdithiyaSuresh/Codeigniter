@@ -25,9 +25,99 @@
             </button>
             <input role="textarea" style ="margin-top: 15px; margin-left: 10px;" matInput  placeholder="Take a note" [formControl]="noteContent" />
 
-            <button id="Remaind" matTooltip="Remind me" mat-button style='padding-left: 16px;padding-right: 16px;margin-bottom: -80px;margin-top: 10px;'>
-              <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
-            </button>  
+            <div style = 'margin-bottom: -27px;margin-left: 7px;'>
+                <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
+              </div>
+
+                <button id="Remaind" [matMenuTriggerFor]="remainder" matTooltip="Remind me" mat-button style='padding-left: 16px;padding-right: 16px;margin-bottom: -80px;margin-top: 30px;'>
+                  <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
+                </button> 
+                <mat-menu  #remainder="matMenu">
+                  <button mat-menu-item>Remainder:</button>
+                  <!-- <button mat-menu-item  (click)="timer_button = true && (PresentTime = currentDateAndTime)">
+                  Later today 8:00PM
+                </button> -->
+                  <button mat-menu-item (click)="today(01)">Later today 8:00PM</button>
+                  <button mat-menu-item (click)="tomorrow(01)">Tomorrow 8:00PM</button>
+                  <button mat-menu-item (click)="nextWeek(01)">Next week Mon,8:00pm</button>
+
+                  <button mat-menu-item  [matMenuTriggerFor]="menu6">
+                    <mat-icon><img src="../../assets/img/fundoAssests/timer.svg " /></mat-icon>Pick date & time
+                  </button>
+                  <mat-menu #menu6="matMenu">
+               
+                      <mat-nav-list>
+                          <mat-list role="List">
+                    <div class="pickdate">
+    
+                    <mat-list-item id="pickAdjust">
+    
+                        <span>Pick date and Time </span>
+                       </mat-list-item>
+                    
+                      </div>
+    
+                      <mat-list-item>
+                          <mat-form-field class="example-full-width">
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                            </mat-list-item>
+                    
+                      <button mat-menu-item [matMenuTriggerFor]="menu9">Pick date and Time </button>
+                      <mat-menu #menu9="matMenu">
+                          <button mat-menu-item>
+                            <span>Morning<span class="time8"> 8:00AM</span></span>
+                          </button>
+                          <button mat-menu-item >
+                            <span>Afternoon    1:00PM</span>
+                          </button>
+                          <button mat-menu-item>
+                            <span>Evening 6:00PM</span>
+                          </button>
+                          <button mat-menu-item>
+                            <span>Night 8:00PM</span>
+                          </button>
+                          <button mat-menu-item>
+                            <span>Custom</span>
+                          </button>
+                        </mat-menu>
+                      <mat-list-item>
+                        <button mat-menu-item [matMenuTriggerFor]="menu10">Does not repeat</button>
+                         <mat-menu #menu10="matMenu">
+                           <button mat-menu-item>
+                             <span>Does not repeat</span>
+                           </button>
+    
+                           <button  mat-menu-item >
+                              <span>Daily</span>
+                            </button>
+                           <button  mat-menu-item >
+                             <span>weekly</span>
+                           </button>
+                           <button  mat-menu-item >
+                             <span>monthly</span>
+                           </button>
+                           <button  mat-menu-item >
+                             <span>yearly</span>
+                           </button>
+                           <button  mat-menu-item >
+                              <span>Custom</span>
+                            </button>
+                         </mat-menu>
+                       
+                      </mat-list-item>
+    
+                      </mat-list>
+                    </mat-nav-list>
+                     
+                    </mat-menu>
+                </mat-menu>
+
+
             <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 19px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
               <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
             </button> 
@@ -40,9 +130,17 @@
               <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
                 <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
             </button> 
-            <button id="Remaind" matTooltip="Remind me" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
-              <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
-          </button> 
+            <button id="Remaind" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="auth" style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
+                <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
+              </button> 
+            <mat-menu #auth="matMenu">
+                <button (click)="deleteRemainder(n)" mat-menu-item>Delete note</button> 
+                <button mat-menu-item>Add label</button>
+                <button mat-menu-item>Add drawing</button>
+                <button mat-menu-item>Make a copy</button>
+                <button mat-menu-item>Show checkboxes</button>
+                <button mat-menu-item>Copy to Google Docs</button>
+            </mat-menu>
             <button  style='margin-left: 222px;margin-bottom: -80px;margin-top: 20px;' id="Close" matTooltip="Close" mat-button (click)="addRemainder()">close</button> 
             </mat-card>
                
@@ -70,16 +168,21 @@
               </button> 
 
               <button mat-icon-button [matMenuTriggerFor]="auth">
-                <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
-              </button>
-              <mat-menu #auth="matMenu">
-                <button style="margin-top: -10px;margin-bottom: -10px;" mat-menu-item (click)="deleteRemainder(n)">
-                 <label>Delete</label>
+                  <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
                 </button>
-              </mat-menu> 
+                <mat-menu #auth="matMenu">
+                    <button (click)="deleteRemainder(n)" mat-menu-item>Delete note</button> 
+                    <button mat-menu-item>Add label</button>
+                    <button mat-menu-item>Add drawing</button>
+                    <button mat-menu-item>Make a copy</button>
+                    <button mat-menu-item>Show checkboxes</button>
+                    <button mat-menu-item>Copy to Google Docs</button>
+                </mat-menu>
 
           </div>
             </mat-card>
         </mat-grid-list>
     </div>
 </div>
+
+

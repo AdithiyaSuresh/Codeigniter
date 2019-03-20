@@ -79,6 +79,23 @@ use \Firebase\JWT\JWT;
         $query = "DELETE from addnote WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
+        if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
     }
 
 }
