@@ -70,6 +70,7 @@ export class RemainderComponent implements OnInit {
         if (res.message == "200") 
         {
           this.displayRemainder();
+          this.flag = true;
         } 
         else 
         {

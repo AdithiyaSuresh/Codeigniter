@@ -376,4 +376,21 @@ class JWT
         }
         return strlen($str);
     }
+
+    public static function jverify($token): bool
+    {
+        $secret_key = "abc";
+        list($headerEncoded, $payloadEncoded, $signatureEncoded) = explode('.', $token);
+        $dataEncoded                                             = "$headerEncoded.$payloadEncoded";
+        $signature                                               = JWT::base64UrlDecode($signatureEncoded);
+        $rawSignature                                            = hash_hmac('sha256', $dataEncoded, $secret_key, true);
+        return hash_equals($rawSignature, $signature);
+    }
+
+    public static function base64UrlDecode($data): string
+    {
+        $urlUnsafeData = strtr($data, '-_', '+/');
+        $paddedData    = str_pad($urlUnsafeData, strlen($data) % 4, '=', STR_PAD_RIGHT);
+        return base64_decode($paddedData);
+    }
 }

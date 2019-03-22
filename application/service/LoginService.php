@@ -39,7 +39,7 @@ class LoginService extends CI_Controller
             $arr = $statement->fetch(PDO::FETCH_ASSOC);
             $firstname = $arr['firstname'];
         
-            $secret_key = mt_rand(100000,10000000);
+            $secret_key = "abc";
 
             $data = array(
                 "firstname" => $firstname,
@@ -57,8 +57,8 @@ class LoginService extends CI_Controller
             $connection = new Redis();
             $client = $connection->connection();
 
-          $client->set('token', $token );
-          $response = $client->get('token');
+            $client->set('token', $token );
+            $response = $client->get('token');
 
             $data = array(
                 "token"   => $token,

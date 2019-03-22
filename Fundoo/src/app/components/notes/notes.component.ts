@@ -69,6 +69,7 @@ export class NotesComponent implements OnInit {
         if (res.message == "200") 
         {
           this.displayNotes();
+          this.flag = true;
         } 
         else 
         {

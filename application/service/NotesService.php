@@ -32,12 +32,16 @@ use \Firebase\JWT\JWT;
         $connection = new Redis();
         $client = $connection->connection();
         $token = $client->get('token');
-        
-        
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+
+        if(JWT::jverify($token))
+        {
             $query = "INSERT into addnote (title,noteContent,email) values ('$title','$noteContent','$email')";
             $stmt = $this->db->conn_id->prepare($query);
             $res = $stmt->execute($data);
-        // return $res;
+            // return $res;
 
             if ($res) 
             {
@@ -56,8 +60,7 @@ use \Firebase\JWT\JWT;
                 return "204";
 
             }
-        
-
+        }
     }
 
     public function displayNote($email)
