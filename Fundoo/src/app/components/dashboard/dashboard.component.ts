@@ -7,22 +7,46 @@ import decode from 'jwt-decode';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
   
   email: string = "";
+  grid: boolean = false;
+	list: boolean = true;
 
-  constructor() { }
+  constructor() 
+  { 
+    this.changeView();
+  }
 
 
   ngOnInit() {
     
   }
 
-  note(){
+  note()
+  {
     debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     this.email = tokenPayload.email;
-
   }
+
+  changeView() 
+  {
+		debugger;
+    if (this.list == true) 
+    {
+			this.grid = true;
+			this.list = false;
+    } 
+    else 
+    {
+			this.list = true;
+			this.grid = false;
+		}
+
+	//	this.viewServiceObj.gridview();
+  }
+  
 }

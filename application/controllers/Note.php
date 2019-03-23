@@ -27,8 +27,8 @@ header("Access-Control-Allow-Headers: Authorization");
          
         public function displayNote()
         {
-            $email = $_POST['email'];
-            return $this->noteService->displayNote($email);
+            $id = $_POST['id'];
+            return $this->noteService->displayNote($id);
         }
 
         public function delNote()

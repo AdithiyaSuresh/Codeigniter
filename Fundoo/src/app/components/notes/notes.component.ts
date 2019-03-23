@@ -10,6 +10,7 @@ import * as moment from 'moment';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
+
 export class NotesComponent implements OnInit {
 
   flag = true;
@@ -38,8 +39,8 @@ export class NotesComponent implements OnInit {
     debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
-    const email = tokenPayload.email;
-    let obs = this.noteService.displayNote(email);
+    const id = tokenPayload.id;
+    let obs = this.noteService.displayNote(id);
    
     obs.subscribe((data: any) => {
       debugger

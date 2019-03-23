@@ -25,7 +25,7 @@ export class NoteService {
   {
     debugger;
     let emaildata = new FormData();
-    emaildata.append("email",data);
+    emaildata.append("id",data);
 
     return this.http.post(this.serviceurl.host+this.serviceurl.disnote,emaildata);
   }

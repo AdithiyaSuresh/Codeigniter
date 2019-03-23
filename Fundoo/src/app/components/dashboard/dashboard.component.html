@@ -59,8 +59,19 @@
                 <button mat-icon-button>
                   <mat-icon style="font-size: 27px">refresh</mat-icon>
                   </button>
+
+                  <button mat-icon-button *ngIf="list" (click)="changeView()" >
+                    <!-- <mat-icon style="font-size: 27px">view_agenda</mat-icon> -->
+                    <img style="width:25px" *ngIf="!grid" class="view" src="../../assets/img/fundoAssests/baseline-view_quilt-24px.svg"/>
+                  </button>
+
+                  <button mat-icon-button *ngIf="grid" (click)="changeView()">
+                    <!-- <mat-icon style="font-size: 27px">view_agenda</mat-icon> -->
+                    <img style="width:25px" class="view" *ngIf="grid" src="../../assets/img/fundoAssests/view2.svg"/>
+                  </button>
+            
               
-                <button mat-icon-button >
+                <button mat-icon-button>
                   <mat-icon style="font-size: 27px">settings</mat-icon>
                 </button>
 

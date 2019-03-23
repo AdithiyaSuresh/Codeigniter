@@ -35,10 +35,12 @@ use \Firebase\JWT\JWT;
         $arr = array('HS256', 'HS384', 'HS512','RS256');
         $secret_key = "abc";
         $payload = JWT::decode($token,$secret_key,$arr);
+        $id = $payload->id;
 
         if(JWT::jverify($token))
         {
-            $query = "INSERT into addnote (title,noteContent,email) values ('$title','$noteContent','$email')";
+
+            $query = "INSERT into addnote (userid,title,noteContent,email) values ('$id','$title','$noteContent','$email')";
             $stmt = $this->db->conn_id->prepare($query);
             $res = $stmt->execute($data);
             // return $res;
@@ -63,9 +65,9 @@ use \Firebase\JWT\JWT;
         }
     }
 
-    public function displayNote($email)
+    public function displayNote($id)
     {
-        $query = "SELECT * from addnote WHERE email = '$email' ORDER BY id DESC ";
+        $query = "SELECT * from addnote WHERE userid = '$id' ORDER BY id DESC ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
