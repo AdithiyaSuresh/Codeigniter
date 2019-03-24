@@ -18,6 +18,7 @@ export class NoteService {
     addNote.append('title',reg.title);
     addNote.append('noteContent',reg.noteContent);
     addNote.append('email',reg.email);
+    addNote.append('date',reg.date);
      return this.http.post(this.serviceurl.host+this.serviceurl.note,addNote);
   }
 

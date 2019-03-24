@@ -4,6 +4,7 @@ import { NoteService } from 'src/app/service/note.service';
 import decode from 'jwt-decode';
 import { debug } from 'util';
 import * as moment from 'moment';
+import { ViewService } from 'src/app/service/view.service';
 
 @Component({
   selector: 'app-notes',
@@ -22,11 +23,34 @@ export class NotesComponent implements OnInit {
   card: any;
   currentDateAndTime: string;
   timer: any;
-  constructor(private noteService:NoteService) { }
+  view;
+  wrap: string = "wrap";
+	direction: string = "row";
+  layout: string = this.direction + " " + this.wrap;
+  
+  constructor(private noteService:NoteService,private viewservice :ViewService) {
+
+      this.viewservice.getView().subscribe((res=>{
+        this.view =res;
+        this.direction = this.view.data;
+        console.log("Direction is :", this.direction);
+
+        this.layout = this.direction + " " + this.wrap;
+        console.log("Layout is ", this.layout);
+      }))
+   }
+
 
   ngOnInit() {
     this.displayNotes();
     this.timer = false;
+
+      this.viewservice.getView().subscribe((res=>{
+        this.view = res;
+        this.direction = this.view.data;
+        this.layout = this.direction + " "+this.wrap;
+    }))
+
   }
 
   flip()
@@ -56,7 +80,8 @@ export class NotesComponent implements OnInit {
         {
           "title":this.title.value,
           "noteContent":this.noteContent.value,
-          "email":this.email
+          "email":this.email,
+          "date":this.currentDateAndTime
         }
 
       let obj = this.noteService.addNote(this.model);
@@ -132,7 +157,7 @@ export class NotesComponent implements OnInit {
 
 		this.fulldate = day.setDate(day.getDate() + ((1 + 7 - day.getDay()) % 7));
 		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
-		this.currentDateAndTime = currentDate + " " + " 08:00 AM";
+		this.currentDateAndTime = currentDate + " " + " 08:00 PM";
     this.timer = true;
 	}
 

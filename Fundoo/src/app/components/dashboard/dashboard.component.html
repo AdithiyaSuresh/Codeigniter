@@ -62,12 +62,12 @@
 
                   <button mat-icon-button *ngIf="list" (click)="changeView()" >
                     <!-- <mat-icon style="font-size: 27px">view_agenda</mat-icon> -->
-                    <img style="width:25px" *ngIf="!grid" class="view" src="../../assets/img/fundoAssests/baseline-view_quilt-24px.svg"/>
+                    <img style="width:23px" *ngIf="!grid" class="view" src="../../assets/img/fundoAssests/menu-grid.svg"/>
                   </button>
 
                   <button mat-icon-button *ngIf="grid" (click)="changeView()">
                     <!-- <mat-icon style="font-size: 27px">view_agenda</mat-icon> -->
-                    <img style="width:25px" class="view" *ngIf="grid" src="../../assets/img/fundoAssests/view2.svg"/>
+                    <img style="width:29px" class="view" *ngIf="grid" src="../../assets/img/fundoAssests/view2.svg"/>
                   </button>
             
               
@@ -119,7 +119,7 @@
                 <a class= "selectorbutton" mat-list-item><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content>
+        <mat-sidenav-content style = " overflow: hidden;">
           <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>

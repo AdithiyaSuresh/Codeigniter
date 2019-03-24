@@ -167,11 +167,12 @@
       <div style="margin-top: -550px; margin-left: 880px;">
           <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
 
-            <mat-card  *ngFor="let n of note" class="notescard"><p style="margin-top: 10px;">{{n.title}}</p><p style="font-size: 20px;">{{n.noteContent}}</p>
+            <div fxLayout="{{layout}}" fxLayoutAlign="center center">
+            <mat-card  *ngFor="let n of note" class="notescard"><p style="margin-top: 10px;">{{n.title}}</p><p style="font-size: 20px;">{{n.noteContent}}<p style="margin-top: -10px;">{{n.date}}</p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
               </div> -->
-              <div style="margin-left: -37px;margin-right: -4px;">
+              <div style="margin-left: -37px;margin-right: -4px;margin-top: -18px;">
                 <button matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remainder">
                   <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
                 </button> 
@@ -306,6 +307,9 @@
 
             </div>
               </mat-card>
+
+            </div>
+              
           </mat-grid-list>
       </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import decode from 'jwt-decode';
+import { ViewService } from 'src/app/service/view.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
   grid: boolean = false;
 	list: boolean = true;
 
-  constructor() 
+  constructor(private viewservice: ViewService) 
   { 
     this.changeView();
   }
@@ -38,15 +39,16 @@ export class DashboardComponent implements OnInit {
     if (this.list == true) 
     {
 			this.grid = true;
-			this.list = false;
+      this.list = false;
+     
     } 
     else 
     {
 			this.list = true;
-			this.grid = false;
+      this.grid = false;
+
 		}
 
-	//	this.viewServiceObj.gridview();
+    this.viewservice.gridview();
   }
-  
 }
