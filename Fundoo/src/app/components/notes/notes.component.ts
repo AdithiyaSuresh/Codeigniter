@@ -33,10 +33,7 @@ export class NotesComponent implements OnInit {
       this.viewservice.getView().subscribe((res=>{
         this.view =res;
         this.direction = this.view.data;
-        console.log("Direction is :", this.direction);
-
         this.layout = this.direction + " " + this.wrap;
-        console.log("Layout is ", this.layout);
       }))
    }
 
@@ -74,6 +71,8 @@ export class NotesComponent implements OnInit {
 
   addNote()
   {
+    
+
     debugger;
     this.email = localStorage.getItem('email');
     this.model =

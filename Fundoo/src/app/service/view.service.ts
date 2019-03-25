@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -26,6 +27,6 @@ export class ViewService {
       this.subject.next({data:"column"});
       this.result = true;
     }
-} 
+  } 
 
 }

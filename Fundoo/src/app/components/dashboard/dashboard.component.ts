@@ -48,7 +48,6 @@ export class DashboardComponent implements OnInit {
       this.grid = false;
 
 		}
-
     this.viewservice.gridview();
   }
 }
