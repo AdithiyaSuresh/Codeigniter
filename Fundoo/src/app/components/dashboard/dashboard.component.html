@@ -103,20 +103,20 @@
     <mat-sidenav-container class="example-container">
         <mat-sidenav #sidenav mode ="side">
             <mat-nav-list>
-                <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']" (click)="note()" > <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['notes']" (click)="note()" [routerLinkActive]="['is-active']" > <mat-icon>lightbulb_outline</mat-icon><ul fxLayout fxLayoutGap></ul> Notes </a>
                 <br>
-                <a class= "selectorbutton" mat-list-item [routerLink] = "['remainder']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['remainder']" [routerLinkActive]="['is-active']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
                 <br>
                 <mat-divider></mat-divider>
                 <mat-list-item><label style="font-size: 13px">LABELS</label></mat-list-item>
-                <a class= "selectorbutton" mat-list-item> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
+                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
                 <br>
                 <mat-divider ></mat-divider>
                 <mat-divider ></mat-divider>
                 <br>
-                <a class= "selectorbutton" mat-list-item><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
+                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
                 <br>
-                <a class= "selectorbutton" mat-list-item><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
+                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

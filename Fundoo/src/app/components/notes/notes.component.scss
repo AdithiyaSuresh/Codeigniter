@@ -32,23 +32,23 @@
   margin-top: -10%;
 }
 
-.notescard{
+// .notescard{
 
-    margin-top: 71px;
-    display: inline-block;
-    margin-left: -80px;
-    margin-right: 138px;
-    // height: 127px;
-    width: 205px;
-    padding-left: 39px;
-    padding-top: 9px;
-    color: #7E858A;
-    font-family: 'Product Sans',Arial,sans-serif;
-    font-size: 16px;
-}
+//     margin-top: 71px;
+//     display: inline-block;
+//     margin-left: -80px;
+//     margin-right: 138px;
+//     // height: 127px;
+//     width: 205px;
+//     padding-left: 39px;
+//     padding-top: 9px;
+//     color: #7E858A;
+//     font-family: 'Product Sans',Arial,sans-serif;
+//     font-size: 16px;
+// }
   .noteList{
   margin-left: -623px;
-  margin-top: 180px;
+  margin-top: 185px;
   width: 1000px;
   height: 400px;
   display: inline-block;
@@ -71,6 +71,46 @@
     margin-top: 5px;
 }
 
+.example-chip-list {
+ margin-top: 10px;
+}
 
+.mat-chip.mat-standard-chip {
+  background-color: #e0e0e0b8;
+  color: rgba(0, 0, 0, 0.63);
+}
+
+.mat-chip {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.row {
+  margin-top: 71px;
+  display: inline-block;
+  margin-left: -80px;
+  margin-right: 138px;
+  // height: 127px;
+  width: 205px;
+  padding-left: 39px;
+  padding-top: 9px;
+  color: #7E858A;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 16px;
+}
+
+.column {
+  margin-top: 71px;
+  display: inline-block;
+  margin-left: -144px;
+  margin-right: 138px;
+  // height: 127px;
+  width: 595px;
+  padding-left: 39px;
+  padding-top: 9px;
+  color: #7E858A;
+  font-family: 'Product Sans',Arial,sans-serif;
+  font-size: 16px;
+}
 
 

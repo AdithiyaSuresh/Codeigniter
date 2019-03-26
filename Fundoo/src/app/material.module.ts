@@ -5,7 +5,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
 
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatFormFieldModule, 
-  MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, } from '@angular/material';
+  MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, MatChipsModule, } from '@angular/material';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import {
     MatGridListModule,
     MatDatepickerModule,       
     MatNativeDateModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ],
   exports: [
     CommonModule,
@@ -46,7 +47,8 @@ import {
     MatGridListModule,
     MatDatepickerModule,       
     MatNativeDateModule,
-    MatTooltipModule    
+    MatTooltipModule,
+    MatChipsModule   
     
   ],
 })

@@ -16,13 +16,14 @@ use \Firebase\JWT\JWT;
         }
 
 
-    public function addNote($title,$noteContent,$email,$date)
+    public function addNote($title,$noteContent,$email,$date,$color)
     {
         $data = [
             'title' => $title,
             'noteContent' => $noteContent,
             'email' => $email,
-            'date' =>$date
+            'date' => $date,
+            'color' => $color
         ];
         // $client = new Predis\Client(array(
         //     'host' => '127.0.0.1',
@@ -46,7 +47,7 @@ use \Firebase\JWT\JWT;
         if(JWT::jverify($token))
         {
 
-            $query = "INSERT into addnote (userid,title,noteContent,email,date) values ('$id','$title','$noteContent','$email','$date')";
+            $query = "INSERT into addnote (userid,title,noteContent,email,date,color) values ('$id','$title','$noteContent','$email','$date','$color')";
             $stmt = $this->db->conn_id->prepare($query);
             $res = $stmt->execute($data);
             // return $res;
@@ -82,6 +83,7 @@ use \Firebase\JWT\JWT;
             $title = $notes['title'];
             $noteContent = $notes['noteContent'];
             $date = $notes['date'];
+            $color = $notes['color'];
         }
         print json_encode($arr);
     }

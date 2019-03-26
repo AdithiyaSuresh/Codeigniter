@@ -27,6 +27,7 @@ export class NotesComponent implements OnInit {
   wrap: string = "wrap";
 	direction: string = "row";
   layout: string = this.direction + " " + this.wrap;
+  public color = "";
   
   constructor(private noteService:NoteService,private viewservice :ViewService) {
 
@@ -62,17 +63,16 @@ export class NotesComponent implements OnInit {
     const tokenPayload = decode(tokens);
     const id = tokenPayload.id;
     let obs = this.noteService.displayNote(id);
-   
-    obs.subscribe((data: any) => {
-      debugger
-      this.note = data as string[];
-    });
+      
+      obs.subscribe((data: any) => {
+        debugger;
+        this.note = data as string[];
+      });
+  
   }
 
   addNote()
   {
-    
-
     debugger;
     this.email = localStorage.getItem('email');
     this.model =
@@ -80,28 +80,31 @@ export class NotesComponent implements OnInit {
           "title":this.title.value,
           "noteContent":this.noteContent.value,
           "email":this.email,
-          "date":this.currentDateAndTime
+          "date":this.currentDateAndTime,
+          "color":this.color
         }
 
-      let obj = this.noteService.addNote(this.model);
-      
-
-      obj.subscribe((res: any) => 
+      if(this.title.value != "" || this.noteContent.value != "" || this.currentDateAndTime != undefined)
       {
-        //debugger;
-        console.log(res.message);
+        let obj = this.noteService.addNote(this.model);
+        
+        obj.subscribe((res: any) => 
+        {
+          //debugger;
+          console.log(res.message);
 
-        if (res.message == "200") 
-        {
-          this.displayNotes();
-          this.flag = true;
-        } 
-        else 
-        {
-          
-        }
-      });
-      
+          if (res.message == "200") 
+          {
+            this.displayNotes();
+            this.flag = true;
+          } 
+          else 
+          {
+            
+          }
+        });
+      }
+      this.flag = true; 
   }
 
   deleteNote(n)
@@ -160,4 +163,9 @@ export class NotesComponent implements OnInit {
     this.timer = true;
 	}
 
+  setColorToTitle(changecolor) {
+    debugger;
+		this.color = changecolor;
+  }
+  
 }

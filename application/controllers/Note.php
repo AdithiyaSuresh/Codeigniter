@@ -23,7 +23,8 @@ header("Access-Control-Allow-Headers: Authorization");
             $noteContent = $_POST['noteContent'];
             $email = $_POST['email'];
             $date = $_POST['date'];
-            return $this->noteService->addNote($title,$noteContent,$email,$date);
+            $color = $_POST['color'];
+            return $this->noteService->addNote($title,$noteContent,$email,$date,$color);
         }
          
         public function displayNote()
