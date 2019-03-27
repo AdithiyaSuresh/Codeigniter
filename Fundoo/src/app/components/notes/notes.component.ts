@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from 'src/app/service/note.service';
@@ -28,6 +29,7 @@ export class NotesComponent implements OnInit {
 	direction: string = "row";
   layout: string = this.direction + " " + this.wrap;
   public color = "";
+  dateTime: any;
   
   constructor(private noteService:NoteService,private viewservice :ViewService) {
 
@@ -104,7 +106,17 @@ export class NotesComponent implements OnInit {
           }
         });
       }
+      debugger;
       this.flag = true; 
+
+      if(this.currentDateAndTime == undefined)
+      {
+        this.dateTime = false;
+      }
+      else
+      {
+        this.dateTime = true;
+      }
   }
 
   deleteNote(n)
@@ -164,8 +176,24 @@ export class NotesComponent implements OnInit {
 	}
 
   setColorToTitle(changecolor) {
-    debugger;
 		this.color = changecolor;
+  }
+
+  setColor(n,colour)
+  {
+    debugger;
+    let col = this.noteService.changeColor(n.id,colour);
+    col.subscribe((res:any)=>{
+      console.log(res);
+      if (res.message == "200") 
+        {
+          this.displayNotes();
+        } 
+        else 
+        {
+          
+        }
+    })
   }
   
 }

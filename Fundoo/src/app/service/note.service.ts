@@ -13,7 +13,6 @@ export class NoteService {
 
   addNote(reg)
   {
-   
     let addNote = new FormData();
     addNote.append('title',reg.title);
     addNote.append('noteContent',reg.noteContent);
@@ -39,4 +38,14 @@ export class NoteService {
     id.append('id',n);
     return this.http.post(this.serviceurl.host+this.serviceurl.delNote,id);
   }
+
+  changeColor(id,colour)
+  {
+    debugger;
+    let col = new FormData();
+    col.append('id',id);
+    col.append('colour',colour)
+    return this.http.post(this.serviceurl.host+this.serviceurl.changeColor,col);
+  }
+
 }

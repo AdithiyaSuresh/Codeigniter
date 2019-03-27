@@ -1,5 +1,5 @@
 
-<div fxLayout="row wrap" style="width:100%; height: 90%;">
+<!-- <div fxLayout="row wrap" style="width:100%; height: 90%;"> -->
     <p fxLayoutAlign="center center" fxLayout="row wrap" style="width:100%; height: 90%">
       
       <div *ngIf="flag===true" (click)="flip()" >
@@ -168,16 +168,16 @@
                  
       </div>
      
-      <div style="margin-top: -550px; margin-left: 880px;">
+      <div style="margin-left: 880px;">
           <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
 
             <div fxLayout="{{layout}}" fxLayoutAlign="center center">
-            <mat-card  *ngFor="let n of note" [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }"><p style="margin-top: 10px;margin-left: -17px;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list><mat-chip class="example-chip-list">{{n.date}}</mat-chip></mat-chip-list></p>
+            <mat-card class="gridcard"  *ngFor="let n of note" [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }"><p style="margin-top: 10px;margin-left: -17px;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}</mat-chip></mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
               </div> -->
               <div style="margin-left: -31px;margin-right: -4px;margin-top: -18px;">
-                <button matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remainder">
+                <button matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remainder" class="displayButton">
                   <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>
                 </button> 
                
@@ -263,41 +263,41 @@
                     </mat-menu>
                 </mat-menu> 
 
-                <button matTooltip="Collaborator" mat-icon-button >
+                <button matTooltip="Collaborator" mat-icon-button  class="displayButton" >
                   <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
                 </button> 
-                <button matTooltip="Change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button >
+                <button matTooltip="Change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button  class="displayButton" >
                   <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
                 </button> 
                 
                 <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
-                  <button matTooltip="Yellow" (click)="setColorToTitle('#fcf476')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
-                  <button matTooltip="Orange" (click)="setColorToTitle('#f8bc04')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
-                  <button matTooltip="Red" (click)="setColorToTitle('#f28b82 ')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
-                  <button matTooltip="White" (click)="setColorToTitle('#ffffff ')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
+                  <button matTooltip="Yellow" (click)="setColor(n,'#fcf476')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
+                  <button matTooltip="Orange" (click)="setColor(n,'#f8bc04')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
+                  <button matTooltip="Red" (click)="setColor(n,'#f28b82')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
+                  <button matTooltip="White" (click)="setColor(n,'#ffffff')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
                   <br />
-                  <button matTooltip="Dark blue" (click)="setColorToTitle('#aecbfa ')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
-                  <button matTooltip="Blue" (click)="setColorToTitle('#cbf0f8 ')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
-                  <button matTooltip="Teal" (click)="setColorToTitle('#a7ffea ')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
-                  <button matTooltip="Green" (click)="setColorToTitle('#ccff90 ')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
+                  <button matTooltip="Dark blue" (click)="setColor(n,'#aecbfa')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
+                  <button matTooltip="Blue" (click)="setColor(n,'#cbf0f8')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
+                  <button matTooltip="Teal" (click)="setColor(n,'#a7ffea')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
+                  <button matTooltip="Green" (click)="setColor(n,'#ccff90')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
                   <br />
-                  <button matTooltip="Gray" (click)="setColorToTitle('#e8eaed')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
-                  <button matTooltip="Brown" (click)="setColorToTitle('#e6c9a8 ')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
-                  <button matTooltip="Pink" (click)="setColorToTitle('#fccfe8 ')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
-                  <button matTooltip="Purple" (click)="setColorToTitle('#d7aefb ')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
+                  <button matTooltip="Gray" (click)="setColor(n,'#e8eaed')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
+                  <button matTooltip="Brown" (click)="setColor(n,'#e6c9a8')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
+                  <button matTooltip="Pink" (click)="setColor(n,'#fccfe8')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
+                  <button matTooltip="Purple" (click)="setColor(n,'#d7aefb')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
                 </mat-menu>
 
-                <button matTooltip="Add image" mat-icon-button >
+                <button matTooltip="Add image" mat-icon-button  class="displayButton" >
                   <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
                 </button> 
-                  <button matTooltip="Archive" mat-icon-button >
+                  <button matTooltip="Archive" mat-icon-button  class="displayButton" >
                     <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
                 </button> 
                 <!-- <button  mat-icon-button (click)="deleteNote(n)" >
                   <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
               </button>  -->
 
-              <button matTooltip="More" mat-icon-button [matMenuTriggerFor]="auth">
+              <button matTooltip="More" mat-icon-button [matMenuTriggerFor]="auth"  class="displayButton">
                 <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
               </button>
               <mat-menu #auth="matMenu">
@@ -313,8 +313,7 @@
               </mat-card>
 
             </div>
-              
           </mat-grid-list>
       </div>
       
-</div>
+<!-- </div> -->

@@ -38,6 +38,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $id = $_POST['id'];
             return $this->noteService->delNote($id);
         }
+
+        public function changeColor()
+        {
+            $id = $_POST['id'];
+            $colour = $_POST['colour'];
+            return $this->noteService->changeColor($id,$colour);
+        }
     }
         
 ?>

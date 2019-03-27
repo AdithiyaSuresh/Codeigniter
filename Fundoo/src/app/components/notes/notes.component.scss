@@ -1,7 +1,7 @@
 .note {
   width: 643px;
   padding: 14px;
-  margin-top: -513px;
+  margin-top: -564px;
   // height: 25px;
   font-size: 17px;
   border-radius: 9px;
@@ -11,7 +11,7 @@
 .notes {
   width: 643px;
   padding: 14px;
-  margin-top: -513px;
+  margin-top: -564px;
   // height: 145px;
   font-size: 17px;
   border-radius: 9px;
@@ -47,8 +47,8 @@
 //     font-size: 16px;
 // }
   .noteList{
-  margin-left: -623px;
-  margin-top: 185px;
+  margin-left: -645px;
+  margin-top: -14px;
   width: 1000px;
   height: 400px;
   display: inline-block;
@@ -76,7 +76,7 @@
 }
 
 .mat-chip.mat-standard-chip {
-  background-color: #e0e0e0b8;
+  background-color:rgba(0,0,0,0.08);
   color: rgba(0, 0, 0, 0.63);
 }
 
@@ -86,7 +86,7 @@
 }
 
 .row {
-  margin-top: 71px;
+  margin-top: 49px;
   display: inline-block;
   margin-left: -80px;
   margin-right: 138px;
@@ -100,12 +100,12 @@
 }
 
 .column {
-  margin-top: 71px;
+  margin-top: 49px;
   display: inline-block;
-  margin-left: -144px;
+  margin-left: -85px;
   margin-right: 138px;
   // height: 127px;
-  width: 595px;
+  width: 617px;
   padding-left: 39px;
   padding-top: 9px;
   color: #7E858A;
@@ -113,4 +113,18 @@
   font-size: 16px;
 }
 
+.dateVisible{
+  visibility: none;
+}
 
+.dateInvisible{
+  visibility: hidden;
+}
+
+.displayButton {
+  display: none;
+}
+
+.gridcard:hover .displayButton, .displayButton:hover {
+  display: inline;
+}
