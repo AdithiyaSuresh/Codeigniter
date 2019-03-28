@@ -15,4 +15,5 @@ export class serviceUrl
     public delNote = "codeigniter/delNote";
     public deleteRemainder = "codeigniter/deleteRemainder";
     public changeColor = "codeigniter/changeColor";
+    public editNote = "codeigniter/editNote";
 }

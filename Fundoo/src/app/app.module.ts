@@ -18,6 +18,7 @@ import { SessionexpComponent } from './components/sessionexp/sessionexp.componen
 import { NotesComponent } from './components/notes/notes.component';
 import { RemainderComponent } from './components/remainder/remainder.component';
 import { CardComponent } from './components/card/card.component';
+import { EditnotesComponent } from './components/editnotes/editnotes.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CardComponent } from './components/card/card.component';
     SessionexpComponent,
     NotesComponent,
     RemainderComponent,
-    CardComponent
+    CardComponent,
+    EditnotesComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { CardComponent } from './components/card/card.component';
     HttpClientModule
    ],
   providers: [RegisterService, serviceUrl],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditnotesComponent]
 })
 export class AppModule { }

@@ -44,8 +44,18 @@ export class NoteService {
     debugger;
     let col = new FormData();
     col.append('id',id);
-    col.append('colour',colour)
+    col.append('colour',colour);
     return this.http.post(this.serviceurl.host+this.serviceurl.changeColor,col);
+  }
+
+  editNote(editedValue)
+  {
+    debugger;
+    let editValue = new FormData();
+    editValue.append('Title',editedValue.Title);
+    editValue.append('noteContent',editedValue.noteContent);
+    editValue.append('id',editedValue.id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.editNote,editValue);
   }
 
 }

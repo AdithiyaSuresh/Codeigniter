@@ -9,6 +9,7 @@
     height: 620px;
     margin: 20px;
     background-color: white;
+   // left: 0%;
     //border: 1px solid #555;
   }
   
@@ -16,6 +17,22 @@ mat-sidenav {
     width: 300px;
     border: none;
   }
+
+//   .mat-drawer-content[_ngcontent-c1] {
+//     margin-left: 175px;
+// }
+//   mat-sidenav-content.mat-drawer-content.mat-sidenav-content {
+//   margin-left: 176px;
+// }
+
+// .mat-drawer-content {
+//   position: relative;
+//   z-index: 1;
+//   display: block;
+//   height: 100%;
+//   overflow: auto;
+//   margin-left: 173px;
+// }
 
 div .label {
       margin-left: 40%;
@@ -42,7 +59,7 @@ mat-card .search {
   padding: 11px 16px 11px 16px;
 }
 
-.toolbarrow{
+.toolbarrow {
   height: 46px;
   margin-top: 10px;
   margin-right: 100px;
@@ -71,11 +88,15 @@ mat-card .search {
 .material-icons {
     
   font-size: 23px;
-   
 }
+
 mat-sidenav mat-icon{
   font-size: 25px;
 }
+
+// .mat-drawer-content{
+//   margin-left: 175px;
+// }
 
 .searchbar {
   background: transparent;
@@ -102,6 +123,7 @@ element.style {
 //   border-radius: 9px;
 //   background: #f9f9ed;
 // }
+
 .selectorbutton{
 margin: 0px;
 width: 400px;
@@ -122,3 +144,9 @@ border-bottom-right-radius: 100px;
 .is-active{
   background-color: #FFEDC4;
   }
+
+  .signout{
+  //  margin-right: -30px;
+    margin-left: 19px;
+  }
+  

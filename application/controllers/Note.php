@@ -45,6 +45,14 @@ header("Access-Control-Allow-Headers: Authorization");
             $colour = $_POST['colour'];
             return $this->noteService->changeColor($id,$colour);
         }
+
+        public function editNote()
+        {
+            $id = $_POST['id'];
+            $Title = $_POST['Title'];
+            $noteContent = $_POST['noteContent'];
+            return $this->noteService->editNote($id,$Title,$noteContent);
+        }
     }
         
 ?>

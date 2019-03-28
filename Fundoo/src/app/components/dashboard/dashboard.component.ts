@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, Validators } from '@angular/forms';
 import decode from 'jwt-decode';
 import { ViewService } from 'src/app/service/view.service';
 
@@ -11,13 +11,18 @@ import { ViewService } from 'src/app/service/view.service';
 
 export class DashboardComponent implements OnInit {
   
-  email: string = "";
+  email: string;
   grid: boolean = false;
-	list: boolean = true;
+  list: boolean = true;
+  firstname: string;
 
   constructor(private viewservice: ViewService) 
   { 
     this.changeView();
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    this.email = tokenPayload.email;
+    this.firstname = tokenPayload.firstname;
   }
 
 
@@ -31,6 +36,7 @@ export class DashboardComponent implements OnInit {
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     this.email = tokenPayload.email;
+    this.firstname = tokenPayload.firstname;
   }
 
   changeView() 

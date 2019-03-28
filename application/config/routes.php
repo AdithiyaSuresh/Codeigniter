@@ -73,6 +73,7 @@ $route['displayRemainder'] = 'Remainder/displayRemainder';
 $route['delNote'] = 'Note/delNote';
 $route['deleteRemainder'] = 'Remainder/deleteRemainder';
 $route['changeColor'] = 'Note/changeColor';
+$route['editNote'] = 'Note/editNote';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

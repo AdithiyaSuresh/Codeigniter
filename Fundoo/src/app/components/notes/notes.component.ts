@@ -6,6 +6,9 @@ import decode from 'jwt-decode';
 import { debug } from 'util';
 import * as moment from 'moment';
 import { ViewService } from 'src/app/service/view.service';
+import { MatDialog, MatIconRegistry, MatDialogConfig } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { EditnotesComponent } from '../editnotes/editnotes.component';
 
 @Component({
   selector: 'app-notes',
@@ -30,14 +33,16 @@ export class NotesComponent implements OnInit {
   layout: string = this.direction + " " + this.wrap;
   public color = "";
   dateTime: any;
+  notesdata: any;
   
-  constructor(private noteService:NoteService,private viewservice :ViewService) {
+  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,) {
 
       this.viewservice.getView().subscribe((res=>{
         this.view =res;
         this.direction = this.view.data;
         this.layout = this.direction + " " + this.wrap;
       }))
+      
    }
 
 
@@ -196,4 +201,19 @@ export class NotesComponent implements OnInit {
     })
   }
   
+  openDialog(n): void {
+    debugger;
+    const dialogconfg = new MatDialogConfig();
+    
+    dialogconfg.autoFocus = true;
+    dialogconfg.width = "600px"
+    dialogconfg.height = "180px"
+    dialogconfg.panelClass = 'custom-dialog-container'
+    dialogconfg.data = {
+    notesdata: n
+    }
+    const open = this.dialog.open(EditnotesComponent, dialogconfg);
+    this.displayNotes();
+      }
+
 }
