@@ -51,7 +51,8 @@ header("Access-Control-Allow-Headers: Authorization");
             $id = $_POST['id'];
             $Title = $_POST['Title'];
             $noteContent = $_POST['noteContent'];
-            return $this->noteService->editNote($id,$Title,$noteContent);
+            $date = $_POST['date'];
+            return $this->noteService->editNote($id,$Title,$noteContent,$date);
         }
     }
         

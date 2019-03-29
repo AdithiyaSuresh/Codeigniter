@@ -1,0 +1,22 @@
+
+.mat-dialog-container {
+    display: table;
+}
+
+.date {
+    height: 20px;
+    width: 158px;
+    background-color: #5555552b;
+    border-radius: 6%;
+}
+
+.mat-chip {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .mat-chip.mat-standard-chip {
+    background-color:rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.63);
+  }
+  

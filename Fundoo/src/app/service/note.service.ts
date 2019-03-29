@@ -55,6 +55,7 @@ export class NoteService {
     editValue.append('Title',editedValue.Title);
     editValue.append('noteContent',editedValue.noteContent);
     editValue.append('id',editedValue.id);
+    editValue.append('date',editedValue.date);
     return this.http.post(this.serviceurl.host+this.serviceurl.editNote,editValue);
   }
 

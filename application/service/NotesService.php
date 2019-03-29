@@ -136,9 +136,9 @@ use \Firebase\JWT\JWT;
             }
     }
 
-    public function editNote($id,$Title,$noteContent)
+    public function editNote($id,$Title,$noteContent,$date)
     {
-        $query = "UPDATE addnote SET title = '$Title',noteContent = '$noteContent' WHERE id = '$id'";
+        $query = "UPDATE addnote SET title = '$Title',noteContent = '$noteContent',date = '$date' WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         if ($res) 
