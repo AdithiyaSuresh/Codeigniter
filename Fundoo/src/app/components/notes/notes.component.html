@@ -63,7 +63,7 @@
     
                       <mat-list-item>
                           <mat-form-field class="example-full-width">
-                            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl] = "chooseDate">
                             <mat-datepicker-toggle matSuffix [for]="picker">
                               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                             </mat-datepicker-toggle>
@@ -73,20 +73,17 @@
                     
                       <button mat-menu-item [matMenuTriggerFor]="menu9">Pick Time </button>
                       <mat-menu #menu9="matMenu">
-                          <button mat-menu-item>
+                          <button mat-menu-item (click) = "choosingDate('morning')">
                             <span>Morning<span class="time8"> 8:00AM</span></span>
                           </button>
-                          <button mat-menu-item >
+                          <button mat-menu-item (click) = "choosingDate('afternoon')">
                             <span>Afternoon 1:00PM</span>
                           </button>
-                          <button mat-menu-item>
+                          <button mat-menu-item (click) = "choosingDate('evening')">
                             <span>Evening 6:00PM</span>
                           </button>
-                          <button mat-menu-item>
+                          <button mat-menu-item (click) = "choosingDate('night')">
                             <span>Night 8:00PM</span>
-                          </button>
-                          <button mat-menu-item>
-                            <span>Custom</span>
                           </button>
                         </mat-menu>
                       <mat-list-item>

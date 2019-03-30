@@ -24,6 +24,7 @@ export class NotesComponent implements OnInit {
   note: string[];
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
+  chooseDate = new FormControl();
   card: any;
   currentDateAndTime: string;
   timer: any;
@@ -153,16 +154,33 @@ export class NotesComponent implements OnInit {
 	/**
 	 * functin for set reminder for today button
 	 */
-	today(id) {
+	today(n) {
+    debugger;
 		var day = new Date();
 		this.fulldate = day.toDateString();
 		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
     this.currentDateAndTime = currentDate + " " + " 08:00 PM";
     this.timer = true;
-		
+    if(n.id != undefined)
+    {
+      this.timer = false;
+      let cdate = this.noteService.changeDate(n.id,this.currentDateAndTime);
+      this.currentDateAndTime = "";
+      cdate.subscribe((res:any)=>{
+        console.log(res);
+        if (res.message == "200") 
+          {
+            this.displayNotes();
+          } 
+          else 
+          {
+            
+          }
+      })
+    }
 	}
 
-	tomorrow(id) {
+	tomorrow(n) {
 		debugger;
 		var day = new Date();
 		day.setDate(day.getDate() + 1);
@@ -170,9 +188,26 @@ export class NotesComponent implements OnInit {
 		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
 		this.currentDateAndTime = currentDate + " " + " 08:00 AM";
     this.timer = true;
+    if(n.id != undefined)
+    {
+      this.timer = false;
+      let cdate = this.noteService.changeDate(n.id,this.currentDateAndTime);
+      this.currentDateAndTime = "";
+      cdate.subscribe((res:any)=>{
+        console.log(res);
+        if (res.message == "200") 
+          {
+            this.displayNotes();
+          } 
+          else 
+          {
+            
+          }
+      })
+    }
 	}
 
-	nextWeek(id) {
+	nextWeek(n) {
 		debugger;
 		var day = new Date();
 
@@ -180,7 +215,50 @@ export class NotesComponent implements OnInit {
 		let currentDate = moment(this.fulldate).format("DD/MM/YYYY");
 		this.currentDateAndTime = currentDate + " " + " 08:00 PM";
     this.timer = true;
-	}
+    if(n.id != undefined)
+    {
+      this.timer = false;
+      let cdate = this.noteService.changeDate(n.id,this.currentDateAndTime);
+      this.currentDateAndTime = "";
+      cdate.subscribe((res:any)=>{
+        console.log(res);
+        if (res.message == "200") 
+          {
+            this.displayNotes();
+          } 
+          else 
+          {
+            
+          }
+      })
+    }
+    
+  }
+  
+  choosingDate(cdate)
+  {
+    var choose = moment(this.chooseDate.value).format("DD/MM/YYYY");
+    if(cdate == 'morning')
+    {
+      this.currentDateAndTime = choose + " " + " 08:00 AM";
+      this.timer = true;
+    }
+    if(cdate == 'afternoon')
+    {
+      this.currentDateAndTime = choose + " " + " 01:00 PM";
+      this.timer = true;
+    }
+    if(cdate == 'evening')
+    {
+      this.currentDateAndTime = choose + " " + " 06:00 PM";
+      this.timer = true;
+    }
+    if(cdate == 'night')
+    {
+      this.currentDateAndTime = choose + " " + " 08:00 M";
+      this.timer = true;
+    }
+  }
 
   setColorToTitle(changecolor) {
 		this.color = changecolor;
@@ -205,16 +283,22 @@ export class NotesComponent implements OnInit {
   
   openDialog(n): void {
     debugger;
-    const dialogconfg = new MatDialogConfig();
+    // const dialogconfg = new MatDialogConfig();
     
-    dialogconfg.autoFocus = true;
-    dialogconfg.width = "600px"
-    dialogconfg.maxHeight = "200px"
-    dialogconfg.panelClass = 'custom-dialog-container'
-    dialogconfg.data = {
-    notesdata: n
-    }
-    const open = this.dialog.open(EditnotesComponent, dialogconfg);
+    // dialogconfg.autoFocus = true;
+    // dialogconfg.width = "600px"
+    // dialogconfg.maxHeight = "200px"
+    // dialogconfg.panelClass = 'custom-dialog-container'
+    // dialogconfg.data = {
+    // notesdata: n
+    // }
+    const open = this.dialog.open(EditnotesComponent,{
+      data: n,
+      autoFocus: true,
+      width: '600px',
+    //  maxHeight: "200px",
+      panelClass: 'custom-dialog-container'
+    });
     this.displayNotes();
       }
 

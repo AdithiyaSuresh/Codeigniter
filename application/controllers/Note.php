@@ -52,7 +52,15 @@ header("Access-Control-Allow-Headers: Authorization");
             $Title = $_POST['Title'];
             $noteContent = $_POST['noteContent'];
             $date = $_POST['date'];
-            return $this->noteService->editNote($id,$Title,$noteContent,$date);
+            $color = $_POST['color'];
+            return $this->noteService->editNote($id,$Title,$noteContent,$date,$color);
+        }
+
+        public function changeDate()
+        {
+            $id = $_POST['id'];
+            $currentDateAndTime = $_POST['currentDateAndTime'];
+            return $this->noteService->changeDate($id,$currentDateAndTime);
         }
     }
         

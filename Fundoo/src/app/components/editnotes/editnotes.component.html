@@ -1,14 +1,15 @@
 
-  
+<div [ngStyle]="{ 'background-color': color }"> 
+   
   <mat-dialog-content >
     
-          <div>
+          <div style = "margin-top: 27px;margin-left: 24px;">
           <input matInput placeholder="Title" [formControl] = "Title" value = {{title}}>
           </div>
           <br>
-          <input matInput placeholder="Take a note" [formControl] = "noteContent" value = {{description}}>
+          <input style = "margin-left: 24px;" matInput placeholder="Take a note" [formControl] = "noteContent" value = {{description}}>
           <br>
-          <div style = "margin-top: 11px;margin-left: -9px;" *ngIf = "isDate">
+          <div style = "margin-top: 19px;margin-left: 19px;" *ngIf = "isDate">
            <mat-chip>
               <mat-icon style = "margin-left: -7px;margin-right: 5px;" >timer</mat-icon>
           <input style="margin-right: -18px;" matInput   value = {{date}}>
@@ -18,7 +19,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <div style="margin-left: -23px;">
+    <div style = "margin-bottom: 24px;margin-top: 10px;">
       <mat-chip-list>
         <mat-chip style = "margin-left: 21px;" *ngIf = "timer"><mat-icon style = "margin-left: -7px;margin-right: 5px;">timer</mat-icon>{{currentDateAndTime}}</mat-chip>
     </mat-chip-list>
@@ -116,20 +117,20 @@
         </button> 
         
         <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
-          <button matTooltip="Yellow" (click)="setColorToTitle('#fcf476')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
-          <button matTooltip="Orange" (click)="setColorToTitle('#f8bc04')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
-          <button matTooltip="Red" (click)="setColorToTitle('#f28b82 ')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
-          <button matTooltip="White" (click)="setColorToTitle('#ffffff ')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
+          <button matTooltip="Yellow" (click)="editColor('#fcf476')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
+          <button matTooltip="Orange" (click)="editColor('#f8bc04')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
+          <button matTooltip="Red" (click)="editColor('#f28b82 ')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
+          <button matTooltip="White" (click)="editColor('#ffffff ')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
           <br/>
-          <button matTooltip="Dark blue" (click)="setColorToTitle('#aecbfa ')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
-          <button matTooltip="Blue" (click)="setColorToTitle('#cbf0f8 ')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
-          <button matTooltip="Teal" (click)="setColorToTitle('#a7ffea ')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
-          <button matTooltip="Green" (click)="setColorToTitle('#ccff90 ')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
+          <button matTooltip="Dark blue" (click)="editColor('#aecbfa ')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
+          <button matTooltip="Blue" (click)="editColor('#cbf0f8 ')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
+          <button matTooltip="Teal" (click)="editColor('#a7ffea ')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
+          <button matTooltip="Green" (click)="editColor('#ccff90 ')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
           <br/>
-          <button matTooltip="Gray" (click)="setColorToTitle('#e8eaed')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
-          <button matTooltip="Brown" (click)="setColorToTitle('#e6c9a8 ')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
-          <button matTooltip="Pink" (click)="setColorToTitle('#fccfe8 ')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
-          <button matTooltip="Purple" (click)="setColorToTitle('#d7aefb ')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
+          <button matTooltip="Gray" (click)="editColor('#e8eaed')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
+          <button matTooltip="Brown" (click)="editColor('#e6c9a8 ')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
+          <button matTooltip="Pink" (click)="editColor('#fccfe8 ')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
+          <button matTooltip="Purple" (click)="editColor('#d7aefb ')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
         </mat-menu>
         
         <button id="Add image" matTooltip="Add image" mat-icon-button >
@@ -153,6 +154,7 @@
           <button mat-menu-item>Copy to Google Docs</button>
       </mat-menu>
 
-      <button style = "margin-left: 245px;" class="mat-raised-button"(click)="edit()">Close</button>
+      <button mat-button style = "margin-left: 217px;" (click)="edit()">Close</button>
     </div>
   </mat-dialog-actions>
+</div> 

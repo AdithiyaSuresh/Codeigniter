@@ -56,7 +56,17 @@ export class NoteService {
     editValue.append('noteContent',editedValue.noteContent);
     editValue.append('id',editedValue.id);
     editValue.append('date',editedValue.date);
+    editValue.append('color',editedValue.color);
     return this.http.post(this.serviceurl.host+this.serviceurl.editNote,editValue);
+  }
+
+  changeDate(id,currentDateAndTime)
+  {
+    debugger;
+    let editDate = new FormData();
+    editDate.append('id',id);
+    editDate.append('currentDateAndTime',currentDateAndTime);
+    return this.http.post(this.serviceurl.host+this.serviceurl.changeDate,editDate);
   }
 
 }

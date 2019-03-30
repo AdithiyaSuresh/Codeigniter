@@ -136,9 +136,33 @@ use \Firebase\JWT\JWT;
             }
     }
 
-    public function editNote($id,$Title,$noteContent,$date)
+    public function editNote($id,$Title,$noteContent,$date,$color)
     {
-        $query = "UPDATE addnote SET title = '$Title',noteContent = '$noteContent',date = '$date' WHERE id = '$id'";
+        $query = "UPDATE addnote SET title = '$Title',noteContent = '$noteContent',date = '$date',color = '$color' WHERE id = '$id'";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+        if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
+    }
+
+    public function changeDate($id,$currentDateAndTime)
+    {
+        $query = "UPDATE addnote SET date = '$currentDateAndTime' WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         if ($res) 

@@ -17,6 +17,7 @@ export class EditnotesComponent implements OnInit {
   description;
   id;
   date;
+  color;
 
   Title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
@@ -28,11 +29,12 @@ export class EditnotesComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditnotesComponent>,public dialog: MatDialog,private noteService : NoteService, @Inject(MAT_DIALOG_DATA) public data: any,) 
   { 
-    debugger;
-    this.title = this.data.notesdata.title;
-    this.description= this.data.notesdata.noteContent;
-    this.id = this.data.notesdata.id;
-    this.date = this.data.notesdata.date;
+    // debugger;
+    this.title = this.data.title;
+    this.description= this.data.noteContent;
+    this.id = this.data.id;
+    this.date = this.data.date;
+    this.color = this.data.color;
 
      
     // else
@@ -91,7 +93,8 @@ export class EditnotesComponent implements OnInit {
               "Title":this.Title.value,
               "noteContent":this.noteContent.value,
               "id":this.id,
-              "date":this.currentDateAndTime
+              "date":this.currentDateAndTime,
+              "color":this.color
             }
             
             
@@ -149,6 +152,11 @@ export class EditnotesComponent implements OnInit {
       this.currentDateAndTime = currentDate + " " + " 08:00 PM";
       this.timer = true;
       this.isDate = false;
+    }
+
+    editColor(colour)
+    {
+      this.color = colour;
     }
       
         

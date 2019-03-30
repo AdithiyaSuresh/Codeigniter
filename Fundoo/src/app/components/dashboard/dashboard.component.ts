@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   note()
   {
-    debugger;
+    // debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     this.email = tokenPayload.email;
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
 
   changeView() 
   {
-		debugger;
+		// debugger;
     if (this.list == true) 
     {
 			this.grid = true;

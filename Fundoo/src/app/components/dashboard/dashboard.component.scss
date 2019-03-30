@@ -25,14 +25,14 @@ mat-sidenav {
 //   margin-left: 176px;
 // }
 
-// .mat-drawer-content {
-//   position: relative;
-//   z-index: 1;
-//   display: block;
-//   height: 100%;
-//   overflow: auto;
-//   margin-left: 173px;
-// }
+.mat-drawer-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  overflow-x: hidden;
+  margin-left: 173px;
+}
 
 div .label {
       margin-left: 40%;
