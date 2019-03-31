@@ -19,6 +19,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { RemainderComponent } from './components/remainder/remainder.component';
 import { CardComponent } from './components/card/card.component';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
+import { ArchiveComponent } from './components/archive/archive.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditnotesComponent } from './components/editnotes/editnotes.component';
     NotesComponent,
     RemainderComponent,
     CardComponent,
-    EditnotesComponent
+    EditnotesComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,

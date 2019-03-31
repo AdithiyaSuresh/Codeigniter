@@ -62,6 +62,12 @@ header("Access-Control-Allow-Headers: Authorization");
             $currentDateAndTime = $_POST['currentDateAndTime'];
             return $this->noteService->changeDate($id,$currentDateAndTime);
         }
+
+        public function archive()
+        {
+            $id = $_POST['id'];
+            $this->noteService->archive($id);
+        }
     }
         
 ?>

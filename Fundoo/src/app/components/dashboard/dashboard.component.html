@@ -28,8 +28,8 @@
     </mat-card-content>
   </mat-card>
    -->
-   <div>
-    <div>
+   <div style = "overflow: hidden;margin-left: -26px;">
+    <div style = "margin-left: 15px;">
       <mat-toolbar>
 
         <mat-toolbar-row>
@@ -119,7 +119,7 @@
                 <mat-divider ></mat-divider>
                 <mat-divider ></mat-divider>
                 <br>
-                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['archive']" [routerLinkActive]="['is-active']"><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
                 <br>
                 <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
             </mat-nav-list>

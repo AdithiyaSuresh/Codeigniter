@@ -8,6 +8,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { SessionexpComponent } from './components/sessionexp/sessionexp.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { RemainderComponent } from './components/remainder/remainder.component';
+import { ArchiveComponent } from './components/archive/archive.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,6 +26,10 @@ const routes: Routes = [
           {
             path: 'remainder',
             component: RemainderComponent
+          },
+          {
+            path: 'archive',
+            component: ArchiveComponent
           }
         ]
       }

@@ -17,4 +17,7 @@ export class serviceUrl
     public changeColor = "codeigniter/changeColor";
     public editNote = "codeigniter/editNote";
     public changeDate = "codeigniter/changeDate";
+    public archive = "codeigniter/archive";
+    public fetchArch = "codeigniter/fetcharchive";
+    public unarchived = "codeigniter/unarchive";
 }

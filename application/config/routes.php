@@ -75,6 +75,9 @@ $route['deleteRemainder'] = 'Remainder/deleteRemainder';
 $route['changeColor'] = 'Note/changeColor';
 $route['editNote'] = 'Note/editNote';
 $route['changeDate'] = 'Note/changeDate';
+$route['archive'] = 'Note/archive';
+$route['fetcharchive'] = 'Archive/fetcharchive';
+$route['unarchive'] = 'Archive/unarchive';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

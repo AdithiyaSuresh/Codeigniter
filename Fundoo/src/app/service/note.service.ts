@@ -69,4 +69,11 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.changeDate,editDate);
   }
 
+  archiveNote(id)
+  {
+    debugger;
+    let arch = new FormData();
+    arch.append("id",id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.archive,arch);
+  }
 }

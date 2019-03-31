@@ -6,7 +6,7 @@ import decode from 'jwt-decode';
 import { debug } from 'util';
 import * as moment from 'moment';
 import { ViewService } from 'src/app/service/view.service';
-import { MatDialog, MatIconRegistry, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatIconRegistry, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 
@@ -36,7 +36,7 @@ export class NotesComponent implements OnInit {
   dateTime: any;
   notesdata: any;
 
-  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,) {
+  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar) {
 
       this.viewservice.getView().subscribe((res=>{
         this.view =res;
@@ -302,4 +302,34 @@ export class NotesComponent implements OnInit {
     this.displayNotes();
       }
 
+      openSnackbar(message:string, action: string)
+      {
+        this.snackBar.open(message,action,{
+          duration: 2000,
+        })
+      }
+
+
+  
+  notestools(id) {
+    debugger
+    if (id == "undefined"){
+      return;
+    }
+
+    let arch = this.noteService.archiveNote(id);
+    arch.subscribe((res:any)=>{
+     
+      if (res.message == "200") 
+        {
+          this.displayNotes();
+        } 
+        else 
+        {
+          
+        }
+    })
+
+
+  }
 }
