@@ -74,7 +74,7 @@ use \Firebase\JWT\JWT;
 
     public function displayNote($id)
     {
-        $query = "SELECT * from addnote WHERE userid = '$id' and archive != '1' ORDER BY id DESC ";
+        $query = "SELECT * from addnote WHERE userid = '$id' and archive != '1' and trash != '1' ORDER BY id DESC ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,30 +86,6 @@ use \Firebase\JWT\JWT;
             $color = $notes['color'];
         }
         print json_encode($arr);
-    }
-
-    public function delNote($id)
-    {
-        $query = "DELETE from addnote WHERE id = '$id'";
-        $stmt = $this->db->conn_id->prepare($query);
-        $res = $stmt->execute();
-        if ($res) 
-            {
-                $result = array(
-                    "message" => "200",
-                );
-                print json_encode($result);
-                return "200";
-            } 
-            else 
-            {
-                $result = array(
-                    "message" => "204",
-                );
-                print json_encode($result);
-                return "204";
-
-            }
     }
 
     public function changeColor($id,$colour)
@@ -186,27 +162,50 @@ use \Firebase\JWT\JWT;
 
     public function archive($id)
     {
-    
         $query = "UPDATE addnote SET archive = '1' where id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         if ($res) 
-            {
-                $result = array(
-                    "message" => "200",
-                );
-                print json_encode($result);
-                return "200";
-            } 
-            else 
-            {
-                $result = array(
-                    "message" => "204",
-                );
-                print json_encode($result);
-                return "204";
+        {
+            $result = array(
+                "message" => "200",
+            );
+            print json_encode($result);
+            return "200";
+        } 
+        else 
+        {
+            $result = array(
+                "message" => "204",
+            );
+            print json_encode($result);
+            return "204";
 
-            }
+        }
+    }
+
+    public function delNote($id)
+    {
+        $query = "UPDATE addnote SET trash = '1' where id = '$id'";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+        if ($res) 
+        {
+            $result = array(
+                "message" => "200",
+            );
+            print json_encode($result);
+            return "200";
+        } 
+        else 
+        {
+            $result = array(
+                "message" => "204",
+            );
+            print json_encode($result);
+            return "204";
+
+        }
     }
 
 }

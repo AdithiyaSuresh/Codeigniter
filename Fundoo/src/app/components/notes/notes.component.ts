@@ -127,28 +127,6 @@ export class NotesComponent implements OnInit {
       }
   }
 
-  deleteNote(n)
-  {
-    
-    console.log(n.id);
-    let robj = this.noteService.deleteNote(n.id);
-
-      robj.subscribe((res: any) => 
-      {
-       debugger;
-        console.log(res.message);
-
-        if (res.message == "200") 
-        {
-          this.displayNotes();
-        } 
-        else 
-        {
-          
-        }
-      });
-  }
-
   fulldate: any;
 	fulltime: any;
 	/**
@@ -320,7 +298,7 @@ export class NotesComponent implements OnInit {
     let arch = this.noteService.archiveNote(id);
     arch.subscribe((res:any)=>{
      
-      if (res.message == "200") 
+        if (res.message == "200") 
         {
           this.displayNotes();
         } 
@@ -329,7 +307,26 @@ export class NotesComponent implements OnInit {
           
         }
     })
+  }
 
+  deleteNote(n)
+  {
+    if (n == "undefined"){
+      return;
+    }
+   
+    let robj = this.noteService.deleteNote(n);
 
+      robj.subscribe((res: any) => {
+
+        if (res.message == "200") 
+        {
+          this.displayNotes();
+        } 
+        else 
+        {
+          
+        }
+      });
   }
 }

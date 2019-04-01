@@ -78,6 +78,8 @@ $route['changeDate'] = 'Note/changeDate';
 $route['archive'] = 'Note/archive';
 $route['fetcharchive'] = 'Archive/fetcharchive';
 $route['unarchive'] = 'Archive/unarchive';
+$route['fetchTrash'] = 'Trash/fetchTrash';
+$route['delete'] = 'Trash/delete';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';

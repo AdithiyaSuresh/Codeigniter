@@ -20,4 +20,6 @@ export class serviceUrl
     public archive = "codeigniter/archive";
     public fetchArch = "codeigniter/fetcharchive";
     public unarchived = "codeigniter/unarchive";
+    public fetchTrash = "codeigniter/fetchTrash";
+    public delete = "codeigniter/delete";
 }

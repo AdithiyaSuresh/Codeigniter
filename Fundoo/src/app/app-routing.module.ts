@@ -9,6 +9,8 @@ import { SessionexpComponent } from './components/sessionexp/sessionexp.componen
 import { NotesComponent } from './components/notes/notes.component';
 import { RemainderComponent } from './components/remainder/remainder.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+import { LabelComponent } from './components/label/label.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,6 +32,14 @@ const routes: Routes = [
           {
             path: 'archive',
             component: ArchiveComponent
+          },
+          {
+            path: 'trash',
+            component: TrashComponent
+          },
+          {
+            path: 'label',
+            component: LabelComponent
           }
         ]
       }

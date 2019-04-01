@@ -33,12 +33,6 @@ header("Access-Control-Allow-Headers: Authorization");
             return $this->noteService->displayNote($id);
         }
 
-        public function delNote()
-        {
-            $id = $_POST['id'];
-            return $this->noteService->delNote($id);
-        }
-
         public function changeColor()
         {
             $id = $_POST['id'];
@@ -68,6 +62,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $id = $_POST['id'];
             $this->noteService->archive($id);
         }
+
+        public function delNote()
+        {
+            $id = $_POST['id'];
+            return $this->noteService->delNote($id);
+        }
+
     }
         
 ?>

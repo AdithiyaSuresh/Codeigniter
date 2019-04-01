@@ -20,6 +20,8 @@ import { RemainderComponent } from './components/remainder/remainder.component';
 import { CardComponent } from './components/card/card.component';
 import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+import { LabelComponent } from './components/label/label.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ArchiveComponent } from './components/archive/archive.component';
     RemainderComponent,
     CardComponent,
     EditnotesComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    TrashComponent,
+    LabelComponent
   ],
   imports: [
     BrowserModule,

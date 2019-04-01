@@ -114,14 +114,14 @@
                 <br>
                 <mat-divider></mat-divider>
                 <mat-list-item><label style="font-size: 13px">LABELS</label></mat-list-item>
-                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['label']" [routerLinkActive]="['is-active']"> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
                 <br>
                 <mat-divider ></mat-divider>
                 <mat-divider ></mat-divider>
                 <br>
                 <a class= "selectorbutton" mat-list-item [routerLink] = "['archive']" [routerLinkActive]="['is-active']"><mat-icon>archive</mat-icon><ul fxLayout fxLayoutGap></ul>Archive</a>
                 <br>
-                <a class= "selectorbutton" mat-list-item [routerLinkActive]="['is-active']"><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
+                <a class= "selectorbutton" mat-list-item [routerLink] = "['trash']" [routerLinkActive]="['is-active']"><mat-icon>delete_outline</mat-icon><ul fxLayout fxLayoutGap></ul>Trash</a>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

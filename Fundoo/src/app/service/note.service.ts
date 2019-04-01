@@ -31,14 +31,6 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.disnote,emaildata);
   }
 
-  deleteNote(n)
-  {
-   
-    let id = new FormData();
-    id.append('id',n);
-    return this.http.post(this.serviceurl.host+this.serviceurl.delNote,id);
-  }
-
   changeColor(id,colour)
   {
     debugger;
@@ -76,4 +68,13 @@ export class NoteService {
     arch.append("id",id);
     return this.http.post(this.serviceurl.host+this.serviceurl.archive,arch);
   }
+
+  deleteNote(n)
+  {
+   
+    let id = new FormData();
+    id.append('id',n);
+    return this.http.post(this.serviceurl.host+this.serviceurl.delNote,id);
+  }
+  
 }

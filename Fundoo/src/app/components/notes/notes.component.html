@@ -300,7 +300,7 @@
                 <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
               </button>
               <mat-menu #auth="matMenu">
-                  <button (click)="deleteNote(n) ;openSnackbar('Moved to bin')" mat-menu-item>Delete note</button> 
+                  <button (click)="deleteNote(n.id) ;openSnackbar('Moved to bin')" mat-menu-item>Delete note</button> 
                   <button mat-menu-item>Add label</button>
                   <button mat-menu-item>Add drawing</button>
                   <button mat-menu-item>Make a copy</button>
