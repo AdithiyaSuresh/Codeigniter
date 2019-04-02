@@ -22,4 +22,5 @@ export class serviceUrl
     public unarchived = "codeigniter/unarchive";
     public fetchTrash = "codeigniter/fetchTrash";
     public delete = "codeigniter/delete";
+    public restore = "codeigniter/restore";
 }

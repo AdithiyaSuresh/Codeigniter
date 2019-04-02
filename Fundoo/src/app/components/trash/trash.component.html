@@ -16,13 +16,13 @@
         <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
       </button>
       <mat-menu #auth="matMenu">
-          <button (click)="unarchive(n.id,1)" mat-menu-item>Delete forever</button> 
-          <button mat-menu-item>Restore</button>
+          <button (click)="trashed(n.id,1)" mat-menu-item>Delete forever</button> 
+          <button (click)="restore(n.id,0)" mat-menu-item>Restore</button>
       </mat-menu>
 
     </div>
       </mat-card>
-
+ 
    
   </mat-grid-list>
 </div>

@@ -15,11 +15,11 @@ export class TrashComponent implements OnInit {
   constructor(private trashServ : TrashService) { }
   
   ngOnInit() {
-    this.fetchArchive();
+    this.fetchTrash();
   }
 
 
-  fetchArchive(){
+  fetchTrash(){
     
     const token = localStorage.getItem('token');
     const tokenPayload = decode(token);
@@ -33,15 +33,22 @@ export class TrashComponent implements OnInit {
   } 
 
 
-  unarchive(id,flag){
+  trashed(id,flag){
     debugger
 
     let archive = this.trashServ.trashed(id,flag);
     archive.subscribe((res:any)=>{
 
     });
+}
 
+restore(id,flag)
+{
+  debugger;
+  let archive = this.trashServ.restore(id,flag);
+    archive.subscribe((res:any)=>{
 
+    });
 }
 
 

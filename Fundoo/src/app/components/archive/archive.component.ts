@@ -17,13 +17,7 @@ export class ArchiveComponent implements OnInit {
   ngOnInit() {
     this.fetchArchive();
   }
-  public maticons: string[] = [
-    'notification_important',
-    'color_lens',
-    'unarchive',
-    'person_add',
-    'more_vert',
-  ];
+  
 
 
   fetchArchive(){
@@ -47,8 +41,6 @@ export class ArchiveComponent implements OnInit {
     archive.subscribe((res:any)=>{
 
     });
-
-
 }
 
 

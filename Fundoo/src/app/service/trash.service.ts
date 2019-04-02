@@ -21,4 +21,10 @@ export class TrashService {
     return this.http.post(this.serviceurl.host+this.serviceurl.delete,del);
   }
   
+  restore(id,flag)
+  {
+    let rest = new FormData();
+    rest.append("uid",id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.restore,rest);
+  }
 }

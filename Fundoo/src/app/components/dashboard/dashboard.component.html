@@ -113,7 +113,7 @@
                 <a class= "selectorbutton" mat-list-item [routerLink] = "['remainder']" [routerLinkActive]="['is-active']"> <mat-icon>notifications_none</mat-icon><ul fxLayout fxLayoutGap></ul> Remainders </a>
                 <br>
                 <mat-divider></mat-divider>
-                <mat-list-item><label style="font-size: 13px">LABELS</label></mat-list-item>
+                <mat-list-item (click) = "openDialog()" ><label style="font-size: 13px">LABELS</label></mat-list-item>
                 <a class= "selectorbutton" mat-list-item [routerLink] = "['label']" [routerLinkActive]="['is-active']"> <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
                 <br>
                 <mat-divider ></mat-divider>

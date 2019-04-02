@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   grid: boolean = false;
   list: boolean = true;
   firstname: string;
+  dialog: any;
 
   constructor(private viewservice: ViewService) 
   { 
@@ -56,4 +57,18 @@ export class DashboardComponent implements OnInit {
 		}
     this.viewservice.gridview();
   }
+
+  openDialog(n): void {
+    debugger;
+    
+    const open = this.dialog.open({
+      data: n,
+      autoFocus: true,
+      width: '600px',
+    //  maxHeight: "200px",
+      panelClass: 'custom-dialog-container'
+    });
+    
+      }
+
 }

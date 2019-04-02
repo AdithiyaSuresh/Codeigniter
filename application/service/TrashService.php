@@ -39,4 +39,24 @@ class TrashService extends CI_Controller
             return "204";
         }
     }
+
+    public function restore($uid)
+    {
+        $query = "UPDATE addnote SET trash = '0',date = '' where id = '$uid'";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+        }
+    }
+
 }

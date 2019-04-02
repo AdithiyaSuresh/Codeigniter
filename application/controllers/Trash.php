@@ -25,4 +25,10 @@ class Trash extends CI_Controller
         $uid = $_POST['uid'];
         $this->trashService->delete($uid);
     }
+
+    public function restore()
+    {
+        $uid = $_POST['uid'];
+        $this->trashService->restore($uid);
+    }
 }

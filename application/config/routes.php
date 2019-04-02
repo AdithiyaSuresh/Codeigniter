@@ -80,6 +80,7 @@ $route['fetcharchive'] = 'Archive/fetcharchive';
 $route['unarchive'] = 'Archive/unarchive';
 $route['fetchTrash'] = 'Trash/fetchTrash';
 $route['delete'] = 'Trash/delete';
+$route['restore'] = 'Trash/restore';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';
