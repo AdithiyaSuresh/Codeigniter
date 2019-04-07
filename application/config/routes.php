@@ -81,7 +81,10 @@ $route['unarchive'] = 'Archive/unarchive';
 $route['fetchTrash'] = 'Trash/fetchTrash';
 $route['delete'] = 'Trash/delete';
 $route['restore'] = 'Trash/restore';
+$route['addLabels'] = 'Label/addLabels';
+$route['getLabel'] = 'Label/getLabel';
 
+$route['socialLogin'] = 'Login/socialLogin';
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';
 // $route['product/(:num)'] = 'product/find/$1';

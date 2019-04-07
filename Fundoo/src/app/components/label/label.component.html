@@ -1,3 +1,62 @@
-<p>
-  label works!
-</p>
+
+  <mat-dialog-content>
+    
+        <mat-label class = "edit" >Edit Labels</mat-label>
+        <div>
+          <button mat-icon-button class="btnclose">
+            <mat-icon class="remicon">close</mat-icon>
+          </button>
+          <mat-form-field style = "margin-left: 10px;margin-right: 10px;">
+            <input style = "outline: none;border: none;font-size: 16px;" matInput placeholder="create new label" [formControl] = "labelname" >
+        </mat-form-field>
+    
+          <button mat-icon-button class="btnclose" (click)="close()">
+            <mat-icon style = "margin-left:15px">check</mat-icon>
+          </button>
+        </div>
+     
+   
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+        <mat-nav-list>
+<!--     
+            <label role="listitem" *ngFor="let item of labels">
+        
+            <button style = "margin-left: 3px;" mat-icon-button class="btnclose">
+            <mat-icon class="remicon">label</mat-icon>
+            </button>
+            
+            <span class="notes">{{item.label}}</span>
+            
+            <button style = "margin-left: 203px;" mat-icon-button class="btnclose">
+            <mat-icon style="margin-top: 3px;" class="remicon">delete_outline</mat-icon>
+            </button>
+            
+            </label > -->
+
+            <div>
+            <label role="listitem" *ngFor="let item of labels">
+              <button mat-icon-button class="btnclose">
+                <mat-icon class="remicon">label</mat-icon>
+              </button>
+             <span style = "margin-left: 11px;">{{item.label}}</span>
+             
+              <button mat-icon-button class="btnclose">
+                <mat-icon >delete_outline</mat-icon>
+              </button>
+              
+              <br>
+            </label>
+            </div>
+            
+            <div>
+            <br>
+           </div>
+            <mat-divider></mat-divider>
+
+            <button mat-button style = "margin-left: 209px;margin-top: 19px;margin-bottom: 9px;color: rgba(0, 0, 0, 0.68);font-size: 17px;" (click)="close()">Done</button>
+        </mat-nav-list>
+   
+    
+  </mat-dialog-actions>

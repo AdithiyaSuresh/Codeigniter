@@ -23,4 +23,7 @@ export class serviceUrl
     public fetchTrash = "codeigniter/fetchTrash";
     public delete = "codeigniter/delete";
     public restore = "codeigniter/restore";
+    public addLabels ="codeigniter/addLabels";
+    public getLabel = "codeigniter/getLabel";
+    public sociallogin = "codeigniter/socialLogin";
 }

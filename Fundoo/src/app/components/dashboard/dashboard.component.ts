@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import decode from 'jwt-decode';
 import { ViewService } from 'src/app/service/view.service';
+import { LabelComponent } from '../label/label.component';
+import { MatDialog} from '@angular/material';
+import { LabelService } from 'src/app/service/label.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,20 +19,28 @@ export class DashboardComponent implements OnInit {
   grid: boolean = false;
   list: boolean = true;
   firstname: string;
-  dialog: any;
+  uid;
+  labels: string[];
+ 
 
-  constructor(private viewservice: ViewService) 
+  constructor(private viewservice: ViewService,public dialog: MatDialog,private labelser: LabelService) 
   { 
     this.changeView();
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     this.email = tokenPayload.email;
+    this.uid = tokenPayload.id;
     this.firstname = tokenPayload.firstname;
+    this.displayLabels();
+    
   }
 
 
   ngOnInit() {
-    
+    debugger
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    this.uid = tokenPayload.id;
   }
 
   note()
@@ -58,17 +70,27 @@ export class DashboardComponent implements OnInit {
     this.viewservice.gridview();
   }
 
-  openDialog(n): void {
+  openDialog(): void {
     debugger;
     
-    const open = this.dialog.open({
-      data: n,
+    const open = this.dialog.open(LabelComponent,{
+      data: this.uid,
       autoFocus: true,
-      width: '600px',
-    //  maxHeight: "200px",
-      panelClass: 'custom-dialog-container'
+      width: '350px',
+     // height: "500px",
     });
     
-      }
+  }
+
+  displayLabels() {
+    debugger;
+    let fetchl = this.labelser.displayLabels(this.uid);
+
+    fetchl.subscribe((res: any) => {
+      debugger
+
+      this.labels = res;
+    })
+  }
 
 }

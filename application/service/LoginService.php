@@ -32,7 +32,8 @@ class LoginService extends CI_Controller
         $flag = $this->isPresentRegistered($email,$password);
        
 
-        if ($flag == 1) {
+        if ($flag == 1) 
+        {
             $query = "SELECT firstname,id FROM registeruser WHERE email = '$email'"; 
             $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
@@ -50,11 +51,7 @@ class LoginService extends CI_Controller
 
             $token     = JWT::encode($data, $secret_key);
 
-        // $client = new Predis\Client(array(
-        //     'host' => '127.0.0.1',
-        //     'port' => 6379,
-        //     'password' => 'this123@'
-        //   ));
+       
         
             $connection = new Redis();
             $client = $connection->connection();
@@ -119,22 +116,7 @@ class LoginService extends CI_Controller
             {
                 return 3;
             }
-            // foreach ($arr as $titleData) 
-            // {
-            //     if (($titleData['email'] == $email) && (password_verify($password,$titleData['password']))) 
-            //     {
-            //         return 1;
-            //     }
-            //     else if (($titleData['email'] == $email) && (!(password_verify($password,$titleData['password'])))) 
-            //     {
-            //         return 2;
-            //     } 
-            //     else if (($titleData['email'] != $email) && (password_verify($password,$titleData['password']))) 
-            //     {
-            //         return 3;
-            //     }
-            // }
-            // return 0;
+            
         }
     }
 
@@ -264,6 +246,46 @@ class LoginService extends CI_Controller
             $statement = $this->db->conn_id->prepare($query);
             $statement->execute();
             return "200";
+        }
+    }
+
+    public function socialLogin($email,$name){
+        $emailExists = LoginService::checkEmail($email);
+        $connection = new Redis();
+        $conn = $connection->connection();
+
+        $key = "abc";
+
+        if($emailExists){
+            $token = JWT::encode($email,$key);
+            $data  = array(
+                "token"   => $token,
+                "message" => "200",
+            );
+            print json_encode($data);
+        }else
+        {
+            $uid = uniqid();
+            $query = "INSERT into registeruser (userid,firstname,email) values ('$uid','$name','$email')";
+
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+            if($res)
+            {
+                $token = JWT::encode($email,$key);
+                $data  = array(
+                    "token"   => $token,
+                    "message" => "200",
+                );
+                print json_encode($data);
+            }
+            else{
+                $data  = array(
+                    "message" => "204",
+                );
+                print json_encode($data);
+            
+            }
         }
     }
 }

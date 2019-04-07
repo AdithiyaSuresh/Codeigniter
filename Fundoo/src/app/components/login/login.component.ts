@@ -18,8 +18,9 @@
   import { FormControl, Validators } from '@angular/forms';
   import { Router } from '@angular/router';
   import { LoginService } from 'src/app/service/login.service';
-  
-
+  import {AuthService,FacebookLoginProvider,GoogleLoginProvider} from 'angular-6-social-login';
+  import { HttpClient } from '@angular/common/http';
+  import { CookieService } from 'ngx-cookie-service';
 
   @Component({
     selector: 'app-login',
@@ -44,7 +45,7 @@
     password = new FormControl('', [Validators.required,Validators.minLength(8)]);
 
 
-    constructor(private router: Router,private logService:LoginService) { }
+    constructor(private router: Router,private logService:LoginService,private socialAuthService: AuthService,private cookieserv:CookieService) { }
 
     ngOnInit() {}
 
@@ -103,4 +104,48 @@
       }
     }
 
-}
+
+    public socialSignIn(socialPlatform : string) 
+    {
+      debugger;
+      let socialPlatformProvider;
+      if(socialPlatform == "facebook"){
+        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+      }else if(socialPlatform == "google"){
+        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+      }
+      
+      this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
+        debugger
+          console.log(socialPlatform+" sign in data : " , userData);
+         this.sendToRestApiMethod(userData.token,userData.email,userData.image,userData.name); 
+        }
+      );
+    } 
+    
+   msg;
+    sendToRestApiMethod(token, email, image, name) {
+
+      debugger
+      let socialres = this.logService.socialLogin(email,name);
+      socialres.subscribe((res:any)=>{
+        debugger
+        console.log(res);
+        if(res.message=="200"){ 
+          debugger
+          
+          this.cookieserv.set("email",email);
+          this.cookieserv.set("image",image);
+          // localStorage.setItem("token",token);
+          
+          this.router.navigate(["/dashboard"]);
+        }
+      })
+
+    }
+
+   }
+
+  
+
+

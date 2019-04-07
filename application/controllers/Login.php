@@ -33,7 +33,8 @@ header("Access-Control-Allow-Headers: Authorization");
         {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            return $this->logService->selectDb($email,$password);
+            $res = $this->logService->selectDb($email,$password);
+            return $res;
         }
 
         /**
@@ -67,6 +68,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $password = password_hash($password, PASSWORD_DEFAULT);
             return $this->logService->resetPassword($token, $password);
 
+        }
+        
+        public function socialLogin()
+        {
+            $email = $_POST['email'];
+            $name = $_POST['name'];
+            $this->logService->socialLogin($email,$name);
         }
        
     }

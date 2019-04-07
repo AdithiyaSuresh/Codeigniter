@@ -24,7 +24,7 @@ export class NoteService {
 
   displayNote(data)
   {
-    debugger;
+    //debugger;
     let emaildata = new FormData();
     emaildata.append("id",data);
 

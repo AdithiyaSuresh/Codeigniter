@@ -1,0 +1,29 @@
+
+.edit {
+    color: #3c4043;
+    letter-spacing: .00625em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 17px;
+}
+
+.mat-list .mat-list-item .mat-list-icon ~ .mat-divider.mat-divider-inset {
+    left: 64px;
+    position: absolute;
+    margin: 0;
+    width: calc(100% - 64px);
+}
+
+mat-divider {
+    display: block;
+    margin: 0;
+    border-top-width: 1px;
+    border-top-style: solid;
+    /* left: -83px; */
+    left: ipx;
+    /* left: 1px; */
+    position: absolute;
+    margin: 0;
+    width: calc(100% - 1093px);
+    /* width: 323px; */
+    margin-left: -25px;
+}

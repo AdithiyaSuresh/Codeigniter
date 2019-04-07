@@ -22,6 +22,15 @@ import { EditnotesComponent } from './components/editnotes/editnotes.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { LabelComponent } from './components/label/label.component';
+import { AuthService as auth } from "./service/auth.service";
+import {
+  AuthService as social,
+  SocialLoginModule,
+  AuthServiceConfig,
+  AuthService
+} from "angular-6-social-login";
+import { getAuthServiceConfigs } from  './socialloginConfig';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -49,10 +58,15 @@ import { LabelComponent } from './components/label/label.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
    ],
-  providers: [RegisterService, serviceUrl],
+  providers: [RegisterService,CookieService,serviceUrl,AuthService,auth,SocialLoginModule,
+    {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent],
-  entryComponents: [EditnotesComponent]
+  entryComponents: [EditnotesComponent,LabelComponent]
 })
 export class AppModule { }

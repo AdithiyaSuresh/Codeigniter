@@ -34,7 +34,8 @@ header("Access-Control-Allow-Headers: Authorization");
             $email = $_POST['email'];
             $password = $_POST['password'];
             $password = password_hash($password, PASSWORD_DEFAULT);
-            return $this->refService->insertDb($fname,$lname,$email,$password);
+            $res = $this->refService->insertDb($fname,$lname,$email,$password);
+            return $res;
         }
     }
         

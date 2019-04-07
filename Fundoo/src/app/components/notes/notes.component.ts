@@ -68,7 +68,7 @@ export class NotesComponent implements OnInit {
 
   displayNotes()
   {
-    debugger;
+    //debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     const id = tokenPayload.id;
@@ -267,8 +267,7 @@ export class NotesComponent implements OnInit {
     // dialogconfg.width = "600px"
     // dialogconfg.maxHeight = "200px"
     // dialogconfg.panelClass = 'custom-dialog-container'
-    // dialogconfg.data = {
-    // notesdata: n
+    // dialogconfg.data = { notesdata: n
     // }
     const open = this.dialog.open(EditnotesComponent,{
       data: n,

@@ -5,7 +5,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
 
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatFormFieldModule, 
-  MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, MatChipsModule, MatSnackBarModule, } from '@angular/material';
+  MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, MatChipsModule, MatSnackBarModule, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material';
 
 
 @NgModule({
@@ -53,5 +53,10 @@ import {
     MatSnackBarModule   
     
   ],
+
+  providers:[{ provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ]
+  
 })
 export class MaterialModule { }
