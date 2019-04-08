@@ -63,7 +63,7 @@
      */
     login() 
     {
-        debugger;
+        // debugger;
         this.model =
         {
           "email":this.email.value,
@@ -107,7 +107,7 @@
 
     public socialSignIn(socialPlatform : string) 
     {
-      debugger;
+      //debugger;
       let socialPlatformProvider;
       if(socialPlatform == "facebook"){
         socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
@@ -116,7 +116,7 @@
       }
       
       this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
-        debugger
+        //debugger
           console.log(socialPlatform+" sign in data : " , userData);
          this.sendToRestApiMethod(userData.token,userData.email,userData.image,userData.name); 
         }
@@ -126,17 +126,19 @@
    msg;
     sendToRestApiMethod(token, email, image, name) {
 
-      debugger
+      //debugger
       let socialres = this.logService.socialLogin(email,name);
       socialres.subscribe((res:any)=>{
-        debugger
+       // debugger
         console.log(res);
         if(res.message=="200"){ 
-          debugger
+         // debugger
           
           this.cookieserv.set("email",email);
           this.cookieserv.set("image",image);
-          // localStorage.setItem("token",token);
+          this.cookieserv.set("name",name);
+          
+          localStorage.setItem("token",res.token);
           
           this.router.navigate(["/dashboard"]);
         }

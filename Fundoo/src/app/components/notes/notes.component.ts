@@ -68,7 +68,7 @@ export class NotesComponent implements OnInit {
 
   displayNotes()
   {
-    //debugger;
+    debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
     const id = tokenPayload.id;

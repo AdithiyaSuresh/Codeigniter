@@ -16,6 +16,14 @@ class LabelService extends CI_Controller
     }
     public function addLabels($uid,$label)
     {
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
+
         $query = "INSERT into label (label,userid) values ('$label','$uid')";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
@@ -35,6 +43,14 @@ class LabelService extends CI_Controller
     
     public function getLabel($uid)
     {
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
+        
         $query = "SELECT * from label Where userid ='$uid' ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();

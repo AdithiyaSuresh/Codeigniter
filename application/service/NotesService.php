@@ -73,8 +73,16 @@ use \Firebase\JWT\JWT;
     }
 
     public function displayNote($id)
-    {
-        $query = "SELECT * from addnote WHERE userid = '$id' and archive != '1' and trash != '1' ORDER BY id DESC ";
+    {   
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $id = $payload->id;
+
+        $query = "SELECT * from addnote WHERE userid = $id and archive != '1' and trash != '1' ORDER BY id DESC ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -90,6 +98,7 @@ use \Firebase\JWT\JWT;
 
     public function changeColor($id,$colour)
     {
+
         $query = "UPDATE addnote SET color = '$colour' WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
@@ -114,6 +123,7 @@ use \Firebase\JWT\JWT;
 
     public function editNote($id,$Title,$noteContent,$date,$color)
     {
+        
         $query = "UPDATE addnote SET title = '$Title',noteContent = '$noteContent',date = '$date',color = '$color' WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
@@ -138,6 +148,7 @@ use \Firebase\JWT\JWT;
 
     public function changeDate($id,$currentDateAndTime)
     {
+
         $query = "UPDATE addnote SET date = '$currentDateAndTime' WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();

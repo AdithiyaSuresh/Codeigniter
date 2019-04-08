@@ -1,5 +1,10 @@
 
 <?php
+
+include "JWT.php";
+include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
+include "/var/www/html/codeigniter/application/service/Redis.php";
+
     class RemainderService extends CI_Controller
     {
 
@@ -58,6 +63,14 @@
 
     public function deleteRemainder($id)
     {
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $id = $payload->id;
+
         $query = "DELETE from remainder WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();

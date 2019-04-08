@@ -15,6 +15,15 @@ class ArchiveService extends CI_Controller
         parent::__construct();
     }
     public function archivednotes($uid){
+
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
+
         $query = "SELECT * from addnote Where userid ='$uid' AND archive = '1' ORDER BY id DESC ";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
@@ -23,6 +32,7 @@ class ArchiveService extends CI_Controller
     }
     
     public function archive($uid){
+        
         $query = "UPDATE addnote SET archive = '0'  where id = '$uid'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();

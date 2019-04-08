@@ -5,7 +5,8 @@ import { ViewService } from 'src/app/service/view.service';
 import { LabelComponent } from '../label/label.component';
 import { MatDialog} from '@angular/material';
 import { LabelService } from 'src/app/service/label.service';
-
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,35 +22,50 @@ export class DashboardComponent implements OnInit {
   firstname: string;
   uid;
   labels: string[];
+  image: string;
  
 
-  constructor(private viewservice: ViewService,public dialog: MatDialog,private labelser: LabelService) 
+  constructor(private viewservice: ViewService,private cookieserv:CookieService,private router: Router,public dialog: MatDialog,private labelser: LabelService) 
   { 
     this.changeView();
-    const tokens = localStorage.getItem('token');
-    const tokenPayload = decode(tokens);
-    this.email = tokenPayload.email;
-    this.uid = tokenPayload.id;
-    this.firstname = tokenPayload.firstname;
+    // const tokens = localStorage.getItem('token');
+    // const tokenPayload = decode(tokens);
+    // this.email = tokenPayload.email;
+    // this.uid = tokenPayload.id;
+    // this.firstname = tokenPayload.firstname;
+    // this.email  = this.cookieserv.get("email");
+    // this.firstname = this.cookieserv.get("name");
+    // this.image = this.cookieserv.get("image");
     this.displayLabels();
     
   }
 
 
   ngOnInit() {
-    debugger
+    debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
+    this.email = tokenPayload.email;
     this.uid = tokenPayload.id;
+    this.firstname = tokenPayload.firstname;
+      if(this.email == undefined && this.firstname == undefined)
+      {
+      this.email  = this.cookieserv.get("email");
+      this.firstname = this.cookieserv.get("name");
+      this.image = this.cookieserv.get("image");
+      }
   }
 
   note()
   {
-    // debugger;
+    debugger;
     const tokens = localStorage.getItem('token');
     const tokenPayload = decode(tokens);
-    this.email = tokenPayload.email;
-    this.firstname = tokenPayload.firstname;
+    // this.email = tokenPayload.email;
+    // this.email  = this.cookieserv.get("email");
+    // this.firstname = tokenPayload.firstname;
+    // this.firstname = this.cookieserv.get("name");
+  //  this.image = this.cookieserv.get("image");
   }
 
   changeView() 
@@ -83,7 +99,7 @@ export class DashboardComponent implements OnInit {
   }
 
   displayLabels() {
-    debugger;
+    // debugger;
     let fetchl = this.labelser.displayLabels(this.uid);
 
     fetchl.subscribe((res: any) => {
@@ -93,4 +109,11 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  logout()
+  {
+    localStorage.removeItem('token');
+    
+    this.router.navigate(['/login']);
+    this.cookieserv.deleteAll();
+  }
 }

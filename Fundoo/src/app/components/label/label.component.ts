@@ -52,7 +52,7 @@ export class LabelComponent implements OnInit {
   }
 
   displayLabel() {
-    debugger;
+    // debugger;
     let fetch = this.labelser.displayLabel(this.uid);
 
     fetch.subscribe((res: any) => {

@@ -257,7 +257,17 @@ class LoginService extends CI_Controller
         $key = "abc";
 
         if($emailExists){
-            $token = JWT::encode($email,$key);
+            $query = "SELECT * FROM registeruser where email ='$email'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $stmt->execute();
+            $arr = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id = $arr['id'];
+            $resarr  = array(
+                
+                "id"=>$id,
+                
+            );
+            $token = JWT::encode($resarr,$key);
             $data  = array(
                 "token"   => $token,
                 "message" => "200",
@@ -270,11 +280,18 @@ class LoginService extends CI_Controller
 
             $stmt = $this->db->conn_id->prepare($query);
             $res = $stmt->execute();
+            $arr = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id = $arr['id'];
             if($res)
             {
-                $token = JWT::encode($email,$key);
-                $data  = array(
+                $resarr  = array(
                     "token"   => $token,
+                    "id"=>$id,
+                    
+                );
+                $token = JWT::encode($resarr,$key);
+                $data  = array(
+                    "token"=>$token,
                     "message" => "200",
                 );
                 print json_encode($data);
