@@ -20,10 +20,10 @@ class FundooApiTest extends TestCase
             'form_params' => [
                 'firstname'=>'abc',
                 'lastname'=>'def',
-                'email' => 'abcfzcfsdf@gmail.com',
+                'email' => 'dfdf@gmail.com',
                 'password' => 'abcdef',
             ],
-        ]);
+        ]); 
         $stream = $request->getBody();
         $contents = json_decode($stream);
         $res = $contents->message;
@@ -48,4 +48,37 @@ class FundooApiTest extends TestCase
         $res = $contents->message;
         $this->assertEquals("400", $res,'password incorrect');
     }
+
+    public function testaddNote()
+    {
+        $request = $this->http->post('addNote',[
+            'form_params' => [
+                'title'=>'dgfds',
+                'noteContent'=>'dsfsd',
+                'email' => 'adithyasuresh58@gmail.com',
+                'date' => '08/04/2019 08:00 PM',
+                'color' => '#f28b82'
+            ],
+        ]);
+
+        $stream = $request->getbody();
+        $contents = json_decode($stream);
+        $res = $contents->message;
+        $this->assertEquals("200", $res,'note adding failed');
+    }
+
+    public function testdisplayNote()
+    {
+        $request = $this->http->post('displayNote',[
+            'form_params' => [
+                'userid'=>'26'
+            ],
+        ]);
+
+        $stream = $request->getbody();
+        $contents = json_decode($stream);
+        $res = $contents->message;
+        $this->assertEquals("200", $res,'displaying note failed');
+    }
+
 }

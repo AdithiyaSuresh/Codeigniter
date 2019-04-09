@@ -41,9 +41,9 @@
                  <div fxLayout="row" fxLayoutAlign="center center">
                     <button mat-raised-button routerLink="../register">Register</button>
                 </div> 
-
-                <button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
-                <button (click)="socialSignIn('google')">Sign in with Google</button>           
+                <br>
+                <button style = "font-size: 15px;" mat-raised-button color = "primary" (click)="socialSignIn('facebook')"><mat-icon><img style = "width: 24px;height: 24px;margin-left: -13px;margin-right: 9px;" src = "../../assets/img/fundoAssests/fb.svg"/></mat-icon>Facebook Signin</button>
+                <button style = "font-size: 15px;margin-left: 73px;" mat-raised-button (click)="socialSignIn('google')"><mat-icon><img style = "width: 24px;height: 24px;margin-left: -13px;margin-right: 9px;" src = "../../assets/img/fundoAssests/google.svg"/></mat-icon>Google Signin</button>           
             
 
     </mat-card>

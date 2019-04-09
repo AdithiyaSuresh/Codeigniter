@@ -57,8 +57,8 @@ export class NotesComponent implements OnInit {
         this.layout = this.direction + " "+this.wrap;
     }))
     // setInterval(() => {
-		// 	this.displayNotes();
-		// }, 1000);
+		// 	this.remaindme();
+		// }, 2000);
   }
 
   flip()
@@ -328,4 +328,67 @@ export class NotesComponent implements OnInit {
         }
       });
   }
+
+  // remaindme() {
+
+  //   var day = new Date();
+  //   var fulldate =
+  //   day.toDateString() + " " + (day.getHours() % 12) + ":" + day.getMinutes();
+  //   fulldate = moment(fulldate).format("DD/MM/YYYY hh:mm") + " PM";
+    
+  //   this.note.forEach(reminder => {
+  //   let DateAndTime = fulldate;
+  //   this.currentDateAndTime = DateAndTime;
+    
+  //   if (DateAndTime == reminder.currentDateAndTime) {
+    
+  //   this.snackBar.open(reminder.title, "", {
+  //   duration: 2000
+  //   });
+  //   }
+  //   });
+
+ // currentDateTime
+
+// 	remaindme() {
+//     // this.toasterservice.success("ddd", "asfasdf"); 
+//     debugger
+// 		var day = new Date();
+// 		var fulldate =
+// 		day.toDateString() + " " + (day.getHours() % 12) + ":" + day.getMinutes();
+//     fulldate = moment(fulldate).format("DD/MM/YYYY hh:mm") + " PM";
+
+//     const tokens = localStorage.getItem('token');
+//     const tokenPayload = decode(tokens);
+//     const id = tokenPayload.id;
+//     let nobs = this.noteService.displayNote(id);
+      
+//     nobs.subscribe((data: any) => {
+//        // debugger;
+//         this.note = data as string[];
+//       });
+
+//       this.note.forEach(element => {
+//         debugger
+        
+//         let DateAndTime = fulldate;
+//         this.currentDateTime = DateAndTime;
+        
+//         console.log("remainder "+ element);
+//         /**
+//          * compare with present time if equal alert remainder
+//          */
+//         if (DateAndTime == element.date) {
+//           console.log("remainder "+ element.date);
+//           debugger
+  
+//           this.snackBar.open(element.title, "", {
+//             duration: 2000
+//           });
+//         }
+//        });
+
+// }
+
+    
 }

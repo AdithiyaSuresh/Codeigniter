@@ -93,6 +93,25 @@ use \Firebase\JWT\JWT;
             $date = $notes['date'];
             $color = $notes['color'];
         }
+
+        // if ($res) 
+        // {
+        //     $result = array(
+        //         "message" => "200",
+        //     );
+        //     print json_encode($result);
+        //     return "200";
+        // } 
+        // else 
+        // {
+        //     $result = array(
+        //         "message" => "204",
+        //     );
+        //     print json_encode($result);
+        //     return "204";
+
+        // }
+
         print json_encode($arr);
     }
 

@@ -49,7 +49,7 @@ class LoginService extends CI_Controller
                 "id" => $id
             );
 
-            $token     = JWT::encode($data, $secret_key);
+            $token = JWT::encode($data, $secret_key);
 
        
         
