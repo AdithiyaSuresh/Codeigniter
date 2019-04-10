@@ -242,10 +242,10 @@ export class NotesComponent implements OnInit {
 		this.color = changecolor;
   }
 
-  setColor(n,colour)
+  setColor(n,colour,string)
   {
     debugger;
-    let col = this.noteService.changeColor(n.id,colour);
+    let col = this.noteService.changeColor(n.id,colour,string);
     col.subscribe((res:any)=>{
       console.log(res);
       if (res.message == "200") 
@@ -327,6 +327,13 @@ export class NotesComponent implements OnInit {
           
         }
       });
+  }
+
+  closeDate()
+  {
+    this.timer = false;
+    this.currentDateAndTime = undefined;
+    
   }
 
   // remaindme() {

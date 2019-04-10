@@ -1,79 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" tests="4" assertions="4" errors="0" failures="2" skipped="0" time="159.999618">
-    <testcase name="testRegister" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="18" assertions="1" time="15.927533">
-      <failure type="PHPUnit\Framework\ExpectationFailedException">FundooApiTest::testRegister
-Email already exists
-Failed asserting that two strings are equal.
---- Expected
-+++ Actual
-@@ @@
--'200'
-+'205'
-
-/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php:34
-</failure>
-    </testcase>
-    <testcase name="testlogin" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="39" assertions="1" time="0.129170"/>
-    <testcase name="testaddNote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="52" assertions="1" time="0.096153"/>
-    <testcase name="testdisplayNote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="70" assertions="1" time="143.846762">
-      <failure type="PHPUnit\Framework\ExpectationFailedException">FundooApiTest::testdisplayNote
-displaying note failed
-Failed asserting that null matches expected '200'.
-
-/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php:81
-</failure>
-      <system-out>
-A PHP Error was encountered
-
-Severity:    Notice
-Message:     Trying to get property 'message' of non-object
-Filename:    /var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php
-Line Number: 80
-
-Backtrace:
-	File: /var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php
-	Line: 80
-	Function: _error_handler
-
-	File: /usr/share/php/PHPUnit/Framework/TestCase.php
-	Line: 1071
-	Function: invokeArgs
-
-	File: /usr/share/php/PHPUnit/Framework/TestCase.php
-	Line: 939
-	Function: runTest
-
-	File: /usr/share/php/PHPUnit/Framework/TestResult.php
-	Line: 698
-	Function: runBare
-
-	File: /usr/share/php/PHPUnit/Framework/TestCase.php
-	Line: 894
-	Function: run
-
-	File: /usr/share/php/PHPUnit/Framework/TestSuite.php
-	Line: 755
-	Function: run
-
-	File: /usr/share/php/PHPUnit/TextUI/TestRunner.php
-	Line: 546
-	Function: run
-
-	File: /usr/share/php/PHPUnit/TextUI/Command.php
-	Line: 195
-	Function: doRun
-
-	File: /usr/share/php/PHPUnit/TextUI/Command.php
-	Line: 148
-	Function: run
-
-	File: /usr/bin/phpunit
-	Line: 34
-	Function: main
-
-
-</system-out>
-    </testcase>
+  <testsuite name="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" tests="6" assertions="6" errors="0" failures="0" skipped="0" time="0.364106">
+    <testcase name="testRegister" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="18" assertions="1" time="0.115118"/>
+    <testcase name="testlogin" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="39" assertions="1" time="0.065760"/>
+    <testcase name="testaddNote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="52" assertions="1" time="0.047382"/>
+    <testcase name="testchangecolor" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="84" assertions="1" time="0.044734"/>
+    <testcase name="testeditnote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="97" assertions="1" time="0.043600"/>
+    <testcase name="testdelnote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="113" assertions="1" time="0.047512"/>
   </testsuite>
 </testsuites>

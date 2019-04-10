@@ -74,9 +74,9 @@ header("Access-Control-Allow-Headers: Authorization");
         {
             $email = $_POST['email'];
             $name = $_POST['name'];
+            $image = $_POST['image'];
 
-
-            $this->logService->socialLogin($email,$name);
+            $this->logService->socialLogin($email,$name,$image);
         }
        
     }

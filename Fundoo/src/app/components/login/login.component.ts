@@ -127,7 +127,7 @@
     sendToRestApiMethod(token, email, image, name) {
 
       //debugger
-      let socialres = this.logService.socialLogin(email,name);
+      let socialres = this.logService.socialLogin(email,name,image);
       socialres.subscribe((res:any)=>{
        // debugger
         console.log(res);

@@ -15,26 +15,26 @@ class FundooApiTest extends TestCase
         ));
     }
    
-    public function testRegister(){
-        $request = $this->http->post('signup', [
-            'form_params' => [
-                'firstname'=>'abc',
-                'lastname'=>'def',
-                'email' => 'dfdf@gmail.com',
-                'password' => 'abcdef',
-            ],
-        ]); 
-        $stream = $request->getBody();
-        $contents = json_decode($stream);
-        $res = $contents->message;
+    // public function testRegister(){
+    //     $request = $this->http->post('signup', [
+    //         'form_params' => [
+    //             'firstname'=>'abc',
+    //             'lastname'=>'def',
+    //             'email' => 'dsd@gmail.com',
+    //             'password' => 'abcdef',
+    //         ],
+    //     ]); 
+    //     $stream = $request->getBody();
+    //     $contents = json_decode($stream);
+    //     $res = $contents->message;
        
-        if($res=="200"){
+    //     if($res=="200"){
             
-        }
-        $this->assertEquals("200", $res,'Email already exists');  
+    //     }
+    //     $this->assertEquals("200", $res,'Email already exists');  
         
         
-    }
+    // }
 
     public function testlogin(){
         $request = $this->http->post('signin',[
@@ -49,36 +49,77 @@ class FundooApiTest extends TestCase
         $this->assertEquals("400", $res,'password incorrect');
     }
 
-    public function testaddNote()
-    {
-        $request = $this->http->post('addNote',[
+    // public function testaddNote()
+    // {
+    //     $request = $this->http->post('addNote',[
+    //         'form_params' => [
+    //             'title'=>'dgfds',
+    //             'noteContent'=>'dsfsd',
+    //             'email' => 'adithyasuresh58@gmail.com',
+    //             'date' => '08/04/2019 08:00 PM',
+    //             'color' => '#f28b82'
+    //         ],
+    //     ]);
+
+    //     $stream = $request->getbody();
+    //     $contents = json_decode($stream);
+    //     $res = $contents->message;
+    //     $this->assertEquals("200", $res,'note adding failed');
+    // }
+
+    // public function testdisplayNote()
+    // {
+    //     $request = $this->http->post('displayNote',[
+    //         'form_params' => [
+    //             'userid'=>'26'
+    //         ],
+    //     ]);
+
+    //     $stream = $request->getbody();
+    //     $contents = json_decode($stream);
+    //     $res = $contents->message;
+    //     $this->assertEquals("200", $res,'displaying note failed');
+    // }
+
+    public function testchangecolor(){
+        $request = $this->http->post('changeColor',[
             'form_params' => [
-                'title'=>'dgfds',
-                'noteContent'=>'dsfsd',
-                'email' => 'adithyasuresh58@gmail.com',
+                'id'=>'392',
+                'colour'=>'#e8eaed'
+            ],
+        ]);
+        $stream = $request->getbody();
+        $contents = json_decode($stream);
+        $res = $contents->message;
+        $this->assertEquals("200", $res,'changing note color failed');
+    }
+
+    public function testeditnote(){
+        $request = $this->http->post('editNote',[
+            'form_params' => [
+                'id'=>'392',
+                'Title'=>'ay',
+                'noteContent'=>'diash',
                 'date' => '08/04/2019 08:00 PM',
                 'color' => '#f28b82'
             ],
         ]);
-
         $stream = $request->getbody();
         $contents = json_decode($stream);
         $res = $contents->message;
-        $this->assertEquals("200", $res,'note adding failed');
+        $this->assertEquals("200", $res,'editing notes failed');
     }
 
-    public function testdisplayNote()
-    {
-        $request = $this->http->post('displayNote',[
+    public function testdelnote(){
+        $request = $this->http->post('delNote',[
             'form_params' => [
-                'userid'=>'26'
+                'id'=>'388'
             ],
         ]);
-
         $stream = $request->getbody();
         $contents = json_decode($stream);
         $res = $contents->message;
-        $this->assertEquals("200", $res,'displaying note failed');
+        $this->assertEquals("200", $res,'deleting notes failed');
     }
 
 }

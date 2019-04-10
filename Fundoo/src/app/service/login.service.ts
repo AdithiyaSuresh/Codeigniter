@@ -66,11 +66,11 @@ export class LoginService {
     return this.http.post(this.serviceurl.host + this.serviceurl.reset, userResetData);
   }
 
-  socialLogin(email,name){
+  socialLogin(email,name,image){
     let social = new FormData();
     social.append("email",email);
     social.append("name",name);
-
+    social.append("image",image)
     return this.http.post(this.serviceurl.host+this.serviceurl.sociallogin,social);
 }
 

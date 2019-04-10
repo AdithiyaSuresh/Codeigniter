@@ -36,6 +36,12 @@ export class DashboardComponent implements OnInit {
     // this.email  = this.cookieserv.get("email");
     // this.firstname = this.cookieserv.get("name");
     // this.image = this.cookieserv.get("image");
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    this.email = tokenPayload.email;
+    this.uid = tokenPayload.id;
+    this.firstname = tokenPayload.firstname;
+    this.image = tokenPayload.image;
     this.displayLabels();
     
   }
@@ -48,13 +54,9 @@ export class DashboardComponent implements OnInit {
     this.email = tokenPayload.email;
     this.uid = tokenPayload.id;
     this.firstname = tokenPayload.firstname;
-      if(this.email == undefined && this.firstname == undefined)
-      {
-      this.email  = this.cookieserv.get("email");
-      this.firstname = this.cookieserv.get("name");
-      this.image = this.cookieserv.get("image");
+    this.image = tokenPayload.image;
       }
-  }
+  
 
   note()
   {

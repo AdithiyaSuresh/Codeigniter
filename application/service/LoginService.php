@@ -249,7 +249,7 @@ class LoginService extends CI_Controller
         }
     }
 
-    public function socialLogin($email,$name){
+    public function socialLogin($email,$name,$image){
         $emailExists = LoginService::checkEmail($email);
         $connection = new Redis();
         $conn = $connection->connection();
@@ -263,11 +263,21 @@ class LoginService extends CI_Controller
             $arr = $stmt->fetch(PDO::FETCH_ASSOC);
             $id = $arr['id'];
             $resarr  = array(
-                
-                "id"=>$id,
+                "email"=>$email,
+                "firstname"=>$name,
+                "image"=>$image,
+                "id"=>$id
                 
             );
             $token = JWT::encode($resarr,$key);
+
+
+            $connection = new Redis();
+            $client = $connection->connection();
+
+            $client->set('token', $token );
+            $response = $client->get('token');
+
             $data  = array(
                 "token"   => $token,
                 "message" => "200",
@@ -285,11 +295,20 @@ class LoginService extends CI_Controller
             if($res)
             {
                 $resarr  = array(
-                    "token"   => $token,
-                    "id"=>$id,
+                     "email"=>$email,
+                     "firstname"=>$name,
+                     "image"=>$image,
+                    "id"=>$id
                     
                 );
                 $token = JWT::encode($resarr,$key);
+
+            $connection = new Redis();
+            $client = $connection->connection();
+
+            $client->set('token', $token );
+            $response = $client->get('token');
+
                 $data  = array(
                     "token"=>$token,
                     "message" => "200",

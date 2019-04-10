@@ -31,12 +31,13 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.disnote,emaildata);
   }
 
-  changeColor(id,colour)
+  changeColor(id,colour,string)
   {
     debugger;
     let col = new FormData();
     col.append('id',id);
     col.append('colour',colour);
+    col.append('string',string)
     return this.http.post(this.serviceurl.host+this.serviceurl.changeColor,col);
   }
 

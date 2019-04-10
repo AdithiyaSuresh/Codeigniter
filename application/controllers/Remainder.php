@@ -1,4 +1,6 @@
+
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 include '/var/www/html/codeigniter/application/service/RemainderService.php';
 header('Access-Control-Allow-Origin: *');

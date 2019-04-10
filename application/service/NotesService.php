@@ -115,29 +115,54 @@ use \Firebase\JWT\JWT;
         print json_encode($arr);
     }
 
-    public function changeColor($id,$colour)
+    public function changeColor($id,$colour,$string)
     {
+        if($string == 'color')
+        {
+            $query = "UPDATE addnote SET color = '$colour' WHERE id = '$id'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+            if ($res) 
+                {
+                    $result = array(
+                        "message" => "200",
+                    );
+                    print json_encode($result);
+                    return "200";
+                } 
+                else 
+                {
+                    $result = array(
+                        "message" => "204",
+                    );
+                    print json_encode($result);
+                    return "204";
 
-        $query = "UPDATE addnote SET color = '$colour' WHERE id = '$id'";
-        $stmt = $this->db->conn_id->prepare($query);
-        $res = $stmt->execute();
-        if ($res) 
-            {
-                $result = array(
-                    "message" => "200",
-                );
-                print json_encode($result);
-                return "200";
-            } 
-            else 
-            {
-                $result = array(
-                    "message" => "204",
-                );
-                print json_encode($result);
-                return "204";
+                }
+        }
+        elseif($string == 'reminder')
+        {
+            $query = "UPDATE addnote SET date = '' WHERE id = '$id'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+            if ($res) 
+                {
+                    $result = array(
+                        "message" => "200",
+                    );
+                    print json_encode($result);
+                    return "200";
+                } 
+                else 
+                {
+                    $result = array(
+                        "message" => "204",
+                    );
+                    print json_encode($result);
+                    return "204";
 
-            }
+                }
+        }
     }
 
     public function editNote($id,$Title,$noteContent,$date,$color)

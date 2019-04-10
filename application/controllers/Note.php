@@ -32,15 +32,17 @@ header("Access-Control-Allow-Headers: Authorization");
         public function displayNote()
         {
             $id = $_POST['id'];
-            $res = $this->noteService->displayNote($id);
-            return $res;
+            $resd = $this->noteService->displayNote($id);
+            return $resd;
         }
 
         public function changeColor()
         {
             $id = $_POST['id'];
             $colour = $_POST['colour'];
-            return $this->noteService->changeColor($id,$colour);
+            $string = $_POST['string'];
+            $resc = $this->noteService->changeColor($id,$colour,$string);
+            return $resc;
         }
 
         public function editNote()
@@ -69,7 +71,8 @@ header("Access-Control-Allow-Headers: Authorization");
         public function delNote()
         {
             $id = $_POST['id'];
-            return $this->noteService->delNote($id);
+            $resd = $this->noteService->delNote($id);
+            return $resd;
         }
 
     }

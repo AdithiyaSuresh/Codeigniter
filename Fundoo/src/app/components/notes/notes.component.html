@@ -30,7 +30,7 @@
                   <div style = 'margin-bottom: -33px;margin-left: 7px;margin-top: 10px;'>
                   <!-- <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button> -->
                   <mat-chip-list>
-                      <mat-chip  *ngIf = "timer"><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{currentDateAndTime}}</mat-chip>
+                      <mat-chip  *ngIf = "timer"><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{currentDateAndTime}}<button mat-icon-button (click) = "closeDate()"><mat-icon><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
                   </mat-chip-list>
                 </div>
                 
@@ -170,7 +170,7 @@
 
             <div fxLayout="{{layout}}" fxLayoutAlign="center center">
             <mat-card class="gridcard"  *ngFor="let n of note" [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }">
-                <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}</mat-chip></mat-chip-list></p>
+                <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
               </div> -->
@@ -270,20 +270,20 @@
                 </button> 
                 
                 <mat-menu [overlapTrigger]="false" #buttonMenu="matMenu">
-                  <button matTooltip="Yellow" (click)="setColor(n,'#fcf476')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
-                  <button matTooltip="Orange" (click)="setColor(n,'#f8bc04')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
-                  <button matTooltip="Red" (click)="setColor(n,'#f28b82')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
-                  <button matTooltip="White" (click)="setColor(n,'#ffffff')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
+                  <button matTooltip="Yellow" (click)="setColor(n,'#fcf476','color')" mat-mini-fab class="colorlens" style="background-color:#fcf476"></button>
+                  <button matTooltip="Orange" (click)="setColor(n,'#f8bc04','color')" mat-mini-fab class="colorlens" style="background-color:#f8bc04 "></button>
+                  <button matTooltip="Red" (click)="setColor(n,'#f28b82','color')" mat-mini-fab class="colorlens" style="background-color:#f28b82 "></button>
+                  <button matTooltip="White" (click)="setColor(n,'#ffffff','color')" mat-mini-fab class="colorlens" style="background-color:#ffffff "></button>
                   <br />
-                  <button matTooltip="Dark blue" (click)="setColor(n,'#aecbfa')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
-                  <button matTooltip="Blue" (click)="setColor(n,'#cbf0f8')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
-                  <button matTooltip="Teal" (click)="setColor(n,'#a7ffea')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
-                  <button matTooltip="Green" (click)="setColor(n,'#ccff90')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
+                  <button matTooltip="Dark blue" (click)="setColor(n,'#aecbfa','color')" mat-mini-fab class="colorlens" style="background-color:#aecbfa "></button>
+                  <button matTooltip="Blue" (click)="setColor(n,'#cbf0f8','color')" mat-mini-fab class="colorlens" style="background-color:#cbf0f8 "></button>
+                  <button matTooltip="Teal" (click)="setColor(n,'#a7ffea','color')" mat-mini-fab class="colorlens" style="background-color:#a7ffea "></button>
+                  <button matTooltip="Green" (click)="setColor(n,'#ccff90','color')" mat-mini-fab class="colorlens" style="background-color:#ccff90 "></button>
                   <br />
-                  <button matTooltip="Gray" (click)="setColor(n,'#e8eaed')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
-                  <button matTooltip="Brown" (click)="setColor(n,'#e6c9a8')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
-                  <button matTooltip="Pink" (click)="setColor(n,'#fccfe8')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
-                  <button matTooltip="Purple" (click)="setColor(n,'#d7aefb')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
+                  <button matTooltip="Gray" (click)="setColor(n,'#e8eaed','color')" mat-mini-fab class="colorlens" style="background-color:#e8eaed "></button>
+                  <button matTooltip="Brown" (click)="setColor(n,'#e6c9a8','color')" mat-mini-fab class="colorlens" style="background-color:#e6c9a8 "></button>
+                  <button matTooltip="Pink" (click)="setColor(n,'#fccfe8','color')" mat-mini-fab class="colorlens" style="background-color:#fccfe8 "></button>
+                  <button matTooltip="Purple" (click)="setColor(n,'#d7aefb','color')" mat-mini-fab class="colorlens" style="background-color:#d7aefb "></button>
                 </mat-menu>
 
                 <button matTooltip="Add image" mat-icon-button   >
