@@ -7,6 +7,7 @@ import { MatDialog} from '@angular/material';
 import { LabelService } from 'src/app/service/label.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +24,10 @@ export class DashboardComponent implements OnInit {
   uid;
   labels: string[];
   image: string;
+  searchTerm: string;
  
 
-  constructor(private viewservice: ViewService,private cookieserv:CookieService,private router: Router,public dialog: MatDialog,private labelser: LabelService) 
+  constructor(private dataservice: DataService,private viewservice: ViewService,private cookieserv:CookieService,private router: Router,public dialog: MatDialog,private labelser: LabelService) 
   { 
     this.changeView();
     // const tokens = localStorage.getItem('token');
@@ -55,6 +57,7 @@ export class DashboardComponent implements OnInit {
     this.uid = tokenPayload.id;
     this.firstname = tokenPayload.firstname;
     this.image = tokenPayload.image;
+
       }
   
 
@@ -70,6 +73,12 @@ export class DashboardComponent implements OnInit {
   //  this.image = this.cookieserv.get("image");
   }
 
+  search()
+  {
+    if(this.searchTerm!=undefined)
+    this.dataservice.setSearchWord(this.searchTerm);
+  }
+  
   changeView() 
   {
 		// debugger;
@@ -118,4 +127,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
     this.cookieserv.deleteAll();
   }
+
+  closeSearch()
+  {
+    debugger;
+    this.router.navigate(['dashboard/notes']);
+    this.searchTerm = '';
+  }
+
 }

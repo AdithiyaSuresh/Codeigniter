@@ -11,6 +11,7 @@ import { RemainderComponent } from './components/remainder/remainder.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { LabelComponent } from './components/label/label.component';
+import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +41,10 @@ const routes: Routes = [
           {
             path: 'label',
             component: LabelComponent
+          },
+          {
+            path: 'displayempty',
+            component: DisplayemptyComponent
           }
         ]
       }

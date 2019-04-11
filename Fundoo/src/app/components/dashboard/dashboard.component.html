@@ -46,11 +46,14 @@
             
             <span class="label">Fundoo</span> 
           </div>  
-
-            <button mat-icon-button matTooltip="Search" style="margin-left: 120px">
+          
+            <button mat-icon-button matTooltip="Search" (click)="search()" style="margin-left: 120px">
               <mat-icon>search</mat-icon>
             </button>
-            <input class="searchbar" type="text" [(ngModel)]="searchData" placeholder="Search"/>
+            <input [routerLink] = "['displayempty']" class="searchbar" type="text" (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search"/>
+            <button style = "margin-right: 47px;" mat-icon-button (click) = "closeSearch()">
+                <mat-icon><img src = "../../assets/img/fundoAssests/close.svg"/>
+                </mat-icon></button>
 
           <div fxFlex fxLayout fxLayoutAlign="flex-end">
       

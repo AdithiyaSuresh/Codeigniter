@@ -125,6 +125,12 @@ export class NotesComponent implements OnInit {
       {
         this.dateTime = true;
       }
+      this.title.setValue('');
+      this.noteContent.setValue('');
+      this.email = '';
+      this.currentDateAndTime = '';
+      this.color = '';
+
   }
 
   fulldate: any;
@@ -355,47 +361,47 @@ export class NotesComponent implements OnInit {
   //   }
   //   });
 
- // currentDateTime
+  currentDateTime
 
-// 	remaindme() {
-//     // this.toasterservice.success("ddd", "asfasdf"); 
-//     debugger
-// 		var day = new Date();
-// 		var fulldate =
-// 		day.toDateString() + " " + (day.getHours() % 12) + ":" + day.getMinutes();
-//     fulldate = moment(fulldate).format("DD/MM/YYYY hh:mm") + " PM";
+	remaindme() {
+    // this.toasterservice.success("ddd", "asfasdf"); 
+    debugger
+		var day = new Date();
+		var fulldate =
+		day.toDateString() + " " + (day.getHours() % 12) + ":" + day.getMinutes();
+    fulldate = moment(fulldate).format("DD/MM/YYYY hh:mm") + " PM";
 
-//     const tokens = localStorage.getItem('token');
-//     const tokenPayload = decode(tokens);
-//     const id = tokenPayload.id;
-//     let nobs = this.noteService.displayNote(id);
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    const id = tokenPayload.id;
+    let nobs = this.noteService.displayNote(id);
       
-//     nobs.subscribe((data: any) => {
-//        // debugger;
-//         this.note = data as string[];
-//       });
+    nobs.subscribe((data: any) => {
+       // debugger;
+        this.note = data as string[];
+      });
 
-//       this.note.forEach(element => {
-//         debugger
+      this.note.forEach(res => {
+        debugger
         
-//         let DateAndTime = fulldate;
-//         this.currentDateTime = DateAndTime;
+        let DateAndTime = fulldate;
+        this.currentDateTime = DateAndTime;
         
-//         console.log("remainder "+ element);
-//         /**
-//          * compare with present time if equal alert remainder
-//          */
-//         if (DateAndTime == element.date) {
-//           console.log("remainder "+ element.date);
-//           debugger
+        console.log("remainder "+ res);
+        /**
+         * compare with present time if equal alert remainder
+         */
+        // if (DateAndTime == res.date) {
+        //   console.log("remainder "+ res.date);
+        //   debugger
   
-//           this.snackBar.open(element.title, "", {
-//             duration: 2000
-//           });
-//         }
-//        });
+        //   this.snackBar.open(res.title, "", {
+        //     duration: 2000
+        //   });
+        // }
+       });
 
-// }
+}
 
     
 }

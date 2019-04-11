@@ -30,7 +30,12 @@
                   <div style = 'margin-bottom: -33px;margin-left: 7px;margin-top: 10px;'>
                   <!-- <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button> -->
                   <mat-chip-list>
-                      <mat-chip  *ngIf = "timer"><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{currentDateAndTime}}<button mat-icon-button (click) = "closeDate()"><mat-icon><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
+                      <mat-chip  *ngIf = "timer">
+                        <mat-icon style = "margin-right: 10px;margin-left: -9px;zoom: 0.8;">timer
+                        </mat-icon>{{currentDateAndTime}}
+                        <button mat-icon-button (click) = "closeDate()">
+                          <mat-icon style = "zoom: 0.8;" ><img src = "../../assets/img/fundoAssests/close.svg"/>
+                          </mat-icon></button></mat-chip>
                   </mat-chip-list>
                 </div>
                 
@@ -170,7 +175,7 @@
 
             <div fxLayout="{{layout}}" fxLayoutAlign="center center">
             <mat-card class="gridcard"  *ngFor="let n of note" [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }">
-                <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
+                <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "zoom: 0.8;margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
               </div> -->

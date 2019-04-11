@@ -31,6 +31,8 @@ import {
 } from "angular-6-social-login";
 import { getAuthServiceConfigs } from  './socialloginConfig';
 import { CookieService } from 'ngx-cookie-service';
+import { SearchdataPipe } from './searchdata.pipe';
+import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { CookieService } from 'ngx-cookie-service';
     EditnotesComponent,
     ArchiveComponent,
     TrashComponent,
-    LabelComponent
+    LabelComponent,
+    SearchdataPipe,
+    DisplayemptyComponent
   ],
   imports: [
     BrowserModule,
