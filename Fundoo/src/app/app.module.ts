@@ -33,7 +33,7 @@ import { getAuthServiceConfigs } from  './socialloginConfig';
 import { CookieService } from 'ngx-cookie-service';
 import { SearchdataPipe } from './searchdata.pipe';
 import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { DisplayemptyComponent } from './components/displayempty/displayempty.co
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    DragDropModule
    ],
   providers: [RegisterService,CookieService,serviceUrl,AuthService,auth,SocialLoginModule,
     {

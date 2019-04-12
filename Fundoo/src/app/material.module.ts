@@ -6,7 +6,7 @@ import {
 
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatFormFieldModule, 
   MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, MatChipsModule, MatSnackBarModule, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material';
-
+import {DragDropModule} from '@angular/cdk/drag-drop'; 
 
 @NgModule({
   declarations: [],
@@ -29,7 +29,8 @@ import {
     MatNativeDateModule,
     MatTooltipModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DragDropModule
   ],
   exports: [
     CommonModule,
@@ -50,7 +51,8 @@ import {
     MatNativeDateModule,
     MatTooltipModule,
     MatChipsModule,
-    MatSnackBarModule   
+    MatSnackBarModule,
+    DragDropModule  
     
   ],
 

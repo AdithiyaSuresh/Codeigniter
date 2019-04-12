@@ -9,6 +9,7 @@ import { ViewService } from 'src/app/service/view.service';
 import { MatDialog, MatIconRegistry, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-notes',
@@ -287,6 +288,7 @@ export class NotesComponent implements OnInit {
 
       openSnackbar(message:string, action: string)
       {
+        debugger;
         this.snackBar.open(message,action,{ 
           duration: 2000,
         })
@@ -362,7 +364,7 @@ export class NotesComponent implements OnInit {
   //   });
 
   currentDateTime
-
+  resp
 	remaindme() {
     // this.toasterservice.success("ddd", "asfasdf"); 
     debugger
@@ -383,7 +385,7 @@ export class NotesComponent implements OnInit {
 
       this.note.forEach(res => {
         debugger
-        
+        this.resp = res;
         let DateAndTime = fulldate;
         this.currentDateTime = DateAndTime;
         
@@ -391,15 +393,21 @@ export class NotesComponent implements OnInit {
         /**
          * compare with present time if equal alert remainder
          */
-        // if (DateAndTime == res.date) {
-        //   console.log("remainder "+ res.date);
-        //   debugger
-  
-        //   this.snackBar.open(res.title, "", {
-        //     duration: 2000
-        //   });
-        // }
+        if (DateAndTime == this.resp.date) {
+          console.log("remainder "+ this.resp.date);
+          debugger
+
+          this.snackBar.open(this.resp.title,'',{
+            duration: 2000
+          });
+        }
        });
+
+}
+
+drop(event: CdkDragDrop<string[]>) {
+  debugger;
+  moveItemInArray(this.note, event.previousIndex, event.currentIndex);
 
 }
 

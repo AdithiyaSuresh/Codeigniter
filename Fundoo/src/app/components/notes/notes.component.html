@@ -169,12 +169,16 @@
               </mat-card>
                  
       </div>
+      
+      <div  class="example-list">
+
      
       <div style="margin-left: 880px;">
-          <mat-grid-list cols = "4" rowHeight="3:1" class="noteList" >
+          <mat-grid-list cols = "4" rowHeight="3:1" class="noteList">
 
-            <div fxLayout="{{layout}}" fxLayoutAlign="center center">
-            <mat-card class="gridcard"  *ngFor="let n of note" [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }">
+            <div fxLayout="{{layout}}" fxLayoutAlign="center center"  cdkDropList (cdkDropListDropped)=drop($event)>
+
+            <mat-card class="gridcard"  *ngFor="let n of note" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }">
                 <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "zoom: 0.8;margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
@@ -314,10 +318,13 @@
               </mat-menu>
 
             </div>
-              </mat-card>
+            </mat-card>
 
             </div>
           </mat-grid-list>
       </div>
+
+    </div>
+   
       
 <!-- </div> -->
