@@ -85,12 +85,16 @@
 
                 <div> 
                 <button mat-icon-button [matMenuTriggerFor]="auth">
-                  <mat-icon><img style = "border-radius: 50px;width: 41px;margin-top: -9px;" src = "{{image}}"/></mat-icon>
+                  <mat-icon (click)="file.click()"><img style = "border-radius: 50px;width: 41px;margin-top: -9px;" src = "{{image}}"/></mat-icon>
+                  <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
                 </button>
               </div> 
                 
                 <mat-menu #auth="matMenu">
-                  <span><mat-icon ><img style = "border-radius: 50px;margin-top: 15px;margin-left: 10px;width: 75px;" src = "{{image}}" /></mat-icon><p style = "margin-left: 102px;margin-top: -66px;margin-right: 43px;">{{firstname}}</p><p style = "margin-left: 91px;margin-right: 43px;" >{{email}}</p></span>
+                  <span><mat-icon (click)="file.click()" ><img style = "border-radius: 50px;margin-top: 15px;margin-left: 10px;width: 75px;" src = "{{image}}" /></mat-icon>
+                    <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
+                    <p style = "margin-left: 102px;margin-top: -66px;margin-right: 43px;">{{firstname}}</p>
+                    <p style = "margin-left: 91px;margin-right: 43px;" >{{email}}</p></span>
                   <!-- <br> -->
                   <mat-divider></mat-divider>
                   

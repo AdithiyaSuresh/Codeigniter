@@ -37,6 +37,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $res = $this->refService->insertDb($fname,$lname,$email,$password);
             return $res;
         }
+
+        public function addUImage()
+        {
+            $image = $_POST['image'];
+            $uid = $_POST['uid'];
+            $this->refService->addUImage($image,$uid);
+        }
     }
         
 ?>

@@ -77,5 +77,34 @@ class RegisterService extends CI_Controller
            
 
     }
+
+    public function addUImage($image,$uid)
+    {
+    
+        //$query = "UPDATE registeruser SET image = '$image' WHERE id = '$uid'";
+            
+        $query = "UPDATE registeruser SET image = '$image' WHERE id = '$uid'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute($data);
+        // return $res;
+
+            if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
+    }
 }
 ?>

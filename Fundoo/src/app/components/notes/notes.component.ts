@@ -6,7 +6,7 @@ import decode from 'jwt-decode';
 import { debug } from 'util';
 import * as moment from 'moment';
 import { ViewService } from 'src/app/service/view.service';
-import { MatDialog, MatIconRegistry, MatDialogConfig, MatSnackBar } from '@angular/material';
+import { MatDialog, MatIconRegistry, MatDialogConfig, MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
@@ -37,7 +37,7 @@ export class NotesComponent implements OnInit {
   dateTime: any;
   notesdata: any;
 
-  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar) {
+  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar ) {
 
       this.viewservice.getView().subscribe((res=>{
         this.view =res;
@@ -101,13 +101,31 @@ export class NotesComponent implements OnInit {
         
         obj.subscribe((res: any) => 
         {
-          //debugger;
+          debugger;
           console.log(res.message);
 
           if (res.message == "200") 
           {
             this.displayNotes();
             this.flag = true;
+
+            this.note.forEach(element => {
+
+              let noteobj:any;
+    
+              
+              noteobj.title = this.title.value;
+              noteobj.noteContent = this.noteContent.value;
+              noteobj.date = this.currentDateAndTime
+              noteobj.color = this.color;
+    
+    
+              this.note.push(noteobj);
+    
+    
+    
+       });
+
           } 
           else 
           {
@@ -131,6 +149,7 @@ export class NotesComponent implements OnInit {
       this.email = '';
       this.currentDateAndTime = '';
       this.color = '';
+      this.timer = false;
 
   }
 
@@ -286,12 +305,24 @@ export class NotesComponent implements OnInit {
     this.displayNotes();
       }
 
+      horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  action: boolean = true;
+  setAutoHide: boolean = true;
+  autoHide: number = 2000;
+  addExtraClass: boolean = false;
+actionButtonLabel: string = 'Undo';
+stat;
       openSnackbar(message:string, action: string)
       {
+        let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+
         debugger;
-        this.snackBar.open(message,action,{ 
-          duration: 2000,
-        })
+        this.stat = "Note bined";
+        this.snackBar.open(this.stat, this.action ? this.actionButtonLabel : undefined, config);
       }
 
 
@@ -411,5 +442,25 @@ drop(event: CdkDragDrop<string[]>) {
 
 }
 
-    
+// difference;
+//   dirrection;
+// 	/**
+// 	 * @method drop
+// 	 * @description function to drag and drop the card
+// 	 * @param CdkDragDrop array
+// 	 */
+//   drop(event: CdkDragDrop<string[]>) {
+//     debugger
+//     moveItemInArray(this.note, event.previousIndex, event.currentIndex);
+//     if (event.previousIndex - event.currentIndex >= 0) {
+//       this.difference = event.previousIndex - event.currentIndex;
+//       // alert("pas");
+//       this.dirrection = "positive";
+//     } else {
+//       this.difference = (event.previousIndex - event.currentIndex) * -1;
+//       // alert("neg");
+//       this.dirrection = "negative";
+//   }
+//  }
+
 }

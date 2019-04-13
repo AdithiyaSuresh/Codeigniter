@@ -46,7 +46,8 @@ export class LabelComponent implements OnInit {
     let label = this.labelser.setLabel(this.uid,this.model);
     
     label.subscribe((res: any) => {
-      
+      this.displayLabel();
+      this.labelname.setValue('');
     });
     
   }

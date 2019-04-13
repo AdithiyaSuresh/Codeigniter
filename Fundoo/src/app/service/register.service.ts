@@ -27,4 +27,12 @@ export class RegisterService {
     return this.http.post(this.serviceurl.host+this.serviceurl.reg,userRegister);
   }
 
+  addUserImage(image,uid)
+  {
+    let addUserImage = new FormData();
+    addUserImage.append("image",image);
+    addUserImage.append("uid",uid);
+    return this.http.post(this.serviceurl.host+this.serviceurl.addUImage,addUserImage);
+  }
+
 }

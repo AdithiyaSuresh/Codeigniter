@@ -38,7 +38,7 @@ export class TrashComponent implements OnInit {
 
     let archive = this.trashServ.trashed(id,flag);
     archive.subscribe((res:any)=>{
-
+      this.fetchTrash();
     });
 }
 
@@ -47,7 +47,7 @@ restore(id,flag)
   debugger;
   let archive = this.trashServ.restore(id,flag);
     archive.subscribe((res:any)=>{
-
+      this.fetchTrash();
     });
 }
 

@@ -39,7 +39,7 @@ export class ArchiveComponent implements OnInit {
 
     let archive = this.archserv.unarchived(id,flag);
     archive.subscribe((res:any)=>{
-
+      this.fetchArchive();
     });
 }
 
