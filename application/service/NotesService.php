@@ -16,14 +16,15 @@ use \Firebase\JWT\JWT;
         }
 
 
-    public function addNote($title,$noteContent,$email,$date,$color)
+    public function addNote($title,$noteContent,$email,$date,$color,$image)
     {
         $data = [
             'title' => $title,
             'noteContent' => $noteContent,
             'email' => $email,
             'date' => $date,
-            'color' => $color
+            'color' => $color,
+            'image' => $image
         ];
         // $client = new Predis\Client(array(
         //     'host' => '127.0.0.1',
@@ -47,7 +48,7 @@ use \Firebase\JWT\JWT;
         if(JWT::jverify($token))
         {
 
-            $query = "INSERT into addnote (userid,title,noteContent,email,date,color) values ('$id','$title','$noteContent','$email','$date','$color')";
+            $query = "INSERT into addnote (userid,title,noteContent,email,date,color,image) values ('$id','$title','$noteContent','$email','$date','$color','$image')";
             $stmt = $this->db->conn_id->prepare($query);
             $res = $stmt->execute($data);
             // return $res;
@@ -92,6 +93,7 @@ use \Firebase\JWT\JWT;
             $noteContent = $notes['noteContent'];
             $date = $notes['date'];
             $color = $notes['color'];
+            $image = $notes['image'];
         }
 
         // if ($res) 
@@ -261,6 +263,35 @@ use \Firebase\JWT\JWT;
             return "204";
 
         }
+    }
+
+    public function addUImageNote($image,$id)
+    {
+    
+        //$query = "UPDATE registeruser SET image = '$image' WHERE id = '$uid'";
+            
+        $query = "UPDATE addnote SET image = '$image' WHERE id = '$id'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+        // return $res;
+
+            if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
     }
 
 }

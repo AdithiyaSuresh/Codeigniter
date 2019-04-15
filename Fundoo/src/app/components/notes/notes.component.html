@@ -19,6 +19,7 @@
 
       <div *ngIf="flag===false" >
               <mat-card class="notes" [ngStyle]="{ 'background-color': color }" >
+              <div><img  mat-card-image src= "{{image}}" ></div>
               <input style=" width: 91%;margin-left: 10px;margin-bottom: 10px" matInput  placeholder="Title" [formControl]="title"/>
               <button style="padding-top: 5px;" mat-icon-button>
               <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin-outline.svg"/></mat-icon>
@@ -149,8 +150,10 @@
                 </mat-menu>
                 
                 <button id="Add image" matTooltip="Add image" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
-                  <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+                  <mat-icon (click)="file.click()" > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+                  <input style="display: none;" type="file" #file (change)="onSelectImage($event, '01')" />
                 </button> 
+
                   <button id="Remaind" matTooltip="Archive" mat-icon-button style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
                     <mat-icon > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
                 </button> 
@@ -176,9 +179,10 @@
       <div style="margin-left: 880px;">
           <mat-grid-list cols = "4" rowHeight="3:1" class="noteList">
 
-            <div fxLayout="{{layout}}" fxLayoutAlign="center start"  cdkDropList (cdkDropListDropped)=drop($event)>
+            <div fxLayout="{{layout}}" fxLayoutAlign="center center"  cdkDropList (cdkDropListDropped)=drop($event)>
 
             <mat-card class="gridcard"  *ngFor="let n of note" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' "  [ngStyle]="{ 'background-color': n.color }">
+              <div><img style = "margin-left: -25px;margin-top: 5px;" mat-card-image src= "{{n.image}}" ></div>
                 <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "zoom: 0.8;margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
@@ -274,6 +278,7 @@
                 <button matTooltip="Collaborator" mat-icon-button  >
                   <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
                 </button> 
+
                 <button matTooltip="Change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button >
                   <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
                 </button> 
@@ -296,8 +301,10 @@
                 </mat-menu>
 
                 <button matTooltip="Add image" mat-icon-button   >
-                  <mat-icon > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+                  <mat-icon (click)="file.click()" > <img src="../../assets/img/fundoAssests/photo.svg" /></mat-icon>
+                  <input style="display: none;" type="file" #file (change)="onSelectImage($event,n.id)" />
                 </button> 
+                
                   <button matTooltip="Archive" mat-icon-button  >
                     <mat-icon (click)="notestools(n.id)" > <img src="../../assets/img/fundoAssests/archive2.svg" /></mat-icon>
                 </button> 
@@ -318,6 +325,7 @@
               </mat-menu>
 
             </div>
+
             </mat-card>
 
             </div>

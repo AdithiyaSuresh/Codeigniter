@@ -44,6 +44,12 @@ header("Access-Control-Allow-Headers: Authorization");
             $uid = $_POST['uid'];
             $this->refService->addUImage($image,$uid);
         }
+
+        public function getImage()
+        {
+            $uid = $_POST['uid'];
+            return $this->refService->getImage($uid);
+        }
     }
         
 ?>

@@ -38,11 +38,11 @@ res
 
   displayResult()
   {
-     this.dataSevice.getSearch().subscribe(
-      (response)=>{
-this.res=response
-this.word=this.res.data;
-console.log('_____________',this.word)
+    this.dataSevice.getSearch().subscribe(
+    (response)=>{
+    this.res=response
+    this.word=this.res.data;
+    console.log('_____________',this.word)
       }
     );
 

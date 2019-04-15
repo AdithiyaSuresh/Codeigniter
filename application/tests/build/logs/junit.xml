@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" tests="6" assertions="6" errors="0" failures="0" skipped="0" time="0.364106">
-    <testcase name="testRegister" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="18" assertions="1" time="0.115118"/>
-    <testcase name="testlogin" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="39" assertions="1" time="0.065760"/>
-    <testcase name="testaddNote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="52" assertions="1" time="0.047382"/>
-    <testcase name="testchangecolor" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="84" assertions="1" time="0.044734"/>
-    <testcase name="testeditnote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="97" assertions="1" time="0.043600"/>
-    <testcase name="testdelnote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="113" assertions="1" time="0.047512"/>
+  <testsuite name="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.063578">
+    <testcase name="testtrashnote" class="FundooApiTest" classname="FundooApiTest" file="/var/www/html/codeigniter/application/tests/controllers/FundooApiTest.php" line="149" assertions="1" time="0.063578"/>
   </testsuite>
 </testsuites>

@@ -25,7 +25,8 @@ header("Access-Control-Allow-Headers: Authorization");
             $email = $_POST['email'];
             $date = $_POST['date'];
             $color = $_POST['color'];
-            $res =  $this->noteService->addNote($title,$noteContent,$email,$date,$color);
+            $image = $_POST['image'];
+            $res =  $this->noteService->addNote($title,$noteContent,$email,$date,$color,$image);
             return $res;
         }
          
@@ -65,7 +66,8 @@ header("Access-Control-Allow-Headers: Authorization");
         public function archive()
         {
             $id = $_POST['id'];
-            $this->noteService->archive($id);
+            $resa = $this->noteService->archive($id);
+            return $resa;
         }
 
         public function delNote()
@@ -73,6 +75,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $id = $_POST['id'];
             $resd = $this->noteService->delNote($id);
             return $resd;
+        }
+
+        public function addUImageNote()
+        {
+            $image = $_POST['image'];
+            $id = $_POST['id'];
+            $this->noteService->addUImageNote($image,$id);
         }
 
     }

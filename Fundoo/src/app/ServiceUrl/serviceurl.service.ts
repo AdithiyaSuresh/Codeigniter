@@ -27,4 +27,7 @@ export class serviceUrl
     public getLabel = "codeigniter/getLabel";
     public sociallogin = "codeigniter/socialLogin";
     public addUImage = "codeigniter/addUImage";
+    public getImage = "codeigniter/getImage";
+    public addUImageNote = "codeigniter/addUImageNote";
+    public fetchReminder = "codeigniter/fetchReminder";
 }

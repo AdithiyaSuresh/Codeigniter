@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
     this.image = tokenPayload.image;
     this.displayLabels();
     this.displayNotes();
+    this.getImage();
     
   }
 
@@ -63,23 +64,36 @@ export class DashboardComponent implements OnInit {
     this.image = tokenPayload.image;
     this.displayLabels();
     this.displayNotes();
-      }
+    this.getImage();
+  }
   
-      displayNotes()
-      {
-        debugger;
-        const tokens = localStorage.getItem('token');
-        const tokenPayload = decode(tokens);
-        const id = tokenPayload.id;
-        let obs = this.noteService.displayNote(id);
-          
-          obs.subscribe((data: any) => {
-            debugger;
-            this.notes = data as string[];
-          });
+  displayNotes()
+  {
+    debugger;
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    const id = tokenPayload.id;
+    let obs = this.noteService.displayNote(id);
       
-      }
-    
+      obs.subscribe((data: any) => {
+        debugger;
+        this.notes = data as string[];
+      });
+  
+  }
+  
+  getImage()
+  {
+    debugger;
+    let getimg = this.regService.getImage(this.uid);
+
+    getimg.subscribe((res: any) => {
+      debugger
+      console.log(res.image);
+      this.image = res.image;
+    })
+     
+  }
 
   note()
   {
@@ -90,7 +104,7 @@ export class DashboardComponent implements OnInit {
     // this.email  = this.cookieserv.get("email");
     // this.firstname = tokenPayload.firstname;
     // this.firstname = this.cookieserv.get("name");
-  //  this.image = this.cookieserv.get("image");
+    //  this.image = this.cookieserv.get("image");
   }
 
   search()

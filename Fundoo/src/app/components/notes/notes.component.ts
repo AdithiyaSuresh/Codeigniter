@@ -36,6 +36,8 @@ export class NotesComponent implements OnInit {
   public color = "";
   dateTime: any;
   notesdata: any;
+  image: string;
+  uid;
 
   constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar ) {
 
@@ -44,7 +46,9 @@ export class NotesComponent implements OnInit {
         this.direction = this.view.data;
         this.layout = this.direction + " " + this.wrap;
       }))
-      
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    this.uid = tokenPayload.id;
    }
 
 
@@ -57,6 +61,9 @@ export class NotesComponent implements OnInit {
         this.direction = this.view.data;
         this.layout = this.direction + " "+this.wrap;
     }))
+    const tokens = localStorage.getItem('token');
+    const tokenPayload = decode(tokens);
+    this.uid = tokenPayload.id;
     // setInterval(() => {
 		// 	this.remaindme();
 		// }, 2000);
@@ -92,10 +99,11 @@ export class NotesComponent implements OnInit {
           "noteContent":this.noteContent.value,
           "email":this.email,
           "date":this.currentDateAndTime,
-          "color":this.color
+          "color":this.color,
+          "image":this.image
         }
 
-      if(this.title.value != "" || this.noteContent.value != "" || this.currentDateAndTime != undefined)
+      if(this.title.value != "" || this.noteContent.value != "" || this.currentDateAndTime != undefined && this.currentDateAndTime != "")
       {
         let obj = this.noteService.addNote(this.model);
         
@@ -121,10 +129,7 @@ export class NotesComponent implements OnInit {
     
     
               this.note.push(noteobj);
-    
-    
-    
-       });
+            });
 
           } 
           else 
@@ -150,6 +155,7 @@ export class NotesComponent implements OnInit {
       this.currentDateAndTime = '';
       this.color = '';
       this.timer = false;
+      this.image = '';
 
   }
 
@@ -321,7 +327,7 @@ stat;
     config.duration = this.setAutoHide ? this.autoHide : 0;
 
         debugger;
-        this.stat = "Note bined";
+        this.stat = "Note moved to trash";
         this.snackBar.open(this.stat, this.action ? this.actionButtonLabel : undefined, config);
       }
 
@@ -462,5 +468,48 @@ drop(event: CdkDragDrop<string[]>) {
 //       this.dirrection = "negative";
 //   }
 //  }
+
+public base64textString;
+  Mainimage;
+  imageNoteId;
+  imgres;
+  onSelectImage(event,noteId){
+    debugger;
+		this.imageNoteId = noteId;
+		var files = event.target.files;
+		var file = files[0];
+		if (files && file) {
+			var reader = new FileReader();
+			reader.onload = this._handleReaderLoaded.bind(this);
+			reader.readAsBinaryString(file);
+		}
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    debugger
+		var binaryString = readerEvt.target.result;
+		console.log(binaryString);
+		this.base64textString = btoa(binaryString);
+		this.note.forEach(element => {
+      this.imgres = element;
+			if (this.imgres.id == this.imageNoteId) {
+        this.imgres.image = "data:image/jpeg;base64," + this.base64textString;
+        this.image = this.imgres.image;
+        let obss = this.noteService.addUserImage(this.image,this.imageNoteId);
+      
+      obss.subscribe((res: any) => {});
+			}
+		});
+
+		if (this.imageNoteId == "01") {
+      this.Mainimage = "data:image/jpeg;base64," + this.base64textString;
+      this.image = this.Mainimage;
+      debugger;
+      console.log(this.image);
+      
+		} else {
+      
+	 }
+	}
 
 }

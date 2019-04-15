@@ -35,4 +35,11 @@ export class RegisterService {
     return this.http.post(this.serviceurl.host+this.serviceurl.addUImage,addUserImage);
   }
 
+  getImage(uid)
+  {
+    debugger;
+    let getImg = new FormData();
+    getImg.append('uid',uid);
+    return this.http.post(this.serviceurl.host+this.serviceurl.getImage,getImg);
+  }
 }

@@ -40,6 +40,7 @@ class ArchiveService extends CI_Controller
             $data = array(
                 "status" => "200",
             );
+            return "200";
             print json_encode($data);
         } else {
             $data = array(
@@ -48,5 +49,6 @@ class ArchiveService extends CI_Controller
             print json_encode($data);
             return "204";
         }
+        return $data;
     }
 }

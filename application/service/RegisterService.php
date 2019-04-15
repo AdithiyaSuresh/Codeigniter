@@ -85,7 +85,7 @@ class RegisterService extends CI_Controller
             
         $query = "UPDATE registeruser SET image = '$image' WHERE id = '$uid'";
             $stmt = $this->db->conn_id->prepare($query);
-            $res = $stmt->execute($data);
+            $res = $stmt->execute();
         // return $res;
 
             if ($res) 
@@ -105,6 +105,17 @@ class RegisterService extends CI_Controller
                 return "204";
 
             }
+    }
+
+    public function getImage($uid)
+    {
+        $query = "SELECT image FROM registeruser WHERE id = '$uid'";
+        $statement = $this->db->conn_id->prepare($query);
+        $statement->execute();
+        $arr = $statement->fetch(PDO::FETCH_ASSOC);
+        $image = $arr['image'];
+        print json_encode($arr);
+        return $image;
     }
 }
 ?>

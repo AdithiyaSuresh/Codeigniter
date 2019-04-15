@@ -11,34 +11,20 @@ header("Access-Control-Allow-Headers: Authorization");
     {
         private $remainderService = "";
 
+        /**
+         * @description create an instance of service methods
+         */
         public function __construct()
         {
             parent::__construct();
             $this->remainderService = new RemainderService();
         }
 
-    
-        
-        public function addRemainder()
+        public function fetchReminder()
         {
-            $title = $_POST['title'];
-            $noteContent = $_POST['noteContent'];
-            $email = $_POST['email'];
-            return $this->remainderService->addRemainder($title,$noteContent,$email);
+            $uid = $_POST['uid'];
+            return $this->remainderService->fetchReminder($uid);
         }
-         
-        public function displayRemainder()
-        {
-            $email = $_POST['email'];
-            return $this->remainderService->displayRemainder($email);
-        }
-
-        public function deleteRemainder()
-        {
-            $id = $_POST['id'];
-            return $this->remainderService->deleteRemainder($id);
-        }
-        
     }
         
 ?>

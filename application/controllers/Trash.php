@@ -23,7 +23,9 @@ class Trash extends CI_Controller
     }
     public function delete(){
         $uid = $_POST['uid'];
-        $this->trashService->delete($uid);
+        $rest = $this->trashService->delete($uid);
+        return $rest;
+
     }
 
     public function restore()

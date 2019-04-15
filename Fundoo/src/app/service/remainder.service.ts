@@ -9,50 +9,11 @@ export class RemainderService {
 
   constructor(private http: HttpClient,private serviceurl: serviceUrl) { }
 
-  addNote(reg)
-  {
-   
-    let addNote = new FormData();
-    addNote.append('title',reg.title);
-    addNote.append('noteContent',reg.noteContent);
-    addNote.append('email',reg.email);
-     return this.http.post(this.serviceurl.host+this.serviceurl.note,addNote);
-  }
-
-  displayNote(data)
-  {
+  fetchreminders(uid){
     debugger;
-    let emaildata = new FormData();
-    emaildata.append("email",data);
-
-    return this.http.post(this.serviceurl.host+this.serviceurl.disnote,emaildata);
+    let rem = new FormData();
+    rem.append("uid",uid);
+    return this.http.post(this.serviceurl.host+this.serviceurl.fetchReminder,rem);
   }
 
-  addRemainder(reg)
-  {
-   
-    let addNote = new FormData();
-    addNote.append('title',reg.title);
-    addNote.append('noteContent',reg.noteContent);
-    addNote.append('email',reg.email);
-     return this.http.post(this.serviceurl.host+this.serviceurl.remainder,addNote);
-  }
-
-  displayRemainder(data)
-  {
-    debugger;
-    let emaildata = new FormData();
-    emaildata.append("email",data);
-
-    return this.http.post(this.serviceurl.host+this.serviceurl.disRemainder,emaildata);
-  }
-
-  deleteRemainder(n)
-  {
-    debugger;
-    let id = new FormData();
-    id.append('id',n);
-    return this.http.post(this.serviceurl.host+this.serviceurl.deleteRemainder,id);
-  }
-  
 }

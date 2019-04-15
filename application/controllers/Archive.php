@@ -22,6 +22,7 @@ class Archive extends CI_Controller
     }
     public function unarchive(){
         $uid = $_POST['uid'];
-        $this->archService->archive($uid);
+        $res = $this->archService->archive($uid);
+        return $res;
     }
 }

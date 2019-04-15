@@ -19,6 +19,7 @@ export class NoteService {
     addNote.append('email',reg.email);
     addNote.append('date',reg.date);
     addNote.append('color',reg.color);
+    addNote.append('image',reg.image);
     return this.http.post(this.serviceurl.host+this.serviceurl.note,addNote);
   }
 
@@ -78,4 +79,12 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.delNote,id);
   }
   
+  addUserImage(image,uid)
+  {
+    let addUserImage = new FormData();
+    addUserImage.append("image",image);
+    addUserImage.append("id",uid);
+    return this.http.post(this.serviceurl.host+this.serviceurl.addUImageNote,addUserImage);
+  }
+
 }
