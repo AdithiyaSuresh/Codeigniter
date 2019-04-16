@@ -17,7 +17,7 @@ export class DisplayemptyComponent implements OnInit {
   ngOnInit() 
   {
     this.onClick()
-    this.displayResult()
+    this.displayResult()                                                                                                                                                                
   }
 
   onClick()

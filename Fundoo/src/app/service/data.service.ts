@@ -16,7 +16,7 @@ export class DataService {
 
     this.setSearchWord(this.searchWord);
     return this.subject.asObservable();
-  }
+  } 
 
   setSearchWord(searchTerm:string)
   {

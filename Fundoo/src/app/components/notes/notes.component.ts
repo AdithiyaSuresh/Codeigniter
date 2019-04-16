@@ -426,7 +426,9 @@ stat;
         let DateAndTime = fulldate;
         this.currentDateTime = DateAndTime;
         
-        console.log("remainder "+ res);
+        console.log("remainder "+ DateAndTime);
+
+        console.log("remainder123 "+ this.resp.date);
         /**
          * compare with present time if equal alert remainder
          */
