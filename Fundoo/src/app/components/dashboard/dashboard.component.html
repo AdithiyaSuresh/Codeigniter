@@ -126,16 +126,18 @@
                 <br>
                 <mat-divider></mat-divider>
                 <mat-list-item ><label style="font-size: 13px">LABELS</label></mat-list-item>
+
                 <label role="listitem" *ngFor="let item of labels">
-                    <mat-list-item >
+                    <mat-list-item  >
                     <button mat-icon-button class="btnclose">
                       <mat-icon style = "margin-left: -15px;">label_outline</mat-icon>
                      
                     </button>
-                   <span style = "margin-left: 23px;">{{item.label}}</span>
+                    <a (click)="setLabel(item.id)" [routerLink] = "['labelnotes']" ><span style = "margin-left: 23px;">{{item.labelname}}</span></a>
                    <br>
                    </mat-list-item>
                    </label>
+
                 <a class= "selectorbutton" (click) = "openDialog()"  mat-list-item  > <mat-icon>edit</mat-icon><ul fxLayout fxLayoutGap></ul>Edit labels </a>
                 <br>
                 <mat-divider ></mat-divider>

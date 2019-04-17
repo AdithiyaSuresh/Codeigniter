@@ -30,4 +30,5 @@ export class serviceUrl
     public getImage = "codeigniter/getImage";
     public addUImageNote = "codeigniter/addUImageNote";
     public fetchReminder = "codeigniter/fetchReminder";
+    public pinNotes = "codeigniter/pinNotes";
 }

@@ -38,6 +38,7 @@ export class NotesComponent implements OnInit {
   notesdata: any;
   image: string;
   uid;
+  notes: [];
 
   constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar ) {
 
@@ -444,12 +445,53 @@ stat;
 
 }
 
-drop(event: CdkDragDrop<string[]>) {
-  debugger;
-  moveItemInArray(this.note, event.previousIndex, event.currentIndex);
+// drop(event: CdkDragDrop<string[]>) {
+//   debugger;
+//   moveItemInArray(this.note, event.previousIndex, event.currentIndex);
 
-}
+// }
 
+/**
+	 * @var difference intger having the difference
+	 * @var dirrection string having the direction of drag
+	 */
+	difference;
+	dirrection;
+	/**
+	 * @method drop
+	 * @description function to drag and drop the card
+	 * @param CdkDragDrop array
+	 */
+	drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.note, event.previousIndex, event.currentIndex);
+    
+		if (event.previousIndex - event.currentIndex >= 0) {
+			this.difference = event.previousIndex - event.currentIndex;
+			// alert("pas");
+			this.dirrection = "positive";
+		} else {
+			this.difference = (event.previousIndex - event.currentIndex) * -1;
+			// alert("neg");
+			this.dirrection = "negative";
+		}
+		// console.log(event.currentIndex);
+
+		// console.log(this.notes[event.currentIndex]);
+
+		// let obbs = this.noteService.dragAndDrop(
+		// 	this.difference,
+		// 	this.note[event.currentIndex].dragId,
+		// 	this.dirrection,
+		// 	this.email
+		// );
+		// obbs.subscribe(
+		// 	(res: any) => {
+		// 		//   obbs.unsubscribe();
+		// 	},
+    // );
+    
+  }
+  
 // difference;
 //   dirrection;
 // 	/**
@@ -512,6 +554,23 @@ public base64textString;
 		} else {
       
 	 }
+  }
+  
+  pinNote(id,n) {
+    debugger;
+    
+      let pinnote = this.noteService.pinNote(id,n);
+      
+      pinnote.subscribe((pin:any)=>{
+        this.displayNotes();
+        this.notes = pin;
+      }) 
+			// obs.subscribe((res: any) => {
+			// 	debugger;
+			// 	this.notes = res;
+			// 	// obs.unsubscribe();
+			// });
+		
 	}
 
 }

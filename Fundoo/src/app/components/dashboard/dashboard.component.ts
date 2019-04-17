@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 import { NoteService } from 'src/app/service/note.service';
 import { RegisterService } from 'src/app/service/register.service';
+import { LabelnoteService } from 'src/app/service/labelnote.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnInit {
   notes : string[];
  
 
-  constructor(private regService:RegisterService,private noteService:NoteService,private dataservice: DataService,private viewservice: ViewService,private cookieserv:CookieService,private router: Router,public dialog: MatDialog,private labelser: LabelService) 
+  constructor(private labelnoteserv:LabelnoteService,private regService:RegisterService,private noteService:NoteService,private dataservice: DataService,private viewservice: ViewService,private cookieserv:CookieService,private router: Router,public dialog: MatDialog,private labelser: LabelService) 
   { 
     this.changeView();
     // const tokens = localStorage.getItem('token');
@@ -47,7 +48,7 @@ export class DashboardComponent implements OnInit {
     this.uid = tokenPayload.id;
     this.firstname = tokenPayload.firstname;
     this.image = tokenPayload.image;
-    this.displayLabels();
+   // this.displayLabels();
     this.displayNotes();
     this.getImage();
     
@@ -212,6 +213,9 @@ export class DashboardComponent implements OnInit {
 	 }
 	}
 
-
+  setLabelName(labelid){
+    debugger
+    this.labelnoteserv.setLabelName(labelid);
+  }
 
 }

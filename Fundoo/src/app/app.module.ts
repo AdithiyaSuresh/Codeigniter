@@ -34,6 +34,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SearchdataPipe } from './searchdata.pipe';
 import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TrashComponent,
     LabelComponent,
     SearchdataPipe,
-    DisplayemptyComponent
+    DisplayemptyComponent,
+    LabelnotesComponent
   ],
   imports: [
     BrowserModule,

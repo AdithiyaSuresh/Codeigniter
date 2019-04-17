@@ -12,6 +12,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { LabelComponent } from './components/label/label.component';
 import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
+import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,8 +40,8 @@ const routes: Routes = [
             component: TrashComponent
           },
           {
-            path: 'label',
-            component: LabelComponent
+            path: 'labelnotes',
+            component: LabelnotesComponent
           },
           {
             path: 'displayempty',

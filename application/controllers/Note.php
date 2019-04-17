@@ -84,6 +84,13 @@ header("Access-Control-Allow-Headers: Authorization");
             $this->noteService->addUImageNote($image,$id);
         }
 
+        public function pinNotes()
+        {
+            $id = $_POST['id'];
+            $n = $_POST['n'];
+            $this->noteService->pinNotes($id,$n);
+        }
+
     }
         
 ?>

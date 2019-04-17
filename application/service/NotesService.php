@@ -294,5 +294,48 @@ use \Firebase\JWT\JWT;
             }
     }
 
+    public function pinNotes($id,$n)
+    {
+        if($n == 1)
+        {
+            $query = "UPDATE addnote SET pin = '1' where id = '$id'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+        }
+        elseif($n == 0)
+        {
+            $query = "UPDATE addnote SET pin = '0' where id = '$id'";
+            $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute();
+        }
+        
+        $connection = new Redis();
+        $client = $connection->connection();
+        $token = $client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
+
+        $query1 = "SELECT * from addnote Where userid ='$uid' AND pin = '1' ORDER BY id DESC ";
+        $stmt = $this->db->conn_id->prepare($query1);
+        $res = $stmt->execute();
+        $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($arr);
+
+        // $query1="SELECT email from notes where id='$id'";
+        // $statement1 = $this->connect->prepare($query1);
+        // $statement1->execute();
+        // $email = $statement1->fetch();
+        // $email=$email['email'];
+  
+        //     $reff      = new NotesControllerService();
+        //     $reff->userNotes($email);
+       
+     
+
+    }
+
+
 }
 ?>

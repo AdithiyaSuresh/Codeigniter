@@ -88,6 +88,9 @@ $route['addUImage'] = 'Register/addUImage';
 $route['getImage'] = 'Register/getImage';
 $route['addUImageNote'] = 'Note/addUImageNote';
 $route['fetchReminder'] = 'Remainder/fetchReminder';
+$route['pinNotes'] = 'Note/pinNotes';
+
+$route['get'] = 'A/get';
 
 // $route['delete']['delete']='Product/find_all';
 // $route['product/(:any)'] = 'index.php/product';
