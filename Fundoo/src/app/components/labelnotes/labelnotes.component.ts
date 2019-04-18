@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LabelnoteService } from 'src/app/service/labelnote.service';
 
 @Component({
   selector: 'app-labelnotes',
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class LabelnotesComponent implements OnInit {
 
   flag = true;
+  label;
+  labelnme;
 
-  constructor() { }
-
+  constructor(private labelnoteserv:LabelnoteService) { 
+    this.getlname();
+  }
+  
   ngOnInit() {
+    this.getlname();
+
   }
 
   flip()
@@ -24,4 +31,15 @@ export class LabelnotesComponent implements OnInit {
     this.flag = true;
   }
   
+  getlname()
+  {
+    debugger
+    this.labelnoteserv.getlname().subscribe((res:any)=>{
+      debugger
+      this.label = res;
+      this.labelnme = this.label.labelname;
+      console.log("label",this.label);
+      console.log("labelname",this.labelnme);
+    });
+  }
 }

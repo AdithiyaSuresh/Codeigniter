@@ -11,11 +11,15 @@ export class LabelnoteService {
   constructor(private http :HttpClient,private serviceurl: serviceUrl) { }
   subject = new Subject();
 
-  setLabelName(lname){
+  setLabelName(label){
 
-
-    this.subject.next(lname);
-
+    debugger;
+    this.subject.next(label);
   }
+
+  getlname(){
+    return this.subject.asObservable();
+  }
+
 
 }

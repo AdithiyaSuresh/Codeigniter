@@ -183,7 +183,7 @@
                   <div *ngFor="let n of note">
                 <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin == 1" [ngStyle]="{ 'background-color': n.color }">
                   <div>
-                      <button style=" width: 41px ;padding-top: 3px;margin-left: 173px;" class="tools" (click)=" pinNote(n.id,0)" class = "displayButton" mat-icon-button>
+                      <button (click)=" pinNote(n.id,0)" class = "displayButton pinicon" mat-icon-button>
                       <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin.svg " /></mat-icon>
         
                     </button>
@@ -352,7 +352,7 @@
             <div *ngFor="let n of note">
             <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin != 1" [ngStyle]="{ 'background-color': n.color }">
               <div>
-                  <button style=" width: 41px ;padding-top: 3px;margin-left: 173px;" class="tools" (click)=" pinNote(n.id,1)" class = "displayButton" mat-icon-button>
+                  <button mat-icon-button (click)=" pinNote(n.id,1)" class = "displayButton pinicon">
                   <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin-outline.svg " /></mat-icon>
     
                 </button>

@@ -185,6 +185,20 @@
   visibility: hidden;
   
 }
-.gridcard :hover .iconVisible,.iconVisible:hover .iconVisible{
+.gridcard :hover .iconVisible, .iconVisible:hover.iconVisible{
   visibility: visible;
+}
+
+.row .pinicon
+{
+  width: 41px ; 
+  padding-top: 3px;
+  margin-left: 173px;
+}
+
+.column .pinicon
+{
+  width: 41px ; 
+  padding-top: 3px;
+  margin-left: 573px;
 }

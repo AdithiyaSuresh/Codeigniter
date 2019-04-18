@@ -25,17 +25,30 @@
           <input role="textarea" style ="margin-top: 15px; margin-left: 10px;" matInput  placeholder="Take a note" [formControl]="noteContent" />
           
           
-              <div style = 'margin-bottom: -33px;margin-left: 7px;margin-top: 10px;'>
-              <mat-chip-list>
-                  <mat-chip  *ngIf = "timer">
-                    <mat-icon style = "margin-right: 10px;margin-left: -9px;zoom: 0.8;">timer
-                    </mat-icon>{{currentDateAndTime}}
+          <div style = 'margin-bottom: -33px;margin-left: 7px;margin-top: 10px;'>
+            <mat-chip-list>
+                <mat-chip  *ngIf = "timer">
+                  <mat-icon style = "margin-right: 10px;margin-left: -9px;zoom: 0.8;">timer
+                  </mat-icon>{{currentDateAndTime}}
                     <button mat-icon-button (click) = "closeDate()">
                       <mat-icon style = "zoom: 0.8;" ><img src = "../../assets/img/fundoAssests/close.svg"/>
                       </mat-icon></button></mat-chip>
               </mat-chip-list>
             </div>
-            
+            <div  *ngIf="labelnme != 'undefined' && labelnme != null && labelnme != ''">
+              <mat-chip-list>
+                <button mat-icon-button>
+                  <mat-chip style="background-color: rgba(0,0,0,0.08);margin-top: 35px;margin-left: 11px;"> 
+                  {{labelnme}}
+                  <button
+                mat-icon-button class="remicon" (click)="labelname =null"><mat-icon style="margin-left:25px; font-size: 17px;" >close</mat-icon></button>
+                </mat-chip>
+                  
+                </button>
+              </mat-chip-list>
+        
+        
+            </div>
            
             <button id="Remaind" [matMenuTriggerFor]="remainder" matTooltip="Remind me" mat-button style='padding-left: 0px;margin-bottom: -80px;margin-top: 30px;'>
               <mat-icon > <img src="../../assets/img/fundoAssests/remainder.svg" /></mat-icon>

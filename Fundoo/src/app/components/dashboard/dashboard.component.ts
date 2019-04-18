@@ -213,9 +213,9 @@ export class DashboardComponent implements OnInit {
 	 }
 	}
 
-  setLabelName(labelid){
+  setLabelName(label){
     debugger
-    this.labelnoteserv.setLabelName(labelid);
+    this.labelnoteserv.setLabelName(label);
   }
 
 }
