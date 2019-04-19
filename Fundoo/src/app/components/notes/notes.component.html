@@ -177,9 +177,13 @@
 
      
           <div style="margin-left: 880px;">
+            
               <mat-grid-list cols = "4" rowHeight="3:1" class="noteList">
-    
-                <div fxLayout="{{layout}}" fxLayoutAlign="center center"  cdkDropList (cdkDropListDropped)=drop($event) >
+                  
+                <div fxLayout="{{layout}}" fxLayoutAlign="center start"  cdkDropList (cdkDropListDropped)=drop($event) >
+                    <div>
+                        <span>Pinned</span>
+                      </div>
                   <div *ngFor="let n of note">
                 <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin == 1" [ngStyle]="{ 'background-color': n.color }">
                   <div>

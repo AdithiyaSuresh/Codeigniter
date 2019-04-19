@@ -101,6 +101,7 @@
         <button matTooltip="Collaborator" mat-icon-button  >
           <mat-icon > <img src="../../assets/img/fundoAssests/person.svg" /></mat-icon>
         </button> 
+        
         <button matTooltip="Change color" [matMenuTriggerFor]="buttonMenu" mat-icon-button >
           <mat-icon > <img src="../../assets/img/fundoAssests/colorlens.svg" /></mat-icon>
         </button> 
@@ -135,6 +136,7 @@
       <button matTooltip="More" mat-icon-button [matMenuTriggerFor]="auth" >
         <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
       </button>
+      
       <mat-menu #auth="matMenu">
           <button (click)="deleteNote(n.id) ;openSnackbar('Moved to trash')" mat-menu-item>Delete note</button> 
           <button mat-menu-item>Add label</button>
