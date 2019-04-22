@@ -40,9 +40,9 @@
               <button mat-icon-button class="btnclose">
                 <mat-icon class="remicon">label</mat-icon>
               </button>
-             <span style = "margin-left: 11px;">{{item.labelname}}</span>
+             <span style = "margin-left: 11px;">{{item.label}}</span>
              
-              <button mat-icon-button class="btnclose">
+              <button (click)="deleteLabel(item.id)" mat-icon-button class="btnclose">
                 <mat-icon >delete_outline</mat-icon>
               </button>
               

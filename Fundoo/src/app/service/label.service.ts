@@ -32,4 +32,20 @@ export class LabelService {
     return this.http.post(this.serviceurl.host+this.serviceurl.getLabel,dlabel);
   }
 
+  deleteLabel(id)
+  {
+    let del = new FormData();
+    del.append("id",id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.deletelname,del);
+  }
+
+  addLabelToNote(idmodel)
+  {
+    debugger;
+    let addltn = new FormData();
+    addltn.append('note_id',idmodel.note_id);
+    addltn.append('label_id',idmodel.label_id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.addLtoN,addltn);
+  }
+
 }

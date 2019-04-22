@@ -43,12 +43,15 @@ export class LabelComponent implements OnInit {
     }
 
     debugger;
-    let label = this.labelser.setLabel(this.uid,this.model);
-    
-    label.subscribe((res: any) => {
-      this.displayLabel();
-      this.labelname.setValue('');
-    });
+    if(this.labelname.value != "")
+    {
+      let label = this.labelser.setLabel(this.uid,this.model);
+      
+      label.subscribe((res: any) => {
+        this.displayLabel();
+        this.labelname.setValue('');
+      });
+    }
     
   }
 
@@ -61,5 +64,17 @@ export class LabelComponent implements OnInit {
     })
   }
 
+  deleteLabel(id)
+  {
+    debugger;
+    let dell = this.labelser.deleteLabel(id);
+
+    dell.subscribe((res:any)=>{
+      if(res.status == "200")
+      {
+        this.displayLabel();
+      }
+    });
+  }
 
 }

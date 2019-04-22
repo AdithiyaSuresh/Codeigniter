@@ -89,6 +89,8 @@ $route['getImage'] = 'Register/getImage';
 $route['addUImageNote'] = 'Note/addUImageNote';
 $route['fetchReminder'] = 'Remainder/fetchReminder';
 $route['pinNotes'] = 'Note/pinNotes';
+$route['deletelname'] = 'Label/deletelname';
+$route['addLtoN'] = 'Label/addLtoN';
 
 $route['get'] = 'A/get';
 

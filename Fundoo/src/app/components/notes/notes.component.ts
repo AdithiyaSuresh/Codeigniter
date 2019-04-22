@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { NoteService } from 'src/app/service/note.service';
 import decode from 'jwt-decode';
@@ -10,6 +10,7 @@ import { MatDialog, MatIconRegistry, MatDialogConfig, MatSnackBar, MatSnackBarCo
 import { DomSanitizer } from '@angular/platform-browser';
 import { EditnotesComponent } from '../editnotes/editnotes.component';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { LabelService } from 'src/app/service/label.service';
 
 @Component({
   selector: 'app-notes',
@@ -25,6 +26,7 @@ export class NotesComponent implements OnInit {
   note: string[];
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
+  labelnme =  new FormControl('', [Validators.required, Validators.required]);
   chooseDate = new FormControl();
   card: any;
   currentDateAndTime: string;
@@ -39,8 +41,9 @@ export class NotesComponent implements OnInit {
   image: string;
   uid;
   notes: [];
+  labels: string[];
 
-  constructor(private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar ) {
+  constructor(private labelser: LabelService,private noteService:NoteService,private viewservice :ViewService,public dialog: MatDialog,iconRegistry: MatIconRegistry,sanitizer: DomSanitizer,private snackBar: MatSnackBar ) {
 
       this.viewservice.getView().subscribe((res=>{
         this.view =res;
@@ -55,6 +58,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.displayNotes();
+    this.displayLabels();
     this.timer = false;
 
       this.viewservice.getView().subscribe((res=>{
@@ -86,9 +90,29 @@ export class NotesComponent implements OnInit {
       obs.subscribe((data: any) => {
         debugger;
         this.note = data as string[];
+        console.log(this.note);
       });
   
   }
+
+  close() {
+    this.model = {
+      "labelname": this.labelnme.value
+    }
+
+    debugger;
+    if(this.labelnme.value != "")
+    {
+      let label = this.labelser.setLabel(this.uid,this.model);
+    
+      label.subscribe((res: any) => {
+        this.displayLabels();
+        this.labelnme.setValue('');
+      });
+    }
+    
+  }
+
 
   addNote()
   {
@@ -571,6 +595,33 @@ public base64textString;
 			// 	// obs.unsubscribe();
 			// });
 		
-	}
+  }
+  
+  displayLabels() {
+    debugger;
+    let fetchl = this.labelser.displayLabels(this.uid);
+
+    fetchl.subscribe((res: any) => {
+      debugger
+
+      this.labels = res;
+    })
+  }
+
+  addLabelToNote(item,n)
+  {
+    debugger
+    this.model = {
+      "note_id":n.id,
+      "label_id":item.id
+    }
+
+    let addln = this.labelser.addLabelToNote(this.model);
+
+    addln.subscribe((res: any) => {
+      debugger
+    })
+
+  }
 
 }

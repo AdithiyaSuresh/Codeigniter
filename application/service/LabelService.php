@@ -58,4 +58,50 @@ class LabelService extends CI_Controller
         print json_encode($arr);
         return $arr;
     }
+
+    public function deletelname($id)
+    {
+        $query = "DELETE FROM label WHERE id = '$id'";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+        if ($res) {
+            $data = array(
+                "status" => "200",
+            );
+            print json_encode($data);
+        } else {
+            $data = array(
+                "status" => "204",
+            );
+            print json_encode($data);
+            return "204";
+        }
+    }
+
+    public function addLtoN($note_id,$label_id)
+    {
+        $query = "INSERT into label_note (note_id,label_id) values ('$note_id','$label_id')";
+
+        $stmt = $this->db->conn_id->prepare($query);
+            $res = $stmt->execute($data);
+            // return $res;
+
+            if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
+    }
 }

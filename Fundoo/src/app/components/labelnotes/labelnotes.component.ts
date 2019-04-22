@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LabelnoteService } from 'src/app/service/labelnote.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-labelnotes',
@@ -11,6 +12,8 @@ export class LabelnotesComponent implements OnInit {
   flag = true;
   label;
   labelnme;
+  title = new FormControl('', [Validators.required, Validators.required]);
+  noteContent = new FormControl('', [Validators.required, Validators.required]);
 
   constructor(private labelnoteserv:LabelnoteService) { 
     this.getlname();
@@ -37,7 +40,7 @@ export class LabelnotesComponent implements OnInit {
     this.labelnoteserv.getlname().subscribe((res:any)=>{
       debugger
       this.label = res;
-      this.labelnme = this.label.labelname;
+      this.labelnme = this.label.label;
       console.log("label",this.label);
       console.log("labelname",this.labelnme);
     });

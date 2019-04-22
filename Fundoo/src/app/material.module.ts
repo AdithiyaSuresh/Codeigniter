@@ -6,7 +6,10 @@ import {
 
   MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatFormFieldModule, 
   MatSidenavModule, MatListModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule, MatTooltipModule, MatChipsModule, MatSnackBarModule, MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material';
-import {DragDropModule} from '@angular/cdk/drag-drop'; 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
+import {MatCheckboxModule} from '@angular/material/checkbox';  
 
 @NgModule({
   declarations: [],
@@ -30,7 +33,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatChipsModule,
     MatSnackBarModule,
-    DragDropModule
+    DragDropModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
@@ -52,7 +56,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatChipsModule,
     MatSnackBarModule,
-    DragDropModule  
+    DragDropModule,
+    MatCheckboxModule
     
   ],
 
