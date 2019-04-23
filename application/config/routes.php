@@ -91,6 +91,7 @@ $route['fetchReminder'] = 'Remainder/fetchReminder';
 $route['pinNotes'] = 'Note/pinNotes';
 $route['deletelname'] = 'Label/deletelname';
 $route['addLtoN'] = 'Label/addLtoN';
+$route['labelNoteDis'] = 'Label/labelNoteDis';
 
 $route['get'] = 'A/get';
 

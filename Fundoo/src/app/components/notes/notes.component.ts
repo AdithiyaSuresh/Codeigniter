@@ -95,9 +95,10 @@ export class NotesComponent implements OnInit {
   
   }
 
-  close() {
+  close(id) {
     this.model = {
-      "labelname": this.labelnme.value
+      "labelname": this.labelnme.value,
+      "id": id
     }
 
     debugger;
@@ -619,6 +620,7 @@ public base64textString;
     let addln = this.labelser.addLabelToNote(this.model);
 
     addln.subscribe((res: any) => {
+      this.displayNotes();
       debugger
     })
 

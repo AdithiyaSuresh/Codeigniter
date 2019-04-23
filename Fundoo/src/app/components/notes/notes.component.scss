@@ -216,3 +216,8 @@
     font-family: Roboto,Arial,sans-serif;
     font-weight: 500;
 }
+
+.mat-card-image {
+  width: calc(100% + 47px);
+  margin: 0 -16px 3px -16px;
+}

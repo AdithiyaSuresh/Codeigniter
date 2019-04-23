@@ -27,8 +27,9 @@ class Label extends CI_Controller
     public function addLabels(){
          $uid = $_POST['uid']; 
          $label = $_POST['label'];
+         $noteid = $_POST['noteid'];
         //  $em = $this->doctrine->em;
-         $this->labelserv->addLabels($uid,$label);
+         $this->labelserv->addLabels($uid,$label,$noteid);
 
         // $connection = new Redi();
         // $client = $connection->connection();
@@ -70,5 +71,11 @@ class Label extends CI_Controller
         $note_id = $_POST['note_id'];
         $label_id = $_POST['label_id'];
         $this->labelserv->addLtoN($note_id,$label_id);
+    }
+
+    public function labelNoteDis()
+    {
+        $id = $_POST['id'];
+        $this->labelserv->labelNoteDis($id);
     }
 }

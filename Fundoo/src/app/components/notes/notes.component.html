@@ -177,7 +177,7 @@
                         </button>
                         </div>
                         <div *ngFor="let item of labels" >
-                        <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span>{{item.label}}</span></button>
+                        <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span style="margin-left: 15px;">{{item.label}}</span></button>
                         </div>
                       </mat-menu>
   
@@ -213,14 +213,17 @@
                       <button (click)=" pinNote(n.id,0)" class = "displayButton pinicon" mat-icon-button>
                       <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin.svg " /></mat-icon>
         
-                    </button>
-                    <img style = "margin-left: -25px;margin-top: -37px;" mat-card-image src= "{{n.image}}" >
+                      </button>
+                    <img style = "margin-left: -34px;margin-top: -45px;" mat-card-image src= "{{n.image}}" >
                   
                   </div>
-                    <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "zoom: 0.8;margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list></p>
-                  <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
-                    <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
-                  </div> -->
+                    <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;">
+                      <mat-chip-list >
+                        <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
+                        <mat-chip>{{n.label}}</mat-chip>
+                      </mat-chip-list>
+                      </p>
+                        
                   </div>
                   <div style="margin-left: -31px;margin-right: -4px;margin-top: -18px;">
                     <button class = "displayButton" matTooltip="Remind me" mat-icon-button [matMenuTriggerFor]="remainder" >
@@ -349,15 +352,38 @@
                   <button class = "displayButton" matTooltip="More" mat-icon-button [matMenuTriggerFor]="auth" >
                     <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
                   </button>
-                  <mat-menu #auth="matMenu">
+                  <!-- <mat-menu #auth="matMenu">
                       <button (click)="deleteNote(n.id) ;openSnackbar('Moved to trash')" mat-menu-item>Delete note</button> 
                       <button mat-menu-item>Add label</button>
                       <button mat-menu-item>Add drawing</button>
                       <button mat-menu-item>Make a copy</button>
                       <button mat-menu-item>Show checkboxes</button>
                       <button mat-menu-item>Copy to Google Docs</button>
-                  </mat-menu>
+                  </mat-menu> -->
     
+                  <mat-menu #auth="matMenu">
+                      <button (click)="deleteNote(n.id) ;openSnackbar('Moved to trash')" mat-menu-item>Delete note</button> 
+                      <button mat-menu-item [matMenuTriggerFor]="label" >Add label</button>
+                      <button mat-menu-item>Add drawing</button>
+                      <button mat-menu-item>Make a copy</button>
+                      <button mat-menu-item>Show checkboxes</button>
+                      <button mat-menu-item>Copy to Google Docs</button>
+    
+                      <mat-menu  #label="matMenu">
+                          <button mat-menu-item>Label note</button>
+                          <div>
+                          <input matInput placeholder="Enter label name" [formControl] = "labelnme" >
+                          <button mat-icon-button class="btnclose" (click)="close(n.id)">
+                            <mat-icon>check</mat-icon>
+                          </button>
+                          </div>
+                          <div *ngFor="let item of labels" >
+                          <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span style="margin-left: 15px;">{{item.label}}</span></button>
+                          </div>
+                        </mat-menu>
+    
+                  </mat-menu>
+
                 </div>
     
                 </mat-card>
@@ -376,7 +402,7 @@
               <div class="pinclass">
                   <span>OTHERS</span>
                 </div>
-            <div fxLayout="{{layout}}" fxLayoutAlign="center center"  cdkDropList (cdkDropListDropped)=drop($event)>
+            <div fxLayout="{{layout}}" fxLayoutAlign="center start"  cdkDropList (cdkDropListDropped)=drop($event)>
              
             <div *ngFor="let n of note">
             <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin != 1" [ngStyle]="{ 'background-color': n.color }">
@@ -385,13 +411,16 @@
                   <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin-outline.svg " /></mat-icon>
     
                 </button>
-                <img style = "margin-left: -25px;margin-top: -37px;" mat-card-image src= "{{n.image}}" >
+                <img style = "margin-left: -34px;margin-top: -45px;" mat-card-image src= "{{n.image}}" >
               
               </div>
                 <div (click) = "openDialog(n)" >
                   <p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}
-                    <p style="margin-top: -10px;margin-left: -21px;"><mat-chip-list [ngClass] = "n.date != '' ? 'dateVisible':'dateInvisible'"><mat-chip><mat-icon style = "zoom: 0.8;margin-right: 10px;margin-left: -9px;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip></mat-chip-list>
-                    <mat-chip-list><mat-chip></mat-chip></mat-chip-list></p>
+                    <p style="margin-top: -10px;margin-left: -21px;">
+                    <mat-chip-list>
+                      <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
+                      <mat-chip>{{n.label}}</mat-chip>
+                    </mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
               </div> -->
@@ -540,7 +569,7 @@
                       </button>
                       </div>
                       <div *ngFor="let item of labels" >
-                      <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span>{{item.label}}</span></button>
+                      <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span style="margin-left: 15px;">{{item.label}}</span></button>
                       </div>
                     </mat-menu>
 

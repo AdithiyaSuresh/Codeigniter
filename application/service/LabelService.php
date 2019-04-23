@@ -14,7 +14,7 @@ class LabelService extends CI_Controller
     {
         parent::__construct();
     }
-    public function addLabels($uid,$label)
+    public function addLabels($uid,$label,$noteid)
     {
         $connection = new Redis();
         $client = $connection->connection();
@@ -103,5 +103,24 @@ class LabelService extends CI_Controller
                 return "204";
 
             }
+    }
+
+    public function labelNoteDis($id)
+    {
+        $query = "SELECT n.id,n.title,n.noteContent,n.date,n.color,n.image,n.pin,l.label from addnote n JOIN label_note ln ON ln.note_id=n.id JOIN label l on ln.label_id=l.id where l.id=$id";
+        $stmt = $this->db->conn_id->prepare($query);
+        $res = $stmt->execute();
+        $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($arr as $notes)
+        {
+            $title = $notes['title'];
+            $noteContent = $notes['noteContent'];
+            $date = $notes['date'];
+            $color = $notes['color'];
+            $image = $notes['image'];
+            $label = $notes['label'];
+        }
+
+        print json_encode($arr);
     }
 }

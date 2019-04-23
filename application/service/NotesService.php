@@ -83,7 +83,7 @@ use \Firebase\JWT\JWT;
         $payload = JWT::decode($token,$secret_key,$arr);
         $id = $payload->id;
 
-        $query = "SELECT n.id,n.title,n.noteContent,n.date,n.color,n.image,n.pin,l.label from addnote n Left JOIN label_note ln ON ln.note_id=n.id left JOIN label l on ln.label_id=l.id where n.userid = '$id' and archive = 0 and trash = 0";
+        $query = "SELECT n.id,n.userid,n.title,n.noteContent,n.date,n.color,n.image,n.pin, l.label from addnote n Left JOIn label_note ln ON ln.note_id=n.id left JOIN label l on ln.label_id=l.id where n.userid = '$id' and archive = 0 and trash = 0 ORDER BY n.id DESC";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);

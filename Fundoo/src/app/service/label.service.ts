@@ -14,6 +14,7 @@ export class LabelService {
     let label = new FormData();
     label.append("uid",id);
     label.append("label",model.labelname);
+    label.append("noteid",model.id);
     return this.http.post(this.serviceurl.host+this.serviceurl.addLabels,label);
   }
 
@@ -46,6 +47,14 @@ export class LabelService {
     addltn.append('note_id',idmodel.note_id);
     addltn.append('label_id',idmodel.label_id);
     return this.http.post(this.serviceurl.host+this.serviceurl.addLtoN,addltn);
+  }
+
+  displayLabelNote(id)
+  {
+    debugger;
+    let labelnote = new FormData();
+    labelnote.append('id',id);
+    return this.http.post(this.serviceurl.host+this.serviceurl.labelNoteDis,labelnote);
   }
 
 }

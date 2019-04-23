@@ -14,7 +14,9 @@ class ArchiveService extends CI_Controller
     {
         parent::__construct();
     }
-    public function archivednotes($uid){
+
+    public function archivednotes($uid)
+    {
 
         $connection = new Redis();
         $client = $connection->connection();
