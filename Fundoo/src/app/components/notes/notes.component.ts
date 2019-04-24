@@ -27,6 +27,8 @@ export class NotesComponent implements OnInit {
   title = new FormControl('', [Validators.required, Validators.required]);
   noteContent = new FormControl('', [Validators.required, Validators.required]);
   labelnme =  new FormControl('', [Validators.required, Validators.required]);
+  labelnme1 = new FormControl('', [Validators.required, Validators.required]);
+  labelToSend;
   chooseDate = new FormControl();
   card: any;
   currentDateAndTime: string;
@@ -79,6 +81,35 @@ export class NotesComponent implements OnInit {
     this.flag = !this.flag;
   }
 
+  noteLabel(n)
+  {
+    debugger;
+    if(n == '01')
+    {
+      this.labelToSend = this.labelnme1.value;
+
+      this.model = {
+        "labelname": this.labelnme1.value
+      }
+
+      if(this.labelToSend !='')
+      {
+        let labeln = this.labelser.setLabel(this.uid,this.model);
+      
+        labeln.subscribe((res: any) => {
+          this.displayLabels();
+          this.labelnme1.setValue('');
+        });
+
+      }
+    }
+    else
+    {
+      this.labelToSend = n.label;
+    }
+  
+  }
+
   displayNotes()
   {
     debugger;
@@ -95,10 +126,10 @@ export class NotesComponent implements OnInit {
   
   }
 
-  close(id) {
+  close(n) {
     this.model = {
       "labelname": this.labelnme.value,
-      "id": id
+      "id": n.id
     }
 
     debugger;
@@ -114,7 +145,7 @@ export class NotesComponent implements OnInit {
     
   }
 
-
+  respl;
   addNote()
   {
     debugger;
@@ -126,7 +157,8 @@ export class NotesComponent implements OnInit {
           "email":this.email,
           "date":this.currentDateAndTime,
           "color":this.color,
-          "image":this.image
+          "image":this.image,
+          "labelToSend":this.labelToSend
         }
 
       if(this.title.value != "" || this.noteContent.value != "" || this.currentDateAndTime != undefined && this.currentDateAndTime != "")
@@ -135,8 +167,9 @@ export class NotesComponent implements OnInit {
         
         obj.subscribe((res: any) => 
         {
+          this.respl = res;
           debugger;
-          console.log(res.message);
+          console.log("current",this.respl.message);
 
           if (res.message == "200") 
           {

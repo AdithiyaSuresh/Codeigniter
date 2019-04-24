@@ -3,7 +3,9 @@
 include "JWT.php";
 include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
 include "/var/www/html/codeigniter/application/service/Redis.php";
-
+include "/var/www/html/codeigniter/application/service/LabelService.php";
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Authorization");
 
 use \Firebase\JWT\JWT;
 
@@ -16,7 +18,7 @@ use \Firebase\JWT\JWT;
         }
 
 
-    public function addNote($title,$noteContent,$email,$date,$color,$image)
+    public function addNote($title,$noteContent,$email,$date,$color,$image,$label)
     {
         $data = [
             'title' => $title,
@@ -24,7 +26,8 @@ use \Firebase\JWT\JWT;
             'email' => $email,
             'date' => $date,
             'color' => $color,
-            'image' => $image
+            'image' => $image,
+            'label' => $label
         ];
         // $client = new Predis\Client(array(
         //     'host' => '127.0.0.1',
@@ -59,6 +62,24 @@ use \Firebase\JWT\JWT;
                     "message" => "200",
                 );
                 print json_encode($result);
+
+                if($label != 'undefined')
+                {
+                    $query = "SELECT LAST_INSERT_ID()";
+                    $statement = $this->db->conn_id->prepare($query);
+                    $statement->execute();
+                    $arr = $statement->fetch(PDO::FETCH_ASSOC);
+                    $noteid = $arr['LAST_INSERT_ID()'];
+
+                    $query = "SELECT id from label WHERE label = '$label'";
+                    $statement = $this->db->conn_id->prepare($query);
+                    $statement->execute();
+                    $arr = $statement->fetch(PDO::FETCH_ASSOC);
+                    $labelid = $arr['id'];
+                    $labelobj = new LabelService();
+                    $labelobj->addLtoN($noteid,$labelid);
+                }
+
                 return "200";
             } 
             else 

@@ -26,7 +26,8 @@ header("Access-Control-Allow-Headers: Authorization");
             $date = $_POST['date'];
             $color = $_POST['color'];
             $image = $_POST['image'];
-            $res =  $this->noteService->addNote($title,$noteContent,$email,$date,$color,$image);
+            $label = $_POST['label'];
+            $res =  $this->noteService->addNote($title,$noteContent,$email,$date,$color,$image,$label);
             return $res;
         }
          

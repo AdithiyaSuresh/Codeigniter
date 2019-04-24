@@ -160,6 +160,7 @@
                 <button id="More" matTooltip="More" mat-icon-button [matMenuTriggerFor]="auth" style='padding-left: 30px;padding-right: 30px;margin-bottom: -80px;margin-top: 20px;'>
                   <mat-icon> <img src="../../assets/img/fundoAssests/more.svg" /></mat-icon>
                 </button> 
+                
                 <mat-menu #auth="matMenu">
                     <button (click)="deleteNote(n)" mat-menu-item>Delete note</button> 
                     <button mat-menu-item [matMenuTriggerFor]="label1">Add label</button>
@@ -171,13 +172,13 @@
                     <mat-menu  #label1="matMenu">
                         <button mat-menu-item>Label note</button>
                         <div>
-                        <input matInput placeholder="Enter label name" [formControl] = "labelnme" >
-                        <button mat-icon-button class="btnclose" (click)="close()">
-                          <mat-icon>check</mat-icon>
+                        <input matInput placeholder="Enter label name" [formControl] = "labelnme1" >
+                        <button style = "margin-left: -43px;top: 9px;" mat-icon-button class="btnclose" (click)="noteLabel(01)">
+                          <mat-icon style = "zoom: 0.8;">search</mat-icon>
                         </button>
                         </div>
-                        <div *ngFor="let item of labels" >
-                        <button mat-menu-item ><mat-checkbox (click) = "addLabelToNote(item,n)"></mat-checkbox><span style="margin-left: 15px;">{{item.label}}</span></button>
+                        <div *ngFor="let item of labels">
+                        <button mat-menu-item ><mat-checkbox (click) = "noteLabel(item)"></mat-checkbox><span style="margin-left: 15px;">{{item.label}}</span></button>
                         </div>
                       </mat-menu>
   
@@ -220,7 +221,7 @@
                     <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;">
                       <mat-chip-list >
                         <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
-                        <mat-chip>{{n.label}}</mat-chip>
+                        <mat-chip *ngIf = "n.label != null ">{{n.label}}</mat-chip>
                       </mat-chip-list>
                       </p>
                         
@@ -373,8 +374,8 @@
                           <button mat-menu-item>Label note</button>
                           <div>
                           <input matInput placeholder="Enter label name" [formControl] = "labelnme" >
-                          <button mat-icon-button class="btnclose" (click)="close(n.id)">
-                            <mat-icon>check</mat-icon>
+                          <button style = "margin-left: -43px;top: 9px;" mat-icon-button class="btnclose" (click)="close(n)">
+                            <mat-icon style = "zoom: 0.8;">search</mat-icon>
                           </button>
                           </div>
                           <div *ngFor="let item of labels" >
@@ -419,7 +420,7 @@
                     <p style="margin-top: -10px;margin-left: -21px;">
                     <mat-chip-list>
                       <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
-                      <mat-chip>{{n.label}}</mat-chip>
+                      <mat-chip *ngIf = "n.label != null ">{{n.label}}</mat-chip>
                     </mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>
@@ -564,8 +565,8 @@
                       <button mat-menu-item>Label note</button>
                       <div>
                       <input matInput placeholder="Enter label name" [formControl] = "labelnme" >
-                      <button mat-icon-button class="btnclose" (click)="close()">
-                        <mat-icon>check</mat-icon>
+                      <button style = "margin-left: -43px;top: 9px;" mat-icon-button class="btnclose" (click)="close(n)">
+                        <mat-icon style = "zoom: 0.8;">search</mat-icon>
                       </button>
                       </div>
                       <div *ngFor="let item of labels" >

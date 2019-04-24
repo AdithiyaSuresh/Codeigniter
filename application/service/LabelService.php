@@ -1,10 +1,13 @@
 
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Authorization");
 defined('BASEPATH') or exit('No direct script access allowed');
-include "JWT.php";
+include_once "JWT.php";
 include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
-include "/var/www/html/codeigniter/application/service/Redis.php";
+include_once "/var/www/html/codeigniter/application/service/Redis.php";
+
 
 use \Firebase\JWT\JWT;
 
@@ -14,6 +17,7 @@ class LabelService extends CI_Controller
     {
         parent::__construct();
     }
+
     public function addLabels($uid,$label,$noteid)
     {
         $connection = new Redis();
@@ -27,6 +31,18 @@ class LabelService extends CI_Controller
         $query = "INSERT into label (label,userid) values ('$label','$uid')";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
+
+        if($noteid != 'undefined')
+        {
+            $query = "SELECT id from label WHERE label = '$label'";
+            $statement = $this->db->conn_id->prepare($query);
+            $statement->execute();
+            $arr = $statement->fetch(PDO::FETCH_ASSOC);
+            $labelid = $arr['id'];
+            $this->addLtoN($noteid,$labelid);
+
+        }
+
             if ($res) {
             $data = array(
                 "status" => "200",
@@ -103,6 +119,7 @@ class LabelService extends CI_Controller
                 return "204";
 
             }
+            return $result;
     }
 
     public function labelNoteDis($id)

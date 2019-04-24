@@ -20,6 +20,7 @@ export class NoteService {
     addNote.append('date',reg.date);
     addNote.append('color',reg.color);
     addNote.append('image',reg.image);
+    addNote.append('label',reg.labelToSend);
     return this.http.post(this.serviceurl.host+this.serviceurl.note,addNote);
   }
 
