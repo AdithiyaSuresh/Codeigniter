@@ -92,6 +92,14 @@ header("Access-Control-Allow-Headers: Authorization");
             $this->noteService->pinNotes($id,$n);
         }
 
+
+        public function closeLabel()
+        {
+            $noteid = $_POST['noteid'];
+            $label = $_POST['label'];
+            $this->noteService->closeLabel($noteid,$label);
+        }
+
     }
         
 ?>

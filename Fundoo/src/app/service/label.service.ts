@@ -33,10 +33,12 @@ export class LabelService {
     return this.http.post(this.serviceurl.host+this.serviceurl.getLabel,dlabel);
   }
 
-  deleteLabel(id)
+  deleteLabel(id,flag,updatevalue)
   {
     let del = new FormData();
     del.append("id",id);
+    del.append("flag",flag);
+    del.append("updatevalue",updatevalue);
     return this.http.post(this.serviceurl.host+this.serviceurl.deletelname,del);
   }
 

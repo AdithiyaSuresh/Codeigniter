@@ -34,4 +34,5 @@ export class serviceUrl
     public deletelname = "codeigniter/deletelname";
     public addLtoN = "codeigniter/addLtoN";
     public labelNoteDis = "codeigniter/labelNoteDis";
+    public closeLabel = "codeigniter/closeLabel";
 }

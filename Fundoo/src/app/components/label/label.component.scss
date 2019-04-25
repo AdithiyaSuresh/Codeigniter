@@ -27,3 +27,23 @@ mat-divider {
     /* width: 323px; */
     margin-left: -25px;
 }
+
+.labelupdate
+{
+    visibility: visible;
+}
+
+.labeldelete
+{
+    visibility: hidden;
+}
+
+.label:hover .labelupdate, .labelupdate:hover
+{
+    visibility: hidden;
+}
+
+.label:hover .labeldelete, .labeldelete:hover
+{
+    visibility: visible;
+}

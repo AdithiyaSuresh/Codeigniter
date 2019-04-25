@@ -652,9 +652,38 @@ public base64textString;
 
     let addln = this.labelser.addLabelToNote(this.model);
 
-    addln.subscribe((res: any) => {
-      this.displayNotes();
-      debugger
+    addln.subscribe((resaln:any)=>{
+      console.log("addlabeltonote",resaln);
+      if (resaln.message == "200") 
+        {
+          this.displayNotes();
+        } 
+        else 
+        {
+          
+        }
+    })
+
+  }
+
+  closeLabel(n)
+  {
+    this.model = {
+      "id":n.id,
+      "label":n.label
+    }
+    let closel = this.noteService.closeLabel(this.model);
+
+    closel.subscribe((resdlfn:any)=>{
+      console.log("deletelabeltonote",resdlfn);
+      if (resdlfn.message == "200") 
+        {
+          this.displayNotes();
+        } 
+        else 
+        {
+          
+        }
     })
 
   }

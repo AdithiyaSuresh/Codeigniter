@@ -96,21 +96,12 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.pinNotes,data);
   }
   
-  // /**
-	//  * @method dragAndDrop()
-	//  * @return observable data
-	//  * @param prevId
-	//  * @param currId
-	//  * @description Function to drag and drop the card
-	//  */
-  // dragAndDrop(diff, currId, direction, email) 
-  // {
-	// 	let dragAndDropData = new FormData();
-	// 	dragAndDropData.append("diff", diff);
-	// 	dragAndDropData.append("currId", currId);
-	// 	dragAndDropData.append("direction", direction);
-	// 	dragAndDropData.append("email", email);
-  //   return this.http.post(this.serviceurl.host+this.serviceurl.pinNotes,dragAndDropData);
-  // }
+  closeLabel(labelinf)
+  {
+    let labelin = new FormData();
+    labelin.append("noteid",labelinf.id);
+    labelin.append("label",labelinf.label);
+    return this.http.post(this.serviceurl.host+this.serviceurl.closeLabel,labelin);
+  }
   
 }

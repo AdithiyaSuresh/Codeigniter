@@ -92,6 +92,7 @@ $route['pinNotes'] = 'Note/pinNotes';
 $route['deletelname'] = 'Label/deletelname';
 $route['addLtoN'] = 'Label/addLtoN';
 $route['labelNoteDis'] = 'Label/labelNoteDis';
+$route['closeLabel'] = 'Note/closeLabel';
 
 $route['get'] = 'A/get';
 

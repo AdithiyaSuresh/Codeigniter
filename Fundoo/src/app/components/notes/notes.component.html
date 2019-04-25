@@ -220,8 +220,10 @@
                   </div>
                     <div (click) = "openDialog(n)" ><p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}<p style="margin-top: -10px;margin-left: -21px;">
                       <mat-chip-list >
-                        <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
-                        <mat-chip *ngIf = "n.label != null ">{{n.label}}</mat-chip>
+                        <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;opacity: 0.63;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
+                        <mat-chip *ngIf = "n.label != null ">{{n.label}}<button mat-icon-button (click) = "closeLabel(n)">
+                            <mat-icon style = "zoom: 0.8;opacity: 0.63;" ><img src = "../../assets/img/fundoAssests/close.svg"/>
+                            </mat-icon></button></mat-chip>
                       </mat-chip-list>
                       </p>
                         
@@ -419,8 +421,12 @@
                   <p style="margin-top: 10px;margin-left: -17px;word-break: break-all;">{{n.title}}</p><p style="font-size: 20px;margin-left: -17px;word-break: break-all;">{{n.noteContent}}
                     <p style="margin-top: -10px;margin-left: -21px;">
                     <mat-chip-list>
-                      <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
-                      <mat-chip *ngIf = "n.label != null ">{{n.label}}</mat-chip>
+                      <mat-chip *ngIf = "n.date != ''"><mat-icon style = "zoom: 0.8;">timer</mat-icon>{{n.date}}<button mat-icon-button (click) = "setColor(n,'empty','reminder')"><mat-icon style = "zoom: 0.8;opacity: 0.63;"><img src = "../../assets/img/fundoAssests/close.svg"/></mat-icon></button></mat-chip>
+                      <mat-chip *ngIf = "n.label != null ">{{n.label}}
+                          <button mat-icon-button (click) = "closeLabel(n)">
+                              <mat-icon style = "zoom: 0.8;opacity: 0.63;" ><img src = "../../assets/img/fundoAssests/close.svg"/>
+                              </mat-icon></button>
+                      </mat-chip>
                     </mat-chip-list></p>
               <!-- <div style = 'margin-bottom: -5px;margin-top: -22px;margin-left: -5px;'>
                 <button  mat-icon-button *ngIf = "timer"><mat-icon>timer</mat-icon>{{currentDateAndTime}}</button>

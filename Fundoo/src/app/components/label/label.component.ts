@@ -15,6 +15,7 @@ export class LabelComponent implements OnInit {
   labels: string[];
 
   labelname = new FormControl('', [Validators.required, Validators.required]);
+  updateLabel = new FormControl('', [Validators.required, Validators.required]);
 
   constructor(public dialogRef: MatDialogRef<LabelComponent>,public dialog: MatDialog,@Inject(MAT_DIALOG_DATA) public data: any, private labelser: LabelService) 
   {
@@ -64,10 +65,11 @@ export class LabelComponent implements OnInit {
     })
   }
 
-  deleteLabel(id)
+  deleteLabel(id,flag)
   {
+
     debugger;
-    let dell = this.labelser.deleteLabel(id);
+    let dell = this.labelser.deleteLabel(id,flag,this.updateLabel.value);
 
     dell.subscribe((res:any)=>{
       if(res.status == "200")

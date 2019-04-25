@@ -3,14 +3,14 @@
     
         <mat-label class = "edit" >Edit Labels</mat-label>
         <div>
-          <button mat-icon-button class="btnclose">
+          <button  style = "opacity: 0.63;zoom: 0.9;" mat-icon-button class="btnclose">
             <mat-icon class="remicon">close</mat-icon>
           </button>
-          <mat-form-field style = "margin-left: 10px;margin-right: 10px;">
+          <mat-form-field style = "margin-left: 9px;margin-right: 11px;">
             <input style = "outline: none;border: none;font-size: 16px;" matInput placeholder="create new label" [formControl] = "labelname" >
         </mat-form-field>
     
-          <button mat-icon-button class="btnclose" (click)="close()">
+          <button  style = "opacity: 0.63;zoom: 0.9;" mat-icon-button class="btnclose" (click)="close()">
             <mat-icon style = "margin-left:15px">check</mat-icon>
           </button>
         </div>
@@ -35,17 +35,27 @@
             
             </label > -->
 
-            <div>
-            <label role="listitem" *ngFor="let item of labels">
-              <button mat-icon-button class="btnclose">
-                <mat-icon class="remicon">label</mat-icon>
+            <div >
+            <label class = "label" role="listitem" *ngFor="let item of labels">
+
+              <div fxLayout = "row">
+              <button style = "opacity: 0.63;zoom: 0.9;" mat-icon-button >
+                <mat-icon class="labelupdate">label</mat-icon>
               </button>
-             <span style = "margin-left: 11px;">{{item.label}}</span>
-             
-              <button (click)="deleteLabel(item.id)" mat-icon-button class="btnclose">
-                <mat-icon >delete_outline</mat-icon>
-              </button>
+
+              <button style = "margin-left: -41px;opacity: 0.63;zoom: 0.9;" (click)="deleteLabel(item.id,'delete')" mat-icon-button >
+                  <mat-icon class="labeldelete">delete</mat-icon>
+                </button>
+
+             <!-- <span style = "margin-left: 11px;">{{item.label}}</span> -->
+             <input style = "margin-left: 11px;" matInput [formControl]="updateLabel" value= {{item.label}} />
+             <!-- <input style = "margin-left: 24px;" matInput  [formControl] = "noteContent" value = {{description}}> -->
               
+              <button  style = "opacity: 0.63;zoom: 0.9;" (click)="deleteLabel(item.id,'update')" mat-icon-button class="btnclose">
+                <mat-icon >edit</mat-icon>
+              </button>
+            </div>
+
               <br>
             </label>
             </div>

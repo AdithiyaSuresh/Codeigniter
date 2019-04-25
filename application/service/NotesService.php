@@ -354,8 +354,36 @@ use \Firebase\JWT\JWT;
         //     $reff      = new NotesControllerService();
         //     $reff->userNotes($email);
        
-     
+    }
 
+    public function closeLabel($noteid,$label)
+    {
+            $query = "SELECT id from label WHERE label = '$label'";
+            $statement = $this->db->conn_id->prepare($query);
+            $statement->execute();
+            $arr = $statement->fetch(PDO::FETCH_ASSOC);
+            $labelid = $arr['id'];
+
+            $query = "DELETE from label_note WHERE note_id = '$noteid' and label_id = '$labelid'";
+            $statement = $this->db->conn_id->prepare($query);
+            $res = $statement->execute();
+            if ($res) 
+            {
+                $result = array(
+                    "message" => "200",
+                );
+                print json_encode($result);
+                return "200";
+            } 
+            else 
+            {
+                $result = array(
+                    "message" => "204",
+                );
+                print json_encode($result);
+                return "204";
+
+            }
     }
 
 

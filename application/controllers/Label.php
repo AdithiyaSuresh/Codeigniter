@@ -63,19 +63,22 @@ class Label extends CI_Controller
     public function deletelname()
     {
         $id = $_POST['id'];
-        return $this->labelserv->deletelname($id);
+        $flag = $_POST['flag'];
+        $labelValue = $_POST['updatevalue'];
+        return $this->labelserv->deletelname($id,$flag,$labelValue);
     }
-
-    public function addLtoN()
-    {
-        $note_id = $_POST['note_id'];
-        $label_id = $_POST['label_id'];
-        $this->labelserv->addLtoN($note_id,$label_id);
-    }
-
+ 
     public function labelNoteDis()
     {
         $id = $_POST['id'];
         $this->labelserv->labelNoteDis($id);
     }
+
+    public function addLtoN()
+        {
+            $note_id = $_POST['note_id'];
+            $label_id = $_POST['label_id'];
+            $this->labelserv->addLtoN($note_id,$label_id);
+        }
+
 }
