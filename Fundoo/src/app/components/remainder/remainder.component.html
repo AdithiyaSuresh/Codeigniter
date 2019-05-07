@@ -175,7 +175,7 @@
     <div style="margin-left: 880px;">
         <mat-grid-list cols = "4" rowHeight="3:1" class="noteList">
 
-        <div fxLayout="row wrap" fxLayoutAlign="center center" >
+        <div fxLayout="row wrap" fxLayoutAlign="center start" >
 
           <mat-card class="gridcard row"  *ngFor="let n of note"  [ngStyle]="{ 'background-color': n.color }">
             <div><img style = "margin-left: -25px;margin-top: 5px;" mat-card-image src= "{{n.image}}" ></div>

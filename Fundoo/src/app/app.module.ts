@@ -35,6 +35,7 @@ import { SearchdataPipe } from './searchdata.pipe';
 import { DisplayemptyComponent } from './components/displayempty/displayempty.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
+import { MessagingService } from './service/messaging.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { LabelnotesComponent } from './components/labelnotes/labelnotes.componen
     SocialLoginModule,
     DragDropModule
    ],
-  providers: [RegisterService,CookieService,serviceUrl,AuthService,auth,SocialLoginModule,
+  providers: [MessagingService,RegisterService,CookieService,serviceUrl,AuthService,auth,SocialLoginModule,
     {
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
