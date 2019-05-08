@@ -1,9 +1,9 @@
 
 <?php
-include "JWT.php";
-include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
-include "/var/www/html/codeigniter/application/service/Redis.php";
-include "/var/www/html/codeigniter/application/service/LabelService.php";
+include_once "JWT.php";
+include_once "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
+include_once "/var/www/html/codeigniter/application/service/Redis.php";
+include_once "/var/www/html/codeigniter/application/service/LabelService.php";
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Authorization");
 
@@ -395,29 +395,12 @@ use \Firebase\JWT\JWT;
             $res = $stmt->execute();
             $this->client->del('notes_'.$uid);
         }
-        
-        // $connection = new Redis();
-        // $client = $connection->connection();
-        // $token = $client->get('token');
-        // $arr = array('HS256', 'HS384', 'HS512','RS256');
-        // $secret_key = "abc";
-        // $payload = JWT::decode($token,$secret_key,$arr);
-        // $uid = $payload->id;
 
-        // $query1 = "SELECT * from addnote Where userid ='$uid' AND pin = '1' ORDER BY id DESC ";
-        // $stmt = $this->db->conn_id->prepare($query1);
-        // $res = $stmt->execute();
-        // $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // print json_encode($arr);
-
-        // $query1="SELECT email from notes where id='$id'";
-        // $statement1 = $this->connect->prepare($query1);
-        // $statement1->execute();
-        // $email = $statement1->fetch();
-        // $email=$email['email'];
-  
-        //     $reff      = new NotesControllerService();
-        //     $reff->userNotes($email);
+        $query1 = "SELECT * from addnote Where userid ='$uid' AND pin = '1' ORDER BY id DESC ";
+        $stmt = $this->db->conn_id->prepare($query1);
+        $res = $stmt->execute();
+        $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        print json_encode($arr);
        
     }
 

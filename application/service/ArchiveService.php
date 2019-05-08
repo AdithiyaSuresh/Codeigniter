@@ -5,22 +5,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include "JWT.php";
 include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
 include "/var/www/html/codeigniter/application/service/Redis.php";
+include_once "/var/www/html/codeigniter/application/service/NotesService.php";
 
 use \Firebase\JWT\JWT;
 
 class ArchiveService extends CI_Controller
 {
+    public $client = "";
+    public $class;
     public function __construct()
     {
         parent::__construct();
+        $this->class = new NoteService();
+        $this->client = $this->class->client;
     }
 
     public function archivednotes($uid)
     {
-
-        $connection = new Redis();
-        $client = $connection->connection();
-        $token = $client->get('token');
+        $token = $this->client->get('token');
         $arr = array('HS256', 'HS384', 'HS512','RS256');
         $secret_key = "abc";
         $payload = JWT::decode($token,$secret_key,$arr);
@@ -33,12 +35,20 @@ class ArchiveService extends CI_Controller
         print json_encode($arr);
     }
     
-    public function archive($uid){
-        
-        $query = "UPDATE addnote SET archive = '0'  where id = '$uid'";
+    public function archive($id)
+    {
+        $token = $this->client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
+
+        $query = "UPDATE addnote SET archive = '0'  where id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
-        if ($res) {
+        if ($res) 
+        {
+            $this->client->del('notes_'.$uid);
             $data = array(
                 "status" => "200",
             );

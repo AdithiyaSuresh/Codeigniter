@@ -520,7 +520,8 @@ stat;
 	 * @description function to drag and drop the card
 	 * @param CdkDragDrop array
 	 */
-	drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>) 
+  {
     moveItemInArray(this.note, event.previousIndex, event.currentIndex);
     
 		if (event.previousIndex - event.currentIndex >= 0) {

@@ -5,19 +5,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include "JWT.php";
 include "/var/www/html/codeigniter/application/jwt/vendor/autoload.php";
 include "/var/www/html/codeigniter/application/service/Redis.php";
+include_once "/var/www/html/codeigniter/application/service/NotesService.php";
 
 use \Firebase\JWT\JWT;
 
 class TrashService extends CI_Controller
 {
+    public $client = "";
+    public $class;
     public function __construct()
     {
         parent::__construct();
+        $this->class = new NoteService();
+        $this->client = $this->class->client;
     }
-    public function fetchTrash($uid){
-        $connection = new Redis();
-        $client = $connection->connection();
-        $token = $client->get('token');
+
+    public function fetchTrash($uid)
+    {
+        $token = $this->client->get('token');
         $arr = array('HS256', 'HS384', 'HS512','RS256');
         $secret_key = "abc";
         $payload = JWT::decode($token,$secret_key,$arr);
@@ -30,12 +35,20 @@ class TrashService extends CI_Controller
         print json_encode($arr);
     }
     
-    public function delete($uid){
+    public function delete($id)
+    {
+        $token = $this->client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
 
-        $query = "DELETE FROM addnote WHERE id = '$uid'";
+        $query = "DELETE FROM addnote WHERE id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
-        if ($res) {
+        if ($res) 
+        {
+            $this->client->del('notes_'.$uid);
             $data = array(
                 "status" => "200",
             );
@@ -49,13 +62,20 @@ class TrashService extends CI_Controller
         }
     }
 
-    public function restore($uid)
+    public function restore($id)
     {
+        $token = $this->client->get('token');
+        $arr = array('HS256', 'HS384', 'HS512','RS256');
+        $secret_key = "abc";
+        $payload = JWT::decode($token,$secret_key,$arr);
+        $uid = $payload->id;
 
-        $query = "UPDATE addnote SET trash = '0',date = '' where id = '$uid'";
+        $query = "UPDATE addnote SET trash = '0',date = '' where id = '$id'";
         $stmt = $this->db->conn_id->prepare($query);
         $res = $stmt->execute();
-        if ($res) {
+        if ($res) 
+        {
+            $this->client->del('notes_'.$uid);
             $data = array(
                 "status" => "200",
             );

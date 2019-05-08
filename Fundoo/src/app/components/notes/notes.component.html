@@ -206,11 +206,11 @@
                 <div class="pinclass">
                 <span>PINNED</span>
               </div>
-                <div fxLayout="{{layout}}" fxLayoutAlign="center start"  cdkDropList (cdkDropListDropped)=drop($event) >
-                      
-                  <div *ngFor="let n of note">
-                <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin == 1" [ngStyle]="{ 'background-color': n.color }">
-                  <div>
+              <div fxLayout="{{layout}}" fxLayoutAlign="center start"  cdkDropList (cdkDropListDropped)=drop($event)>
+
+            <div *ngFor="let n of note">
+                <mat-card class="gridcard" cdkDrag [ngClass]="direction == 'row' ? 'row': 'column' " *ngIf = "n.pin != 1" [ngStyle]="{ 'background-color': n.color }">
+                    <div>
                       <button (click)=" pinNote(n.id,0)" class = "displayButton pinicon" mat-icon-button>
                       <mat-icon matSuffix><img src="../../assets/img/fundoAssests/pin.svg " /></mat-icon>
         
