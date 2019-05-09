@@ -93,6 +93,7 @@ $route['deletelname'] = 'Label/deletelname';
 $route['addLtoN'] = 'Label/addLtoN';
 $route['labelNoteDis'] = 'Label/labelNoteDis';
 $route['closeLabel'] = 'Note/closeLabel';
+$route['dragDrop'] = 'Note/dragDrop';
 
 $route['get'] = 'A/get';
 

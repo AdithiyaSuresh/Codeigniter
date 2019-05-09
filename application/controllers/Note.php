@@ -100,6 +100,17 @@ header("Access-Control-Allow-Headers: Authorization");
             $this->noteService->closeLabel($noteid,$label);
         }
 
+        public function dragDrop()
+        {
+    
+            $diff      = $_POST["diff"];
+            $currId    = $_POST["currId"];
+            $direction = $_POST["direction"];
+            $uid     = $_POST["uid"];
+            $this->noteService->dragDrop($diff, $currId, $direction, $uid);
+    
+        }
+
     }
         
 ?>

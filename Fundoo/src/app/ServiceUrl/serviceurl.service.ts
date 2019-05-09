@@ -35,4 +35,5 @@ export class serviceUrl
     public addLtoN = "codeigniter/addLtoN";
     public labelNoteDis = "codeigniter/labelNoteDis";
     public closeLabel = "codeigniter/closeLabel";
+    public dragDrop = "codeigniter/dragDrop";
 }

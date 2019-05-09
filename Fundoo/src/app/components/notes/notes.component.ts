@@ -514,7 +514,8 @@ stat;
 	 * @var dirrection string having the direction of drag
 	 */
 	difference;
-	dirrection;
+  dirrection;
+  resnote;
 	/**
 	 * @method drop
 	 * @description function to drag and drop the card
@@ -522,6 +523,7 @@ stat;
 	 */
   drop(event: CdkDragDrop<string[]>) 
   {
+    debugger
     moveItemInArray(this.note, event.previousIndex, event.currentIndex);
     
 		if (event.previousIndex - event.currentIndex >= 0) {
@@ -532,7 +534,32 @@ stat;
 			this.difference = (event.previousIndex - event.currentIndex) * -1;
 			// alert("neg");
 			this.dirrection = "negative";
-		}
+    }
+    console.log(event.currentIndex);
+
+    console.log(this.note[event.currentIndex]);
+     this.resnote = this.note[event.currentIndex];
+
+     console.log("dargid",this.resnote.dragId);
+
+    let obbs = this.noteService.dragAndDrop(
+    	this.difference,
+    	this.resnote.dragId,
+    	this.dirrection,
+    	this.uid
+    );
+    obbs.subscribe(
+    	(res: any) => {
+    		//   obbs.unsubscribe();
+    	},
+    	error => {
+    		// this.iserror = true;
+    		// this.errorMessage = error.message;
+    	}
+    );
+  }
+
+
 		// console.log(event.currentIndex);
 
 		// console.log(this.notes[event.currentIndex]);
@@ -549,7 +576,6 @@ stat;
 		// 	},
     // );
     
-  }
   
 // difference;
 //   dirrection;

@@ -104,4 +104,23 @@ export class NoteService {
     return this.http.post(this.serviceurl.host+this.serviceurl.closeLabel,labelin);
   }
   
+  	/**
+	 * @method dragAndDrop()
+	 * @return observable data
+	 * @param prevId
+	 * @param currId
+	 * @description Function to drag and drop the card
+	 */
+  dragAndDrop(diff, currId, direction, uid) 
+  {
+    debugger;
+		let dragAndDropData = new FormData();
+		dragAndDropData.append("diff", diff);
+		dragAndDropData.append("currId", currId);
+		dragAndDropData.append("direction", direction);
+		dragAndDropData.append("uid", uid);
+    return this.http.post(this.serviceurl.host+this.serviceurl.dragDrop,dragAndDropData);
+
+  }
+  
 }
