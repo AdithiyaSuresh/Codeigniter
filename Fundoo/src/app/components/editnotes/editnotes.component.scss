@@ -30,4 +30,9 @@
     padding: 0px;
     overflow: visible;
 }
+
+.mat-card-image {
+  width: calc(100% + -5px);
+  margin: 0 -16px 16px -16px;
+}
   

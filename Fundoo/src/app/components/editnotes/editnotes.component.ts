@@ -26,6 +26,7 @@ export class EditnotesComponent implements OnInit {
   currentDateAndTime: string;
   timer: any;
   isDate: any;
+  image: any;
 
   constructor(public dialogRef: MatDialogRef<EditnotesComponent>,public dialog: MatDialog,private noteService : NoteService, @Inject(MAT_DIALOG_DATA) public data: any,) 
   { 
@@ -35,6 +36,7 @@ export class EditnotesComponent implements OnInit {
     this.id = this.data.id;
     this.date = this.data.date;
     this.color = this.data.color;
+    this.image = this.data.image;
 
      
     // else

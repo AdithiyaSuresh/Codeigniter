@@ -485,7 +485,7 @@ use \Firebase\JWT\JWT;
                  */
                 $swapId = $swapId['dragId'];
                 /**
-                 * @var string $query has query to swap the tow rows
+                 * @var string $query has query to swap the two rows
                  */
                 $query = "UPDATE addnote a INNER JOIN addnote b on a.dragId <> b.dragId set a.dragId = b.dragId
                     WHERE a.dragId in ('$swapId','$currId') and b.dragId in ('$swapId','$currId')";
